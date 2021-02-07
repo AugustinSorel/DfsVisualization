@@ -20,7 +20,7 @@ namespace DfsVisualization
         {
             this.mazeCanvas = mazeCanvas;
             canvasWidth = mazeCanvas.Width = (Application.Current.Windows[0] as MainWindow).Width - 40;
-            canvasHeight = mazeCanvas.Height = (Application.Current.Windows[0] as MainWindow).Height - 40;
+            canvasHeight = mazeCanvas.Height = (Application.Current.Windows[0] as MainWindow).Height - 60;
         }
 
         public void DrawGrid()
@@ -33,7 +33,7 @@ namespace DfsVisualization
                     {
                         Width = CellWidth,
                         Height = CellHeight,
-                        Fill = Brushes.DarkGray,
+                        Fill = GlobalColors.GetCellColor(),
                     };
 
                     Canvas.SetLeft(rectangle, j * CellWidth);

@@ -26,7 +26,7 @@ namespace DfsVisualization
             MazeUserControl mazeUserControl = new MazeUserControl();
             container.Children.Add(mazeUserControl);
             Grid.SetColumn(mazeUserControl, 1);
-            Grid.SetRow(mazeUserControl, 1);
+            Grid.SetRow(mazeUserControl, 2);
         }
         #endregion
     }

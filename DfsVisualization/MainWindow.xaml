@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         ContentRendered="Window_ContentRendered"
+        Background="#079992"
         Title="MainWindow" Height="500" Width="500">
     <Grid x:Name="container">
         <Grid.ColumnDefinitions>
@@ -18,6 +19,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
