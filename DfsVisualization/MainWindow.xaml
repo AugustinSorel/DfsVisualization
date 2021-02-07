@@ -15,7 +15,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/DfsVisualization;component/RessourceDictionaries/ButtonDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DfsVisualization;component/RessourceDictionaries/ButtonDictionary1.xaml"/>
              </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
