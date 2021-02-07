@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace DfsVisualization
 {
@@ -19,7 +20,10 @@ namespace DfsVisualization
 
         private void AddMazeToContainer()
         {
-            container.Children.Add(new MazeUserControl());
+            MazeUserControl mazeUserControl = new MazeUserControl();
+            container.Children.Add(mazeUserControl);
+            Grid.SetColumn(mazeUserControl, 1);
+            Grid.SetRow(mazeUserControl, 1);
         }
     }
 }
