@@ -24,5 +24,31 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Button x:Name="StartButton">
+                    <Image Source="/Images/StartWithoutDebug_16x.png"/>
+                </Button>
+                <Button x:Name="PauseButton">
+                    <Image Source="/Images/Pause_16x.png"/>
+                </Button>
+                <Button x:Name="Restart">
+                    <Image Source="/Images/Stop_16x.png"/>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Slider x:Name="SpeedSlider" Maximum="100" Minimum="0" Width="100" >
+                    
+                </Slider>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Window>

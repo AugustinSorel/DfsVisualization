@@ -103,6 +103,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\StartWithoutDebug_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pause_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stop_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
