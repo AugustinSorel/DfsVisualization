@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:DfsVisualization"
              mc:Ignorable="d" 
              Background="Gray"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="500" d:DesignWidth="500">
+    <Canvas x:Name="mazeCanvas">
+        
+    </Canvas>
 </UserControl>

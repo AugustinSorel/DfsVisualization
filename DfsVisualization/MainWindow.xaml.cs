@@ -11,5 +11,15 @@ namespace DfsVisualization
         {
             InitializeComponent();
         }
+
+        private void Window_ContentRendered(object sender, System.EventArgs e)
+        {
+            AddMazeToContainer();
+        }
+
+        private void AddMazeToContainer()
+        {
+            container.Children.Add(new MazeUserControl());
+        }
     }
 }

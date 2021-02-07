@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DfsVisualization"
         mc:Ignorable="d"
-        
-        Title="MainWindow" Height="5z0" Width="800">
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ContentRendered="Window_ContentRendered"
+        Title="MainWindow" Height="500" Width="500">
     <Grid x:Name="container">
         
     </Grid>
