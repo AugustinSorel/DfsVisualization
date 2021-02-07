@@ -15,7 +15,8 @@ namespace DfsVisualization
 
         private void DrawGrid()
         {
-            new MazeDrawer(mazeCanvas);
+            MazeDrawer mazeDrawer = new MazeDrawer(mazeCanvas);
+            mazeDrawer.DrawGrid();
         }
     }
 }

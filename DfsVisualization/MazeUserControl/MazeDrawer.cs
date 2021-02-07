@@ -8,11 +8,11 @@ namespace DfsVisualization
 {
     public class MazeDrawer
     {
-        private int CellWidth = 20;
-        private int CellHeight = 20;
+        private readonly int CellWidth = 20;
+        private readonly int CellHeight = 20;
 
-        private double canvasWidth = 400;
-        private double canvasHeight = 400;
+        private readonly double canvasWidth = 400;
+        private readonly double canvasHeight = 400;
 
         Canvas mazeCanvas;
 
