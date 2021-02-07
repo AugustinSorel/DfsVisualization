@@ -4,12 +4,12 @@ namespace DfsVisualization
 {
     static class GlobalColors
     {
-        private const string BACKGROUND_COLOR = "#0c2461";
+        private const string BACKGROUND_COLOR = "#079992";
         private const string CELL_COLOR = "#38ada9";
 
-        public static Brush GetBackGroundColor()
+        public static Brush BackgroundColor
         {
-            return (SolidColorBrush)(new BrushConverter().ConvertFrom(BACKGROUND_COLOR));
+            get { return (SolidColorBrush)(new BrushConverter().ConvertFrom(BACKGROUND_COLOR)); ; }
         }
 
         public static Brush GetCellColor()

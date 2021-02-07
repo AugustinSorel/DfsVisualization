@@ -9,8 +9,17 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         ContentRendered="Window_ContentRendered"
-        Background="#079992"
+       Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}"
         Title="MainWindow" Height="500" Width="500">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DfsVisualization;component/RessourceDictionaries/ButtonDictionary.xaml" />
+             </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid x:Name="container">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
