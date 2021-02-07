@@ -10,6 +10,12 @@ namespace DfsVisualization
         public MazeUserControl()
         {
             InitializeComponent();
+            DrawGrid();
+        }
+
+        private void DrawGrid()
+        {
+            new MazeDrawer(mazeCanvas);
         }
     }
 }

@@ -8,16 +8,19 @@ namespace DfsVisualization
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region ctor
         public MainWindow()
         {
             InitializeComponent();
         }
+        #endregion
 
         private void Window_ContentRendered(object sender, System.EventArgs e)
         {
             AddMazeToContainer();
         }
 
+        #region Add Maze To Container
         private void AddMazeToContainer()
         {
             MazeUserControl mazeUserControl = new MazeUserControl();
@@ -25,5 +28,6 @@ namespace DfsVisualization
             Grid.SetColumn(mazeUserControl, 1);
             Grid.SetRow(mazeUserControl, 1);
         }
+        #endregion
     }
 }
