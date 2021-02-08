@@ -33,7 +33,7 @@ namespace DfsVisualization
                     {
                         Width = CellWidth,
                         Height = CellHeight,
-                        Fill = GlobalColors.GetCellColor(),
+                        Fill = GlobalColors.CellColor,
                     };
 
                     Canvas.SetLeft(rectangle, j * CellWidth);

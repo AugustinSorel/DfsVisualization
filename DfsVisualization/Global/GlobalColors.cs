@@ -9,12 +9,17 @@ namespace DfsVisualization
 
         public static Brush BackgroundColor
         {
-            get { return (SolidColorBrush)(new BrushConverter().ConvertFrom(BACKGROUND_COLOR)); ; }
+            get { return (SolidColorBrush)(new BrushConverter().ConvertFrom(BACKGROUND_COLOR)); }
         }
 
-        public static Brush GetCellColor()
+        public static Brush CellColor
         {
-            return (SolidColorBrush)(new BrushConverter().ConvertFrom(CELL_COLOR));
+            get { return (SolidColorBrush)(new BrushConverter().ConvertFrom(CELL_COLOR)); }
+        }
+
+        public static string CellColorString
+        {
+            get { return CELL_COLOR; }
         }
     }
 }
