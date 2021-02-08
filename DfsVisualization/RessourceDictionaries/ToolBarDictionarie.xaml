@@ -35,4 +35,10 @@
         <Setter Property="FontFamily" Value="Segoe UI Light"/>
 
     </Style>
+
+    <Style TargetType="Slider">
+        <Setter Property="Minimum" Value="1"/>
+        <Setter Property="Maximum" Value="10"/>
+        <Setter Property="FlowDirection" Value="LeftToRight"/>
+    </Style>
 </ResourceDictionary>
