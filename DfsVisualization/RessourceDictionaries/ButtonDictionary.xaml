@@ -4,18 +4,23 @@
     
     <Style TargetType="Button" x:Key="{x:Type Button}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="5, 0, 5, 0"/>
+
+        <Setter Property="ToolTipService.InitialShowDelay" Value="100"/>
+        <Setter Property="ToolTipService.ShowDuration" Value="2000"/>
+        <Setter Property="ToolTipService.BetweenShowDelay" Value="100"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Name="border" 
                         BorderThickness="1"
-                        BorderBrush="Gray" 
                         Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="White" />
+                            <Setter TargetName="border" Property="Background" Value="#10ac84" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

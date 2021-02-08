@@ -41,15 +41,16 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-                <Button x:Name="StartButton">
+                <Button x:Name="StartButton" ToolTip="Start Dfs Algorithm">
                     <Image Source="/Images/StartWithoutDebug_16x.png"/>
                 </Button>
-                <Button x:Name="PauseButton">
+                <Button x:Name="PauseButton" ToolTip="Pause">
                     <Image Source="/Images/Pause_16x.png"/>
                 </Button>
                 <Button x:Name="Restart">
-                    <Image Source="/Images/Stop_16x.png"/>
+                    <Image Source="/Images/Stop_16x.png" ToolTip="Restart Dfs Algorithm"/>
                 </Button>
+                <Button x:Name="de" Content="HELLo"/>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
