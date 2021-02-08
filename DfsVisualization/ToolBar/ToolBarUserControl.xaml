@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/DfsVisualization;component/RessourceDictionaries/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/DfsVisualization;component/RessourceDictionaries/ToolBarDictionarie.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -41,6 +41,10 @@
             <Slider x:Name="SpeedSlider" Maximum="100" Minimum="0" Width="100" >
 
             </Slider>
+
+            <TextBlock Margin="40, 0, 0, 0">
+                Speed: 10
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -58,7 +58,7 @@
     <Compile Include="ToolBar\ToolBarUserControl.xaml.cs">
       <DependentUpon>ToolBarUserControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="RessourceDictionaries\ButtonDictionary.xaml">
+    <Page Include="RessourceDictionaries\ToolBarDictionarie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

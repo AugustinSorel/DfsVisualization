@@ -28,4 +28,11 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+
+    </Style>
 </ResourceDictionary>
