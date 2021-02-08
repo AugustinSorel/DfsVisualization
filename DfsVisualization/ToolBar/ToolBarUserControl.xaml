@@ -32,8 +32,8 @@
             <Button x:Name="PauseButton" ToolTip="Pause">
                 <Image Source="/Images/Pause_16x.png"/>
             </Button>
-            
-            <Button x:Name="Restart">
+
+            <Button x:Name="Restart" ToolTip="Abort">
                 <Image Source="/Images/Stop_16x.png" ToolTip="Abort"/>
             </Button>
 
@@ -41,11 +41,11 @@
 
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
 
-            <Slider x:Name="SpeedSlider" Value="{Binding Path=BoundNumber}" Width="100" >
+            <Slider x:Name="SpeedSlider" Value="{Binding Path=BoundNumber}" Width="100" ToolTip="Speed of the animation">
 
             </Slider>
 
-            <TextBlock Margin="40, 0, 0, 0" Text="{Binding Path=BoundNumber}"/>
+            <TextBlock Margin="40, 0, 0, 0" Text="{Binding Path=BoundNumber, StringFormat='Speed: {0}'}"/>
         
         </StackPanel>
     </Grid>

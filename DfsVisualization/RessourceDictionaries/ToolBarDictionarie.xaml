@@ -40,5 +40,10 @@
         <Setter Property="Minimum" Value="1"/>
         <Setter Property="Maximum" Value="10"/>
         <Setter Property="FlowDirection" Value="LeftToRight"/>
+
+        <Setter Property="ToolTipService.InitialShowDelay" Value="100"/>
+        <Setter Property="ToolTipService.ShowDuration" Value="1000"/>
+        <Setter Property="ToolTipService.BetweenShowDelay" Value="100"/>
+
     </Style>
 </ResourceDictionary>
