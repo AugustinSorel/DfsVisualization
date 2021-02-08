@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace DfsVisualization
@@ -17,8 +18,19 @@ namespace DfsVisualization
 
         private void Window_ContentRendered(object sender, System.EventArgs e)
         {
+            AddToolBar();
             AddMazeToContainer();
         }
+
+        #region Add Tool Bar To Container
+        private void AddToolBar()
+        {
+            ToolBarUserControl toolBar = new ToolBarUserControl();
+            container.Children.Add(toolBar);
+            Grid.SetColumn(toolBar, 1);
+            Grid.SetRow(toolBar, 1);
+        }
+        #endregion
 
         #region Add Maze To Container
         private void AddMazeToContainer()
