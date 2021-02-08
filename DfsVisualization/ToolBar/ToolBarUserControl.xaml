@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:DfsVisualization"
              mc:Ignorable="d"
              d:DesignHeight="20" d:DesignWidth="500">
+
+
     
     <UserControl.Resources>
         <ResourceDictionary>
@@ -38,12 +40,12 @@
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            
-            <Slider x:Name="SpeedSlider" Value="{Binding Path=BoundNumber, Mode=TwoWay}" Width="100" >
+
+            <Slider x:Name="SpeedSlider" Value="{Binding Path=BoundNumber}" Width="100" >
 
             </Slider>
 
-            <TextBlock Margin="40, 0, 0, 0" Text="{Binding Path=BoundNumber, Mode=TwoWay, StringFormat='Speed: {0}'}"/>
+            <TextBlock Margin="40, 0, 0, 0" Text="{Binding Path=BoundNumber}"/>
         
         </StackPanel>
     </Grid>

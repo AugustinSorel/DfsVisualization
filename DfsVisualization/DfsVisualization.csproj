@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NotifyPropertyChanged.cs" />
+    <Compile Include="SliderValue.cs" />
     <Compile Include="ToolBar\ToolBarUserControl.xaml.cs">
       <DependentUpon>ToolBarUserControl.xaml</DependentUpon>
     </Compile>
