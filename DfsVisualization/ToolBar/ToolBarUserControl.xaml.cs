@@ -7,12 +7,12 @@ namespace DfsVisualization
     /// </summary>
     public partial class ToolBarUserControl : UserControl
     {
-        private SliderValue sliderValue;
+        private SliderValueDP sliderValue;
 
         public ToolBarUserControl()
         {
             InitializeComponent();
-            sliderValue = new SliderValue();
+            sliderValue = new SliderValueDP();
             DataContext = sliderValue;
         }
     }

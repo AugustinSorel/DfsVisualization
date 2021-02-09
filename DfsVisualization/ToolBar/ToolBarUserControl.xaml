@@ -41,11 +41,13 @@
 
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
 
-            <Slider x:Name="SpeedSlider" Value="{Binding Path=BoundNumber}" Width="100" ToolTip="Speed of the animation">
+            <Slider x:Name="SpeedSlider" Value="{Binding RelativeSource={RelativeSource AncestorType=Window},
+                    Path=SliderValue}" Width="100" ToolTip="Speed of the animation">
 
             </Slider>
 
-            <TextBlock Margin="40, 0, 0, 0" Text="{Binding Path=BoundNumber, StringFormat='Speed: {0}'}"/>
+            <TextBlock Margin="40, 0, 0, 0" Text="{Binding RelativeSource={RelativeSource AncestorType=Window},
+                       Path=SliderValue}"/>
         
         </StackPanel>
     </Grid>
