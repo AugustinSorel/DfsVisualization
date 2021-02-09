@@ -18,9 +18,19 @@ namespace DfsVisualization
 
         private void Window_ContentRendered(object sender, System.EventArgs e)
         {
+            AddTopBar();
             AddToolBar();
             AddMazeToContainer();
         }
+
+        #region Add Tool Bar To Container
+        private void AddTopBar()
+        {
+            TopBar toolBar = new TopBar();
+            container.Children.Add(toolBar);
+            Grid.SetColumnSpan(toolBar, 3);
+        }
+        #endregion
 
         #region Add Tool Bar To Container
         private void AddToolBar()

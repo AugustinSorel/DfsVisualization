@@ -59,6 +59,9 @@
     <Compile Include="ToolBar\ToolBarUserControl.xaml.cs">
       <DependentUpon>ToolBarUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TopBar.xaml.cs">
+      <DependentUpon>TopBar.xaml</DependentUpon>
+    </Compile>
     <Page Include="RessourceDictionaries\ToolBarDictionarie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,6 +84,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ToolBar\ToolBarUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TopBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
