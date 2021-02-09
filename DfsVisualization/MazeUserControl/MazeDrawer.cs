@@ -1,26 +1,31 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace DfsVisualization
 {
+    /// <summary>
+    /// Contain all of the drawing fields and methods
+    /// </summary>
     public class MazeDrawer
     {
-        private readonly int CellWidth = 20;
-        private readonly int CellHeight = 20;
+        private readonly int CellWidth = 10;
+        private readonly int CellHeight = 10;
 
-        private readonly double canvasWidth = 400;
-        private readonly double canvasHeight = 400;
+        private readonly double canvasWidth;
+        private readonly double canvasHeight;
+
+        Cell[,] cells;
 
         Canvas mazeCanvas;
 
         public MazeDrawer(Canvas mazeCanvas)
         {
             this.mazeCanvas = mazeCanvas;
-            canvasWidth = mazeCanvas.Width = (Application.Current.Windows[0] as MainWindow).Width - 40;
-            canvasHeight = mazeCanvas.Height = (Application.Current.Windows[0] as MainWindow).Height - 80;
+            canvasWidth = (Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth;
+            canvasHeight = (Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight;
+            cells = new Cell[(int)canvasWidth / CellWidth, (int)canvasHeight / CellHeight];
         }
 
         public void DrawGrid()
@@ -29,64 +34,48 @@ namespace DfsVisualization
             {
                 for (int j = 0; j < canvasWidth / CellWidth; j++)
                 {
-                    Rectangle rectangle = new Rectangle()
+                    if (i == canvasHeight / CellHeight - 1 && j == canvasWidth / CellWidth - 1)
                     {
-                        Width = CellWidth,
-                        Height = CellHeight,
-                        Fill = GlobalColors.CellColor,
-                    };
-
-                    Canvas.SetLeft(rectangle, j * CellWidth);
-                    Canvas.SetTop(rectangle, i * CellHeight);
-                    mazeCanvas.Children.Add(rectangle);
-
-                    if (j < canvasWidth / CellWidth - 1)
-                    {
-                        DrawWallBetween(j, i, j + 1, i);
+                        AddCellToCanvas(j, i, 0, 0);
                     }
-
-                    if (i < canvasHeight / CellHeight - 1)
+                    else if (i == canvasHeight / CellHeight - 1)
                     {
-                        DrawWallBetween(j, i, j, i + 1);
+                        AddCellToCanvas(j, i, 2, 0);
+                    }
+                    else if(j == canvasWidth / CellWidth - 1)
+                    {
+                        AddCellToCanvas(j, i, 0, 2);
+                    }
+                    else
+                    {
+                        AddCellToCanvas(j, i, 2, 2);
                     }
                 }
             }
         }
 
-        private void DrawWallBetween(int x1, int y1, int x2, int y2)
+        /// <summary>
+        /// Add a border to the canvas
+        /// </summary>
+        /// <param name="j"> x location </param>
+        /// <param name="i"> y location </param>
+        /// <param name="right"> Right border thickness of the Cell </param>
+        /// <param name="bottom"> Light border thickness of the Cell </param>
+        private void AddCellToCanvas(int j, int i, int right, int bottom)
         {
-            if (y1 == y2)
-                DrawVerticalLine(Math.Max(x1, x2) * CellHeight, y1 * CellHeight, (y1 + 1) * CellHeight, Brushes.Black);
-            else
-                DrawHorizontalLine(Math.Max(y1, y2) * CellWidth, x1 * CellWidth, (x1 + 1) * CellWidth, Brushes.Black);
-        }
-
-
-        private Line DrawVerticalLine(int x, int y1, int y2, Brush color)
-        {
-            return DrawLine(x, x, y1, y2, color);
-        }
-
-        private Line DrawHorizontalLine(int y, int x1, int x2, Brush color)
-        {
-            return this.DrawLine(x1, x2, y, y, color);
-        }
-
-        private Line DrawLine(int x1, int x2, int y1, int y2, Brush color)
-        {
-            var line = new Line
+            Cell cell = new Cell()
             {
-                Stroke = color,
-                StrokeThickness = 2,
-                X1 = x1,
-                X2 = x2,
-                Y1 = y1,
-                Y2 = y2
+                Width = CellWidth,
+                Height = CellHeight,
+                Background = GlobalColors.CellColor,
+                BorderBrush = Brushes.Black,
+                BorderThickness = new Thickness(0, 0, right, bottom),
             };
 
-            mazeCanvas.Children.Add(line);
-
-            return line;
+            Canvas.SetLeft(cell, j * CellWidth);
+            Canvas.SetTop(cell, i * CellHeight);
+            mazeCanvas.Children.Add(cell);
+            cells[j, i] = cell;
         }
     }
 }
