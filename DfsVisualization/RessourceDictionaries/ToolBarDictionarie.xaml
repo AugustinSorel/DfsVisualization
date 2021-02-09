@@ -54,7 +54,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border  BorderThickness="1" BorderBrush="Black" Background="Black" Height="3"/>
+                    <Border  Background="Gray" Height="5"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -66,7 +66,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border SnapsToDevicePixels="True" Background="Green"  BorderThickness="1" BorderBrush="YellowGreen" Height="3"/>
+                    <Border SnapsToDevicePixels="True" Background="{Binding Source={x:Static local:GlobalColors.CellColor}}" Height="5"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -79,7 +79,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
                     <!--Add name to ellipse to use in  controltemplate triggers-->
-                    <Ellipse x:Name="Ellipse" Height="10" Width="10" Fill="Green"></Ellipse>
+                    <Ellipse x:Name="Ellipse" Height="10" Width="10" Fill="{Binding Source={x:Static local:GlobalColors.CellColor}}"></Ellipse>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="Ellipse" Property="Height" Value="13"></Setter>
