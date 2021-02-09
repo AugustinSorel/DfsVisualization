@@ -58,10 +58,19 @@ namespace DfsVisualization
         }
         #endregion
 
+        #region Handle Key Down
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             switch (e.Key)
             {
+                case System.Windows.Input.Key.Right:
+                    toolBar.SpeedSlider.Value += 1;
+                    break;
+
+                case System.Windows.Input.Key.Left:
+                    toolBar.SpeedSlider.Value -= 1;
+                    break;
+
                 case System.Windows.Input.Key.S:
                     toolBar.StartButton_Click(this, null);
                     break;
@@ -71,5 +80,6 @@ namespace DfsVisualization
                     break;
             }
         }
+        #endregion
     }
 }

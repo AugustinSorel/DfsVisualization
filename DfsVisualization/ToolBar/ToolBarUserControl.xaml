@@ -25,15 +25,15 @@
         
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
             
-            <Button x:Name="StartButton" ToolTip="Start" Click="StartButton_Click">
+            <Button x:Name="StartButton" ToolTip="Start Key: S" Click="StartButton_Click">
                 <Image Source="/Images/StartWithoutDebug_16x.png"/>
             </Button>
             
-            <Button x:Name="PauseButton" ToolTip="Pause">
+            <Button x:Name="PauseButton" ToolTip="Pause Key: P">
                 <Image Source="/Images/Pause_16x.png"/>
             </Button>
 
-            <Button x:Name="Restart" ToolTip="Abort">
+            <Button x:Name="Restart" ToolTip="Abort Key: A">
                 <Image Source="/Images/Stop_16x.png" ToolTip="Abort"/>
             </Button>
 
