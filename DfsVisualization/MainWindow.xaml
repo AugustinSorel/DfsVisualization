@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DfsVisualization"
         mc:Ignorable="d"
         WindowStyle="None"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         ContentRendered="Window_ContentRendered"
         KeyDown="Window_KeyDown"
