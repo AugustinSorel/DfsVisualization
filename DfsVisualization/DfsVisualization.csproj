@@ -55,11 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SliderValue.cs" />
+    <Compile Include="ToolBar\SliderValue.cs" />
     <Compile Include="ToolBar\ToolBarUserControl.xaml.cs">
       <DependentUpon>ToolBarUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TopBar.xaml.cs">
+    <Compile Include="TopBarUserControl\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
     </Compile>
     <Page Include="RessourceDictionaries\ToolBarDictionarie.xaml">
@@ -87,7 +87,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TopBar.xaml">
+    <Page Include="TopBarUserControl\TopBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
