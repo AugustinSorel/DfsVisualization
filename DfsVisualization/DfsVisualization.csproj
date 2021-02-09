@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Cell.cs" />
+    <Compile Include="MazeUserControl\Cell.cs" />
     <Compile Include="ToolBar\SliderValue.cs" />
     <Compile Include="ToolBar\ToolBarUserControl.xaml.cs">
       <DependentUpon>ToolBarUserControl.xaml</DependentUpon>

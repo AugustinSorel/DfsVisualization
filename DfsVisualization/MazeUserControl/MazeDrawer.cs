@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -19,6 +21,7 @@ namespace DfsVisualization
         Cell[,] cells;
 
         Canvas mazeCanvas;
+        BackgroundWorker backgroundWorker;
 
         public MazeDrawer(Canvas mazeCanvas)
         {
@@ -42,7 +45,7 @@ namespace DfsVisualization
                     {
                         AddCellToCanvas(j, i, 2, 0);
                     }
-                    else if(j == canvasWidth / CellWidth - 1)
+                    else if (j == canvasWidth / CellWidth - 1)
                     {
                         AddCellToCanvas(j, i, 0, 2);
                     }
@@ -52,8 +55,14 @@ namespace DfsVisualization
                     }
                 }
             }
+
+            backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += Worker_DoWork;
+            backgroundWorker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            backgroundWorker.RunWorkerAsync();
         }
 
+        #region Add Cell To Canvas
         /// <summary>
         /// Add a border to the canvas
         /// </summary>
@@ -77,5 +86,21 @@ namespace DfsVisualization
             mazeCanvas.Children.Add(cell);
             cells[j, i] = cell;
         }
+        #endregion
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            foreach (var item in cells)
+            {
+                item.Background = GlobalColors.BackgroundColor;
+                Thread.Sleep(100);
+            }
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("End");
+        }
+
     }
 }
