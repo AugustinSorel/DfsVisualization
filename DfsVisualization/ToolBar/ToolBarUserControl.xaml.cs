@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace DfsVisualization
 {
@@ -7,13 +8,18 @@ namespace DfsVisualization
     /// </summary>
     public partial class ToolBarUserControl : UserControl
     {
-        private SliderValueDP sliderValue;
+        private SliderValue sliderValue;
 
         public ToolBarUserControl()
         {
             InitializeComponent();
-            sliderValue = new SliderValueDP();
+            sliderValue = new SliderValue();
             DataContext = sliderValue;
+        }
+
+        private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MessageBox.Show(sliderValue.BoundNumber.ToString());
         }
     }
 }

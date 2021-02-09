@@ -56,7 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="SliderValue.cs" />
-    <Compile Include="SliderValueDP.cs" />
     <Compile Include="ToolBar\ToolBarUserControl.xaml.cs">
       <DependentUpon>ToolBarUserControl.xaml</DependentUpon>
     </Compile>
