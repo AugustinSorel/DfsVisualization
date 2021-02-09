@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace DfsVisualization
@@ -23,12 +22,12 @@ namespace DfsVisualization
             AddMazeToContainer();
         }
 
-        #region Add Tool Bar To Container
+        #region Add Top Bar To Container
         private void AddTopBar()
         {
-            TopBar toolBar = new TopBar();
-            container.Children.Add(toolBar);
-            Grid.SetColumnSpan(toolBar, 3);
+            TopBar TopBar = new TopBar();
+            container.Children.Add(TopBar);
+            Grid.SetColumnSpan(TopBar, 3);
         }
         #endregion
 
@@ -36,6 +35,7 @@ namespace DfsVisualization
         private void AddToolBar()
         {
             ToolBarUserControl toolBar = new ToolBarUserControl();
+            toolBar.Margin = new Thickness(0, 10, 0, 10); 
             container.Children.Add(toolBar);
             Grid.SetColumn(toolBar, 1);
             Grid.SetRow(toolBar, 1);

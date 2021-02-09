@@ -20,7 +20,7 @@ namespace DfsVisualization
         {
             this.mazeCanvas = mazeCanvas;
             canvasWidth = mazeCanvas.Width = (Application.Current.Windows[0] as MainWindow).Width - 40;
-            canvasHeight = mazeCanvas.Height = (Application.Current.Windows[0] as MainWindow).Height - 60;
+            canvasHeight = mazeCanvas.Height = (Application.Current.Windows[0] as MainWindow).Height - 80;
         }
 
         public void DrawGrid()
