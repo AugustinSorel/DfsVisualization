@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace DfsVisualization
 {
-    class SliderValue : NotifyPropertyChanged
+    class SliderValue : INotifyPropertyChanged
     {
         private int _boundNumber = 5;
 
