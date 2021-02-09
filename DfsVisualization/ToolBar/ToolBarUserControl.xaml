@@ -41,7 +41,7 @@
 
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
 
-            <Slider x:Name="SpeedSlider" Value="{Binding Path=BoundNumber}" Width="100" ToolTip="Speed of the animation">
+            <Slider x:Name="SpeedSlider" Style="{StaticResource CustomSlider}" FlowDirection="LeftToRight" Value="{Binding Path=BoundNumber}" Width="100" ToolTip="Speed of the animation">
 
             </Slider>
 
