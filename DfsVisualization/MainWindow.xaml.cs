@@ -8,6 +8,10 @@ namespace DfsVisualization
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Fields
+        private ToolBarUserControl toolBar;
+        #endregion
+
         #region ctor
         public MainWindow()
         {
@@ -34,8 +38,10 @@ namespace DfsVisualization
         #region Add Tool Bar To Container
         private void AddToolBar()
         {
-            ToolBarUserControl toolBar = new ToolBarUserControl();
-            toolBar.Margin = new Thickness(0, 10, 0, 10); 
+            toolBar = new ToolBarUserControl
+            {
+                Margin = new Thickness(0, 10, 0, 10)
+            };
             container.Children.Add(toolBar);
             Grid.SetColumn(toolBar, 1);
             Grid.SetRow(toolBar, 1);
@@ -51,5 +57,19 @@ namespace DfsVisualization
             Grid.SetRow(mazeUserControl, 2);
         }
         #endregion
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case System.Windows.Input.Key.S:
+                    toolBar.StartButton_Click(this, null);
+                    break;
+
+                case System.Windows.Input.Key.Escape:
+                    Application.Current.Shutdown();
+                    break;
+            }
+        }
     }
 }

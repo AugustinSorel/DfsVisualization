@@ -17,7 +17,7 @@ namespace DfsVisualization
             DataContext = sliderValue;
         }
 
-        private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        public void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             MessageBox.Show(sliderValue.BoundNumber.ToString());
         }

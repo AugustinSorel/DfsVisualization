@@ -9,7 +9,8 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         ContentRendered="Window_ContentRendered"
-       Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}"
+        KeyDown="Window_KeyDown"
+        Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}"
         Title="MainWindow" Height="500" Width="500">
    
     <Grid x:Name="container">
