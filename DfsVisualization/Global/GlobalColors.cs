@@ -4,8 +4,8 @@ namespace DfsVisualization
 {
     static class GlobalColors
     {
-        private const string BACKGROUND_COLOR = "#079992";
-        private const string CELL_COLOR = "#38ada9";
+        private const string BACKGROUND_COLOR = "#38ada9";
+        private const string CELL_COLOR = "#079992";
 
         public static Brush BackgroundColor
         {
