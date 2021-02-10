@@ -21,7 +21,7 @@ namespace DfsVisualization
         public Cell[,] cells;
 
         Canvas mazeCanvas;
-        BackgroundWorker backgroundWorker;
+        
 
         public MazeDrawer()
         {
@@ -56,12 +56,7 @@ namespace DfsVisualization
                         AddCellToCanvas(j, i, 2, 2);
                     }
                 }
-            }
-
-            backgroundWorker = new BackgroundWorker();
-            backgroundWorker.DoWork += Worker_DoWork;
-            backgroundWorker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            backgroundWorker.RunWorkerAsync();
+            }   
         }
 
         #region Add Cell To Canvas
@@ -91,20 +86,5 @@ namespace DfsVisualization
             cells[j, i] = cell;
         }
         #endregion
-
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            foreach (var item in cells)
-            {
-                item.Background = GlobalColors.BackgroundColor;
-                Thread.Sleep(100);
-            }
-        }
-
-        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            //MessageBox.Show("End");
-        }
-
     }
 }
