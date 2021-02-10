@@ -18,7 +18,7 @@ namespace DfsVisualization
         private double canvasWidth;
         private double canvasHeight;
 
-        Cell[,] cells;
+        public Cell[,] cells;
 
         Canvas mazeCanvas;
         BackgroundWorker backgroundWorker;
@@ -81,6 +81,8 @@ namespace DfsVisualization
                 Background = GlobalColors.CellColor,
                 BorderBrush = Brushes.Black,
                 BorderThickness = new Thickness(0, 0, right, bottom),
+                X = j,
+                Y = i,
             };
 
             Canvas.SetLeft(cell, j * CellWidth);

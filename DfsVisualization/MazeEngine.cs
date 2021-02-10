@@ -1,19 +1,25 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DfsVisualization
 {
-    internal class MazeEngine
+    public class MazeEngine
     {
-        private Cell[,] cells;
+        private readonly MazeDrawer mazeDrawer;
 
-        public MazeEngine()
+        public MazeEngine(MazeDrawer mazeDrawer)
         {
-
+            this.mazeDrawer = mazeDrawer;
         }
 
         internal void Test()
         {
-
+            foreach (Cell item in mazeDrawer.cells)
+            {
+                item.Background = Brushes.Green;
+            }
         }
     }
 }

@@ -8,18 +8,20 @@ namespace DfsVisualization
     /// </summary>
     public partial class ToolBarUserControl : UserControl
     {
+        private readonly MazeEngine mazeEngine;
         private SliderValue sliderValue;
 
-        public ToolBarUserControl()
+        public ToolBarUserControl(MazeEngine mazeEngine)
         {
             InitializeComponent();
             sliderValue = new SliderValue();
             DataContext = sliderValue;
+            this.mazeEngine = mazeEngine;
         }
 
         public void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            MessageBox.Show(sliderValue.BoundNumber.ToString());
+            mazeEngine.Test();
         }
     }
 }

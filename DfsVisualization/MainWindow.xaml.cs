@@ -24,7 +24,7 @@ namespace DfsVisualization
         private void Window_ContentRendered(object sender, System.EventArgs e)
         {
             mazeDrawer = new MazeDrawer();
-            mazeEngine = new MazeEngine();
+            mazeEngine = new MazeEngine(mazeDrawer);
             AddTopBar();
             AddToolBar();
             AddMazeToContainer();
@@ -42,7 +42,7 @@ namespace DfsVisualization
         #region Add Tool Bar To Container
         private void AddToolBar()
         {
-            toolBar = new ToolBarUserControl()
+            toolBar = new ToolBarUserControl(mazeEngine)
             {
                 Margin = new Thickness(0, 10, 0, 10)
             };
