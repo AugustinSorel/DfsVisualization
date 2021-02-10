@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -7,40 +8,43 @@ namespace DfsVisualization
     public class MazeEngine
     {
         private readonly MazeDrawer mazeDrawer;
-        private readonly BackgroundWorker worker = new BackgroundWorker();
 
         public MazeEngine(MazeDrawer mazeDrawer)
         {
             this.mazeDrawer = mazeDrawer;
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
 
         internal void Test()
         {
-            T();
+            BackgroundWorker worker = new BackgroundWorker();
+            //assign it work
+            worker.DoWork += new DoWorkEventHandler(Worker_DoWork);
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            //start work
+            if (worker.IsBusy != true)
+            {
+                worker.RunWorkerAsync();
+            }
         }
 
-        private async void T()
+        void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
             {
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
                 {
-                    mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
-                    await Task.Delay(10);
+                    Application.Current.Dispatcher.Invoke(() => { 
+                        mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
+                    });
+
+                    Thread.Sleep(10);
                 }
             }
         }
 
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            
-        }
-
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
+            MessageBox.Show("End");
         }
     }
 }
