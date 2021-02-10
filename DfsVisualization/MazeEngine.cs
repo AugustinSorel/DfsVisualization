@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +27,7 @@ namespace DfsVisualization
         internal void StartDfs(ProgressBar progressBar)
         {
             this.progressBar = progressBar;
+            progressBar.Maximum = 100;
             if (backgroundWorker.IsBusy != true)
             {
                 backgroundWorker.RunWorkerAsync();
@@ -34,7 +36,6 @@ namespace DfsVisualization
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            // This is called on the UI thread when ReportProgress method is called
             progressBar.Value = e.ProgressPercentage;
         }
 
@@ -48,8 +49,13 @@ namespace DfsVisualization
                         mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
                     });
                     Thread.Sleep(10);
-                    backgroundWorker.ReportProgress(i);
-                }
+                    int index = j + i * mazeDrawer.NumberOfCellsX;
+                    int max = (mazeDrawer.NumberOfCellsY * mazeDrawer.NumberOfCellsX);
+
+                    decimal percentage = (decimal)index / max;
+                    int percentageConverted = (int)Math.Round(percentage*100);
+                    backgroundWorker.ReportProgress(percentageConverted);
+                } 
             }
         }
 

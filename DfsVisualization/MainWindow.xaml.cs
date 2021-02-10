@@ -35,7 +35,7 @@ namespace DfsVisualization
             mazeDrawer = new MazeDrawer();
             mazeEngine = new MazeEngine(mazeDrawer);
         }
-#endregion
+        #endregion
 
         #region Add Top Bar To Container
         private void AddTopBar()
