@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -20,20 +17,19 @@ namespace DfsVisualization
 
         public Cell[,] cells;
 
-        Canvas mazeCanvas;
+        private Canvas mazeCanvas;
         
 
         public MazeDrawer()
         {
-            
+            canvasWidth = (Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth;
+            canvasHeight = (Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight;
+            cells = new Cell[(int)canvasWidth / CellWidth, (int)canvasHeight / CellHeight];
         }
 
         public void DrawGrid(Canvas mazeCanvas)
         {
             this.mazeCanvas = mazeCanvas;
-            canvasWidth = (Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth;
-            canvasHeight = (Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight;
-            cells = new Cell[(int)canvasWidth / CellWidth, (int)canvasHeight / CellHeight];
 
             for (int i = 0; i < canvasHeight / CellHeight; i++)
             {

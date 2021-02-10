@@ -23,12 +23,19 @@ namespace DfsVisualization
 
         private void Window_ContentRendered(object sender, System.EventArgs e)
         {
-            mazeDrawer = new MazeDrawer();
-            mazeEngine = new MazeEngine(mazeDrawer);
+            CreateMazeDrawerAndEngine();
             AddTopBar();
             AddToolBar();
             AddMazeToContainer();
         }
+
+        #region Create The Instance Of MazeDrawer And MazeEngine
+        private void CreateMazeDrawerAndEngine()
+        {
+            mazeDrawer = new MazeDrawer();
+            mazeEngine = new MazeEngine(mazeDrawer);
+        }
+        #endregion
 
         #region Add Top Bar To Container
         private void AddTopBar()

@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace DfsVisualization
 {
@@ -8,20 +7,25 @@ namespace DfsVisualization
     /// </summary>
     public partial class ToolBarUserControl : UserControl
     {
+        #region Private Fields
+        private readonly SliderValue sliderValue;
         private readonly MazeEngine mazeEngine;
-        private SliderValue sliderValue;
+        #endregion
 
         public ToolBarUserControl(MazeEngine mazeEngine)
         {
             InitializeComponent();
+            this.mazeEngine = mazeEngine;
+
             sliderValue = new SliderValue();
             DataContext = sliderValue;
-            this.mazeEngine = mazeEngine;
         }
 
+        #region StartButton Click Handler
         public void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             mazeEngine.Test();
         }
+        #endregion
     }
 }
