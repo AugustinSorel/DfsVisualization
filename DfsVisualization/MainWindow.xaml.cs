@@ -10,7 +10,8 @@ namespace DfsVisualization
     {
         #region Fields
         private ToolBarUserControl toolBar;
-        private MazeUserControl mazeUserControl;
+        MazeDrawer mazeDrawer;
+        MazeEngine mazeEngine;
         #endregion
 
         #region ctor
@@ -22,6 +23,8 @@ namespace DfsVisualization
 
         private void Window_ContentRendered(object sender, System.EventArgs e)
         {
+            mazeDrawer = new MazeDrawer();
+            mazeEngine = new MazeEngine();
             AddTopBar();
             AddToolBar();
             AddMazeToContainer();
@@ -39,7 +42,7 @@ namespace DfsVisualization
         #region Add Tool Bar To Container
         private void AddToolBar()
         {
-            toolBar = new ToolBarUserControl(mazeUserControl)
+            toolBar = new ToolBarUserControl()
             {
                 Margin = new Thickness(0, 10, 0, 10)
             };
@@ -52,7 +55,7 @@ namespace DfsVisualization
         #region Add Maze To Container
         private void AddMazeToContainer()
         {
-            mazeUserControl = new MazeUserControl();
+            MazeUserControl mazeUserControl = new MazeUserControl(mazeDrawer);
             container.Children.Add(mazeUserControl);
             Grid.SetColumn(mazeUserControl, 1);
             Grid.SetRow(mazeUserControl, 2);

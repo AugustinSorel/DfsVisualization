@@ -12,27 +12,29 @@ namespace DfsVisualization
     /// </summary>
     public class MazeDrawer
     {
-        private readonly int CellWidth = 10;
-        private readonly int CellHeight = 10;
+        private int CellWidth = 10;
+        private int CellHeight = 10;
 
-        private readonly double canvasWidth;
-        private readonly double canvasHeight;
+        private double canvasWidth;
+        private double canvasHeight;
 
         Cell[,] cells;
 
         Canvas mazeCanvas;
         BackgroundWorker backgroundWorker;
 
-        public MazeDrawer(Canvas mazeCanvas)
+        public MazeDrawer()
+        {
+            
+        }
+
+        public void DrawGrid(Canvas mazeCanvas)
         {
             this.mazeCanvas = mazeCanvas;
             canvasWidth = (Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth;
             canvasHeight = (Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight;
             cells = new Cell[(int)canvasWidth / CellWidth, (int)canvasHeight / CellHeight];
-        }
 
-        public void DrawGrid()
-        {
             for (int i = 0; i < canvasHeight / CellHeight; i++)
             {
                 for (int j = 0; j < canvasWidth / CellWidth; j++)

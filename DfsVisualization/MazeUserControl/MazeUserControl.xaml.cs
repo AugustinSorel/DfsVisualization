@@ -7,16 +7,18 @@ namespace DfsVisualization
     /// </summary>
     public partial class MazeUserControl : UserControl
     {
-        public MazeUserControl()
+        private readonly MazeDrawer mazeDrawer;
+
+        public MazeUserControl(MazeDrawer mazeDrawer)
         {
             InitializeComponent();
+            this.mazeDrawer = mazeDrawer;
             DrawGrid();
         }
 
         private void DrawGrid()
         {
-            MazeDrawer mazeDrawer = new MazeDrawer(mazeCanvas);
-            mazeDrawer.DrawGrid();
+            mazeDrawer.DrawGrid(mazeCanvas);
         }
     }
 }
