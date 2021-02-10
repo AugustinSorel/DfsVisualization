@@ -49,11 +49,13 @@ namespace DfsVisualization
                         mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
                     });
                     Thread.Sleep(10);
+
                     int index = j + i * mazeDrawer.NumberOfCellsX;
                     int max = (mazeDrawer.NumberOfCellsY * mazeDrawer.NumberOfCellsX);
 
                     decimal percentage = (decimal)index / max;
                     int percentageConverted = (int)Math.Round(percentage*100);
+                    
                     backgroundWorker.ReportProgress(percentageConverted);
                 } 
             }
