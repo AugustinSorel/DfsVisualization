@@ -13,12 +13,10 @@ namespace DfsVisualization
         private int numberOfCellsY;
         private int numberOfCellsX;
         
-        private const int CELL_WIDTH = 10;
-        private const int CELL_HEIGHT = 10;
+        private const int CELL_WIDTH = 20;
+        private const int CELL_HEIGHT = 20;
 
-        public Cell[,] cells;
-
-        private Canvas mazeCanvas;
+        private Cell[,] cells;
         #endregion
 
         #region Public Properties
@@ -33,6 +31,12 @@ namespace DfsVisualization
             get { return numberOfCellsY; }
             set { numberOfCellsY = value; }
         }
+
+        public Cell[,] Cells
+        {
+            get { return cells; }
+            set { cells = value; }
+        }
         #endregion
 
         public MazeDrawer()
@@ -43,9 +47,10 @@ namespace DfsVisualization
             cells = new Cell[numberOfCellsX, numberOfCellsY];
         }
 
+        #region Draw the grid
         public void DrawGrid(Canvas mazeCanvas)
         {
-            this.mazeCanvas = mazeCanvas;
+            mazeCanvas.Children.Clear();
 
             for (int i = 0; i < numberOfCellsY; i++)
             {
@@ -53,33 +58,34 @@ namespace DfsVisualization
                 {
                     if (i == numberOfCellsY - 1 && j == numberOfCellsX - 1)
                     {
-                        AddCellToCanvas(j, i, 0, 0);
+                        AddCellToCanvas(j, i, 0, 0, mazeCanvas);
                     }
                     else if (i == numberOfCellsY - 1)
                     {
-                        AddCellToCanvas(j, i, 2, 0);
+                        AddCellToCanvas(j, i, 2, 0, mazeCanvas);
                     }
                     else if (j == numberOfCellsX - 1)
                     {
-                        AddCellToCanvas(j, i, 0, 2);
+                        AddCellToCanvas(j, i, 0, 2, mazeCanvas);
                     }
                     else
                     {
-                        AddCellToCanvas(j, i, 2, 2);
+                        AddCellToCanvas(j, i, 2, 2, mazeCanvas);
                     }
                 }
             }   
         }
+        #endregion
 
         #region Add Cell To Canvas
         /// <summary>
-        /// Add a border to the canvas
+        /// Add cells to the canvas
         /// </summary>
         /// <param name="j"> x location </param>
         /// <param name="i"> y location </param>
         /// <param name="right"> Right border thickness of the Cell </param>
         /// <param name="bottom"> Light border thickness of the Cell </param>
-        private void AddCellToCanvas(int j, int i, int right, int bottom)
+        private void AddCellToCanvas(int j, int i, int right, int bottom, Canvas mazeCanvas)
         {
             Cell cell = new Cell()
             {

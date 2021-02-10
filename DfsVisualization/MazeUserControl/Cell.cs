@@ -16,14 +16,9 @@ namespace DfsVisualization
         public int Y
         {
             get { return y; }
-            set 
-            {
-                if (y != value && value > 0)
-                {
-                    y = value; 
-                }
-            }
+            set { y = value; }
         }
+
         public int X
         {
             get { return x; }

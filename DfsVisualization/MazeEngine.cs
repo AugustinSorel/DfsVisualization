@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DfsVisualization
 {
@@ -22,12 +23,12 @@ namespace DfsVisualization
 
         private async void T()
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
             {
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
                 {
-                    mazeDrawer.cells[j, i].Background = GlobalColors.BackgroundColor;
-                    await Task.Delay(50);
+                    mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
+                    await Task.Delay(10);
                 }
             }
         }
