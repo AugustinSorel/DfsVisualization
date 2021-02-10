@@ -99,7 +99,7 @@ namespace DfsVisualization
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("End");
+            //MessageBox.Show("End");
         }
 
     }

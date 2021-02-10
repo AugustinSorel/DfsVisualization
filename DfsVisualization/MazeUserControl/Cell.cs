@@ -2,7 +2,7 @@
 
 namespace DfsVisualization
 {
-    class Cell : Border
+    public class Cell : Border
     {
         private bool _topWall;
         private bool _bottomWall;
