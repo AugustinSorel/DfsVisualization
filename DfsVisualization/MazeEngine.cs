@@ -7,23 +7,23 @@ namespace DfsVisualization
 {
     public class MazeEngine
     {
+        #region Private Fields
         private readonly MazeDrawer mazeDrawer;
+        private BackgroundWorker backgroundWorker = new BackgroundWorker();
+        #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
         {
             this.mazeDrawer = mazeDrawer;
+            backgroundWorker.DoWork += new DoWorkEventHandler(Worker_DoWork);
+            backgroundWorker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
 
-        internal void Test()
+        internal void StartDfs()
         {
-            BackgroundWorker worker = new BackgroundWorker();
-            //assign it work
-            worker.DoWork += new DoWorkEventHandler(Worker_DoWork);
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            //start work
-            if (worker.IsBusy != true)
+            if (backgroundWorker.IsBusy != true)
             {
-                worker.RunWorkerAsync();
+                backgroundWorker.RunWorkerAsync();
             }
         }
 
