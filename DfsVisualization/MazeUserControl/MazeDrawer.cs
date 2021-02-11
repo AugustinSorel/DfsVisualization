@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -17,6 +18,7 @@ namespace DfsVisualization
         private const int CELL_HEIGHT = 20;
 
         private Cell[,] cells;
+        private Canvas mazeCanvas;
         #endregion
 
         #region Public Properties
@@ -47,10 +49,16 @@ namespace DfsVisualization
             cells = new Cell[numberOfCellsX, numberOfCellsY];
         }
 
+        internal void Redraw()
+        {
+            DrawGrid(mazeCanvas);
+        }
+
         #region Draw the grid
         public void DrawGrid(Canvas mazeCanvas)
         {
             mazeCanvas.Children.Clear();
+            this.mazeCanvas = mazeCanvas;
 
             for (int i = 0; i < numberOfCellsY; i++)
             {
@@ -58,19 +66,19 @@ namespace DfsVisualization
                 {
                     if (i == numberOfCellsY - 1 && j == numberOfCellsX - 1)
                     {
-                        AddCellToCanvas(j, i, 0, 0, mazeCanvas);
+                        AddCellToCanvas(j, i, 0, 0);
                     }
                     else if (i == numberOfCellsY - 1)
                     {
-                        AddCellToCanvas(j, i, 2, 0, mazeCanvas);
+                        AddCellToCanvas(j, i, 2, 0);
                     }
                     else if (j == numberOfCellsX - 1)
                     {
-                        AddCellToCanvas(j, i, 0, 2, mazeCanvas);
+                        AddCellToCanvas(j, i, 0, 2);
                     }
                     else
                     {
-                        AddCellToCanvas(j, i, 2, 2, mazeCanvas);
+                        AddCellToCanvas(j, i, 2, 2);
                     }
                 }
             }   
@@ -85,7 +93,7 @@ namespace DfsVisualization
         /// <param name="i"> y location </param>
         /// <param name="right"> Right border thickness of the Cell </param>
         /// <param name="bottom"> Light border thickness of the Cell </param>
-        private void AddCellToCanvas(int j, int i, int right, int bottom, Canvas mazeCanvas)
+        private void AddCellToCanvas(int j, int i, int right, int bottom)
         {
             Cell cell = new Cell()
             {

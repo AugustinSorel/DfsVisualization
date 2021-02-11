@@ -34,6 +34,7 @@ namespace DfsVisualization
 
         internal void StartDfs(ProgressBar progressBar, SliderValue sleep)
         {
+            mazeDrawer.Redraw();
             this.progressBar = progressBar;
             this.sleep = sleep;
             if (backgroundWorker.IsBusy != true)
@@ -64,7 +65,7 @@ namespace DfsVisualization
 
         private int GetSleep()
         {
-            return Math.Abs(sleep.BoundNumber -10) * 30;
+            return Math.Abs(sleep.BoundNumber -10) * 10;
         }
 
         private int GetPercentageOfCellUsed(int j , int i)
