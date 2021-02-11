@@ -14,6 +14,7 @@ namespace DfsVisualization
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         System.Threading.ManualResetEvent _busy = new System.Threading.ManualResetEvent(false);
+        private bool pause;
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
@@ -36,7 +37,7 @@ namespace DfsVisualization
 
         internal void PauseDfs()
         {
-
+            pause ^= true;
         }
 
         internal void StartDfs(ProgressBar progressBar, SliderValue sleep)
@@ -44,6 +45,7 @@ namespace DfsVisualization
             if (backgroundWorker.IsBusy != true)
             {
                 mazeDrawer.Redraw();
+                pause = false;
                 this.progressBar = progressBar;
                 this.sleep = sleep;
                 backgroundWorker.RunWorkerAsync();
@@ -52,7 +54,8 @@ namespace DfsVisualization
 
         internal void AbortDfs()
         {
-            backgroundWorker.CancelAsync();
+            if (!pause)
+                backgroundWorker.CancelAsync();
         }
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -67,9 +70,13 @@ namespace DfsVisualization
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
                 {
 
+                    while (pause)
+                    {
+                        Thread.Sleep(100);
+                    }
+
                     if (backgroundWorker.CancellationPending)
                     {
-                        e.Cancel = true;
                         return;
                     }
                     
