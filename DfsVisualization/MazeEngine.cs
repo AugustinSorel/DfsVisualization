@@ -32,6 +32,11 @@ namespace DfsVisualization
             backgroundWorker.RunWorkerCompleted += Worker_RunWorkerCompleted;
         }
 
+        internal void PauseDfs()
+        {
+            throw new NotImplementedException();
+        }
+
         internal void StartDfs(ProgressBar progressBar, SliderValue sleep)
         {
             mazeDrawer.Redraw();
@@ -41,6 +46,11 @@ namespace DfsVisualization
             {
                 backgroundWorker.RunWorkerAsync();
             }
+        }
+
+        internal void AbortDfs()
+        {
+            throw new NotImplementedException();
         }
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
