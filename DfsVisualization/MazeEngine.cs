@@ -13,6 +13,7 @@ namespace DfsVisualization
         private ProgressBar progressBar;
         private readonly MazeDrawer mazeDrawer;
         private BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private TextBlock progressBarTextBlock;
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
@@ -24,9 +25,10 @@ namespace DfsVisualization
             backgroundWorker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
 
-        internal void StartDfs(ProgressBar progressBar)
+        internal void StartDfs(ProgressBar progressBar, TextBlock progressBarTextBlock)
         {
             this.progressBar = progressBar;
+            this.progressBarTextBlock = progressBarTextBlock;
             progressBar.Maximum = 100;
             if (backgroundWorker.IsBusy != true)
             {
@@ -45,18 +47,20 @@ namespace DfsVisualization
             {
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
                 {
-                    Application.Current.Dispatcher.Invoke(() => { 
-                        mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
-                    });
-                    Thread.Sleep(10);
-
                     int index = j + i * mazeDrawer.NumberOfCellsX;
                     int max = (mazeDrawer.NumberOfCellsY * mazeDrawer.NumberOfCellsX);
 
                     decimal percentage = (decimal)index / max;
-                    int percentageConverted = (int)Math.Round(percentage*100);
-                    
-                    backgroundWorker.ReportProgress(percentageConverted);
+                    int percentageConverted = (int)Math.Round(percentage * 100);
+
+                    Application.Current.Dispatcher.Invoke(() => { 
+                        mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
+                        progressBarTextBlock.Text = percentageConverted.ToString();
+                    });
+                    Thread.Sleep(10);
+                   
+
+                    backgroundWorker.ReportProgress(percentageConverted); // change style of progress bar
                 } 
             }
         }

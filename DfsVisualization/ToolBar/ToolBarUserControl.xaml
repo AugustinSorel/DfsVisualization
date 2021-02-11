@@ -19,7 +19,7 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
@@ -42,6 +42,8 @@
         <DockPanel Grid.Column="0" Grid.Row="1">
             
             <ProgressBar x:Name="progressBar" Width="100" Margin="5"/>
+
+            <TextBlock Name="ProgressBarTextBlock" Text="0%"/>
 
             <Slider x:Name="SpeedSlider" Style="{StaticResource CustomSlider}" 
                     FlowDirection="LeftToRight" Value="{Binding Path=BoundNumber}" 

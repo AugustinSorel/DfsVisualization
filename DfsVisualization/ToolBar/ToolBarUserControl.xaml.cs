@@ -24,7 +24,7 @@ namespace DfsVisualization
         #region StartButton Click Handler
         public void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mazeEngine.StartDfs(progressBar);
+            mazeEngine.StartDfs(progressBar, ProgressBarTextBlock);
         }
         #endregion
     }
