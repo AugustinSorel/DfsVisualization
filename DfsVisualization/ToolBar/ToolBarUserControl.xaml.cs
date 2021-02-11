@@ -29,14 +29,14 @@ namespace DfsVisualization
         #endregion
 
         #region PauseButton Click Handler
-        private void PauseButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        public void PauseButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             mazeEngine.PauseDfs();
         }
         #endregion
 
         #region AbortButton Click Handler
-        private void Abort_Click(object sender, System.Windows.RoutedEventArgs e)
+        public void Abort_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             mazeEngine.AbortDfs();
         }

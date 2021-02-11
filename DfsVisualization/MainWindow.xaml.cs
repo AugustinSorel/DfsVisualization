@@ -82,6 +82,14 @@ namespace DfsVisualization
                     toolBar.SpeedSlider.Value -= 1;
                     break;
 
+                case System.Windows.Input.Key.A:
+                    toolBar.Abort_Click(this, null);
+                    break;
+
+                case System.Windows.Input.Key.P:
+                    toolBar.PauseButton_Click(this, null);
+                    break;
+
                 case System.Windows.Input.Key.S:
                     toolBar.StartButton_Click(this, null);
                     break;
