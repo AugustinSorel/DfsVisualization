@@ -41,9 +41,7 @@
 
         <DockPanel Grid.Column="0" Grid.Row="1">
             
-            <ProgressBar x:Name="progressBar" Width="100" Margin="5" Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}"
-                         Maximum="100"
-                         />
+            <ProgressBar x:Name="progressBar"/>
 
             <TextBlock Name="ProgressBarTextBlock" Text="{Binding ElementName=progressBar, Path=Value, StringFormat={}{0:0}%}"
                        />
