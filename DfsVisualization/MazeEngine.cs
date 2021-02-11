@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,7 +12,6 @@ namespace DfsVisualization
         private ProgressBar progressBar;
         private readonly MazeDrawer mazeDrawer;
         private BackgroundWorker backgroundWorker = new BackgroundWorker();
-        private TextBlock progressBarTextBlock;
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
@@ -22,14 +20,12 @@ namespace DfsVisualization
             backgroundWorker.WorkerReportsProgress = true;
             backgroundWorker.ProgressChanged += ProgressChanged;
             backgroundWorker.DoWork += new DoWorkEventHandler(Worker_DoWork);
-            backgroundWorker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            backgroundWorker.RunWorkerCompleted += Worker_RunWorkerCompleted;
         }
 
-        internal void StartDfs(ProgressBar progressBar, TextBlock progressBarTextBlock)
+        internal void StartDfs(ProgressBar progressBar)
         {
             this.progressBar = progressBar;
-            this.progressBarTextBlock = progressBarTextBlock;
-            progressBar.Maximum = 100;
             if (backgroundWorker.IsBusy != true)
             {
                 backgroundWorker.RunWorkerAsync();
@@ -55,17 +51,19 @@ namespace DfsVisualization
 
                     Application.Current.Dispatcher.Invoke(() => { 
                         mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
-                        progressBarTextBlock.Text = percentageConverted.ToString();
                     });
                     Thread.Sleep(10);
-                   
-
                     backgroundWorker.ReportProgress(percentageConverted); // change style of progress bar
+
+                    if (i > 18 && j > 18)
+                    {
+                        MessageBox.Show("");
+                    }
                 } 
             }
         }
 
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("End");
         }

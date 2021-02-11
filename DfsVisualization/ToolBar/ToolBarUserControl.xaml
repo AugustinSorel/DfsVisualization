@@ -41,9 +41,12 @@
 
         <DockPanel Grid.Column="0" Grid.Row="1">
             
-            <ProgressBar x:Name="progressBar" Width="100" Margin="5"/>
+            <ProgressBar x:Name="progressBar" Width="100" Margin="5" Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}"
+                         Maximum="100"
+                         />
 
-            <TextBlock Name="ProgressBarTextBlock" Text="0%"/>
+            <TextBlock Name="ProgressBarTextBlock" Text="{Binding ElementName=progressBar, Path=Value, StringFormat={}{0:0}%}"
+                       />
 
             <Slider x:Name="SpeedSlider" Style="{StaticResource CustomSlider}" 
                     FlowDirection="LeftToRight" Value="{Binding Path=BoundNumber}" 
