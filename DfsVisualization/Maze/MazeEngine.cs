@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
@@ -14,6 +15,8 @@ namespace DfsVisualization
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         private bool pause;
+
+        private bool[,] marked;
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
@@ -62,30 +65,70 @@ namespace DfsVisualization
             progressBar.Value = e.ProgressPercentage;
         }
 
+        private void Dfs(Cell[,] cells, Cell cell)
+        {
+            Stack<Cell> stack = new Stack<Cell>();
+            stack.Push(cell);
+
+            while (stack.Count > 0)
+            {
+                Cell v = stack.Pop();
+                if (! marked[v.X, v.Y])
+                {
+                    Application.Current.Dispatcher.Invoke(() => {
+                        v.Background = GlobalColors.BackgroundColor;
+                    });
+
+                    marked[v.X, v.Y] = true;
+
+                    Thread.Sleep(GetSleep());
+
+                    if (v.X + 1 < mazeDrawer.NumberOfCellsX && !marked[v.X + 1, v.Y])
+                        stack.Push(cells[v.X + 1, v.Y]);
+                    if (v.X - 1 > 0 && !marked[v.X - 1, v.Y])
+                        stack.Push(cells[v.X - 1, v.Y]);
+
+                    if (v.Y + 1 < mazeDrawer.NumberOfCellsY && !marked[v.X, v.Y + 1])
+                        stack.Push(cells[v.X, v.Y+1]);
+                    if (v.Y - 1> 0 && !marked[v.X, v.Y - 1])
+                        stack.Push(cells[v.X, v.Y-1]);
+                }
+            }
+
+        }
+
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
+            marked = new bool[mazeDrawer.NumberOfCellsX, mazeDrawer.NumberOfCellsY];
+
             for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
-            {
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
-                {
+                    marked[j, i] = false;
 
-                    while (pause)
-                    {
-                        Thread.Sleep(100);
-                    }
+            Dfs(mazeDrawer.Cells, mazeDrawer.Cells[0, 0]);
 
-                    if (backgroundWorker.CancellationPending)
-                    {
-                        return;
-                    }
+            //for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
+            //{
+            //    for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
+            //    {
+
+            //        while (pause)
+            //        {
+            //            Thread.Sleep(100);
+            //        }
+
+            //        if (backgroundWorker.CancellationPending)
+            //        {
+            //            return;
+            //        }
                     
-                    Application.Current.Dispatcher.Invoke(() => { 
-                        mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
-                    });
-                    Thread.Sleep(GetSleep());
-                    backgroundWorker.ReportProgress(GetPercentageOfCellUsed(j, i)); 
-                } 
-            }
+            //        Application.Current.Dispatcher.Invoke(() => { 
+            //            mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
+            //        });
+            //        Thread.Sleep(GetSleep());
+            //        backgroundWorker.ReportProgress(GetPercentageOfCellUsed(j, i)); 
+            //    } 
+            //}
         }
 
         private int GetSleep()
