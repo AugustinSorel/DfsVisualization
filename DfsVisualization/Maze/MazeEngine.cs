@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DfsVisualization
 {
@@ -69,6 +70,7 @@ namespace DfsVisualization
         {
             Stack<Cell> stack = new Stack<Cell>();
             stack.Push(cell);
+            Random random = new Random();
 
             while (stack.Count > 0)
             {
@@ -76,22 +78,45 @@ namespace DfsVisualization
                 if (! marked[v.X, v.Y])
                 {
                     Application.Current.Dispatcher.Invoke(() => {
-                        v.Background = GlobalColors.BackgroundColor;
+                        //v.Background = GlobalColors.BackgroundColor;
+                        v.Background = Brushes.Red;
                     });
 
                     marked[v.X, v.Y] = true;
-
                     Thread.Sleep(GetSleep());
-
+                    List<Cell> neighbour = new List<Cell>();
+                 
                     if (v.X + 1 < mazeDrawer.NumberOfCellsX && !marked[v.X + 1, v.Y])
-                        stack.Push(cells[v.X + 1, v.Y]);
+                        neighbour.Add(cells[v.X + 1, v.Y]);
                     if (v.X - 1 > 0 && !marked[v.X - 1, v.Y])
-                        stack.Push(cells[v.X - 1, v.Y]);
+                        neighbour.Add(cells[v.X - 1, v.Y]);
 
                     if (v.Y + 1 < mazeDrawer.NumberOfCellsY && !marked[v.X, v.Y + 1])
-                        stack.Push(cells[v.X, v.Y+1]);
-                    if (v.Y - 1> 0 && !marked[v.X, v.Y - 1])
-                        stack.Push(cells[v.X, v.Y-1]);
+                        neighbour.Add(cells[v.X, v.Y + 1]);
+                    if (v.Y - 1 > 0 && !marked[v.X, v.Y - 1])
+                        neighbour.Add(cells[v.X, v.Y - 1]);
+
+                    foreach (var item in neighbour)
+                    {
+                        stack.Push(item);
+                    }
+
+                    if (neighbour.Count > 0)
+                    {
+                        int wall = random.Next(0, neighbour.Count);
+                        stack.Push(neighbour[wall]);
+                    }
+                        
+
+                    //if (v.X + 1 < mazeDrawer.NumberOfCellsX && !marked[v.X + 1, v.Y] && wall == 1)
+                    //    stack.Push(cells[v.X + 1, v.Y]);
+                    //if (v.X - 1 > 0 && !marked[v.X - 1, v.Y] && wall == 1)
+                    //    stack.Push(cells[v.X - 1, v.Y]);
+
+                    //if (v.Y + 1 < mazeDrawer.NumberOfCellsY && !marked[v.X, v.Y + 1] && wall == 1)
+                    //    stack.Push(cells[v.X, v.Y+1]);
+                    //if (v.Y - 1> 0 && !marked[v.X, v.Y - 1] && wall == 1)
+                    //    stack.Push(cells[v.X, v.Y-1]);
                 }
             }
 
