@@ -12,6 +12,7 @@ namespace DfsVisualization
         private ProgressBar progressBar;
         private readonly MazeDrawer mazeDrawer;
         private BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private SliderValue sleep;
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
@@ -23,9 +24,10 @@ namespace DfsVisualization
             backgroundWorker.RunWorkerCompleted += Worker_RunWorkerCompleted;
         }
 
-        internal void StartDfs(ProgressBar progressBar)
+        internal void StartDfs(ProgressBar progressBar, SliderValue sleep)
         {
             this.progressBar = progressBar;
+            this.sleep = sleep;
             if (backgroundWorker.IsBusy != true)
             {
                 backgroundWorker.RunWorkerAsync();
@@ -43,24 +45,27 @@ namespace DfsVisualization
             {
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
                 {
-                    int index = j + i * mazeDrawer.NumberOfCellsX;
-                    int max = (mazeDrawer.NumberOfCellsY * mazeDrawer.NumberOfCellsX);
-
-                    decimal percentage = (decimal)index / max;
-                    int percentageConverted = (int)Math.Round(percentage * 100);
-
                     Application.Current.Dispatcher.Invoke(() => { 
                         mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
                     });
-                    Thread.Sleep(10);
-                    backgroundWorker.ReportProgress(percentageConverted); // change style of progress bar
-
-                    if (i > 18 && j > 18)
-                    {
-                        MessageBox.Show("");
-                    }
+                    Thread.Sleep(GetSleep());
+                    backgroundWorker.ReportProgress(GetPercentageOfCellUsed(j, i)); 
                 } 
             }
+        }
+
+        private int GetSleep()
+        {
+            return Math.Abs(sleep.BoundNumber -10) * 30;
+        }
+
+        private int GetPercentageOfCellUsed(int j , int i)
+        {
+            int index = j + i * mazeDrawer.NumberOfCellsX;
+            int max = (mazeDrawer.NumberOfCellsY * mazeDrawer.NumberOfCellsX);
+
+            decimal percentage = (decimal)index / max;
+            return (int)Math.Round(percentage * 100);
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
