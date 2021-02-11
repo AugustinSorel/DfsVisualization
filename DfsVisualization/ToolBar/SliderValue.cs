@@ -12,7 +12,7 @@ namespace DfsVisualization
             get { return _boundNumber; }
             set
             {
-                if (_boundNumber != value && value > -1 && value < 11)
+                if (_boundNumber != value && value > 0 && value < 11)
                 {
                     _boundNumber = value;
                     OnPropertyChanged();

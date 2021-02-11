@@ -11,14 +11,22 @@ namespace DfsVisualization
         #region Private Fields
         private ProgressBar progressBar;
         private readonly MazeDrawer mazeDrawer;
-        private BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
         {
             this.mazeDrawer = mazeDrawer;
-            backgroundWorker.WorkerReportsProgress = true;
+            CreateBackgroundWorker();
+        }
+
+        private void CreateBackgroundWorker()
+        {
+            backgroundWorker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true
+            };
             backgroundWorker.ProgressChanged += ProgressChanged;
             backgroundWorker.DoWork += new DoWorkEventHandler(Worker_DoWork);
             backgroundWorker.RunWorkerCompleted += Worker_RunWorkerCompleted;
