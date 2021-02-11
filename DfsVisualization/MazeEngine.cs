@@ -13,6 +13,7 @@ namespace DfsVisualization
         private readonly MazeDrawer mazeDrawer;
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
+        System.Threading.ManualResetEvent _busy = new System.Threading.ManualResetEvent(false);
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
@@ -25,7 +26,8 @@ namespace DfsVisualization
         {
             backgroundWorker = new BackgroundWorker
             {
-                WorkerReportsProgress = true
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true,
             };
             backgroundWorker.ProgressChanged += ProgressChanged;
             backgroundWorker.DoWork += new DoWorkEventHandler(Worker_DoWork);
@@ -34,23 +36,23 @@ namespace DfsVisualization
 
         internal void PauseDfs()
         {
-            throw new NotImplementedException();
+
         }
 
         internal void StartDfs(ProgressBar progressBar, SliderValue sleep)
         {
-            mazeDrawer.Redraw();
-            this.progressBar = progressBar;
-            this.sleep = sleep;
             if (backgroundWorker.IsBusy != true)
             {
+                mazeDrawer.Redraw();
+                this.progressBar = progressBar;
+                this.sleep = sleep;
                 backgroundWorker.RunWorkerAsync();
             }
         }
 
         internal void AbortDfs()
         {
-            throw new NotImplementedException();
+            backgroundWorker.CancelAsync();
         }
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -64,6 +66,13 @@ namespace DfsVisualization
             {
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
                 {
+
+                    if (backgroundWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    
                     Application.Current.Dispatcher.Invoke(() => { 
                         mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
                     });
