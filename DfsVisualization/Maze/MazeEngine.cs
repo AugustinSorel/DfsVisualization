@@ -13,7 +13,6 @@ namespace DfsVisualization
         private readonly MazeDrawer mazeDrawer;
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
-        System.Threading.ManualResetEvent _busy = new System.Threading.ManualResetEvent(false);
         private bool pause;
         #endregion
 

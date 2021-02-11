@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MazeEngine.cs" />
+    <Compile Include="Maze\MazeEngine.cs" />
     <Compile Include="MazeUserControl\Cell.cs" />
     <Compile Include="ToolBar\SliderValue.cs" />
     <Compile Include="ToolBar\ToolBarUserControl.xaml.cs">
@@ -95,7 +95,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MazeUserControl\MazeDrawer.cs" />
+    <Compile Include="Maze\MazeDrawer.cs" />
     <Compile Include="MazeUserControl\MazeUserControl.xaml.cs">
       <DependentUpon>MazeUserControl.xaml</DependentUpon>
     </Compile>
