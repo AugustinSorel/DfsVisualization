@@ -49,12 +49,21 @@ namespace DfsVisualization
             cells = new Cell[numberOfCellsX, numberOfCellsY];
         }
 
+        #region Re Draw
+        /// <summary>
+        /// re draw the grid in the Maze user control canvas
+        /// </summary>
         internal void Redraw()
         {
             DrawGrid(mazeCanvas);
         }
+        #endregion
 
         #region Draw the grid
+        /// <summary>
+        /// draw the grid in the Maze user control canvas
+        /// </summary>
+        /// <param name="mazeCanvas"></param>
         public void DrawGrid(Canvas mazeCanvas)
         {
             mazeCanvas.Children.Clear();
