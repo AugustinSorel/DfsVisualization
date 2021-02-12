@@ -66,60 +66,148 @@ namespace DfsVisualization
             progressBar.Value = e.ProgressPercentage;
         }
 
-        private void Dfs(Cell[,] cells, Cell cell)
+        private List<Cell> ListOfUnvisitedCell = new List<Cell>();
+        private List<Cell> unvisitedNeighbors = new List<Cell>();
+        private Cell currentCell;
+        private Cell chosenCell;
+        private Stack<Cell> stack;
+
+        private void Dfs()
         {
-            Stack<Cell> stack = new Stack<Cell>();
-            stack.Push(cell);
-            Random random = new Random();
-
-            while (stack.Count > 0)
+            while (ListOfUnvisitedCell.Count > 0)
             {
-                Cell v = stack.Pop();
-                if (! marked[v.X, v.Y])
+                unvisitedNeighbors = GetNeighbors(currentCell, ListOfUnvisitedCell);
+                if (unvisitedNeighbors != null)
+                    VisitNeightbors();
+                else if (stack.Count != 0)
+                    GoBack();
+                Thread.Sleep(10);
+            }
+            RemoveTheCurrentCell();
+        }
+
+        private void GoBack()
+        {
+            RemoveTheCurrentCell();
+            currentCell = stack.Pop();
+            GetCurrentCell();
+        }
+
+        private void VisitNeightbors()
+        {
+            chosenCell = RandomPick(unvisitedNeighbors);
+
+            stack.Push(currentCell);
+
+            Application.Current.Dispatcher.Invoke(new Action(() => { RemoveWalls(currentCell, chosenCell); }));
+            RemoveTheCurrentCell();
+
+            currentCell = chosenCell;
+            GetCurrentCell();
+            marked[currentCell.X, currentCell.Y] = true;
+            ListOfUnvisitedCell.Remove(currentCell);
+        }
+
+        private void GetCurrentCell()
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() => { currentCell.Background = Brushes.Red; }));
+        }
+
+        private void RemoveTheCurrentCell()
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() => { currentCell.Background = GlobalColors.BackgroundColor; }));
+        }
+
+        private void RemoveWalls(Cell a, Cell b)
+        {
+            if (a.Y == b.Y)
+            {
+                if (a.X < b.X)
                 {
-                    Application.Current.Dispatcher.Invoke(() => {
-                        //v.Background = GlobalColors.BackgroundColor;
-                        v.Background = Brushes.Red;
-                    });
-
-                    marked[v.X, v.Y] = true;
-                    Thread.Sleep(GetSleep());
-                    List<Cell> neighbour = new List<Cell>();
-                 
-                    if (v.X + 1 < mazeDrawer.NumberOfCellsX && !marked[v.X + 1, v.Y])
-                        neighbour.Add(cells[v.X + 1, v.Y]);
-                    if (v.X - 1 > 0 && !marked[v.X - 1, v.Y])
-                        neighbour.Add(cells[v.X - 1, v.Y]);
-
-                    if (v.Y + 1 < mazeDrawer.NumberOfCellsY && !marked[v.X, v.Y + 1])
-                        neighbour.Add(cells[v.X, v.Y + 1]);
-                    if (v.Y - 1 > 0 && !marked[v.X, v.Y - 1])
-                        neighbour.Add(cells[v.X, v.Y - 1]);
-
-                    foreach (var item in neighbour)
-                    {
-                        stack.Push(item);
-                    }
-
-                    if (neighbour.Count > 0)
-                    {
-                        int wall = random.Next(0, neighbour.Count);
-                        stack.Push(neighbour[wall]);
-                    }
-                        
-
-                    //if (v.X + 1 < mazeDrawer.NumberOfCellsX && !marked[v.X + 1, v.Y] && wall == 1)
-                    //    stack.Push(cells[v.X + 1, v.Y]);
-                    //if (v.X - 1 > 0 && !marked[v.X - 1, v.Y] && wall == 1)
-                    //    stack.Push(cells[v.X - 1, v.Y]);
-
-                    //if (v.Y + 1 < mazeDrawer.NumberOfCellsY && !marked[v.X, v.Y + 1] && wall == 1)
-                    //    stack.Push(cells[v.X, v.Y+1]);
-                    //if (v.Y - 1> 0 && !marked[v.X, v.Y - 1] && wall == 1)
-                    //    stack.Push(cells[v.X, v.Y-1]);
+                    a.RightWall = false;
+                    b.LeftWall = false;
+                }
+                else
+                {
+                    a.LeftWall = false;
+                    b.RightWall = false;
                 }
             }
+            else
+            {
+                if (a.Y < b.Y)
+                {
+                    a.BottomWall = false;
+                    b.TopWall = false;
+                }
+                else
+                {
+                    a.TopWall = false;
+                    b.BottomWall = false;
+                }
+            }
+        }
 
+        private Cell RandomPick(List<Cell> list)
+        {
+            Random random = new Random();
+            int i;
+
+            if (list.Count == 1)
+                return list[0];
+
+            i = random.Next(list.Count);
+            return list[i];
+        }
+
+        private List<Cell> GetNeighbors(Cell _currentCell, List<Cell> unvisited)
+        {
+            List<Cell> t = new List<Cell>();
+
+            Cell _neighbor = unvisited.Find(c => c.Y == _currentCell.Y - 1 && c.X == _currentCell.X);
+            if (_neighbor != null)
+            {
+                t.Add(_neighbor);
+            }
+
+            _neighbor = unvisited.Find(c => c.Y == _currentCell.Y && c.X == _currentCell.X - 1);
+            if (_neighbor != null)
+            {
+                t.Add(_neighbor);
+            }
+
+            //Cell below current cell
+            _neighbor = unvisited.Find(c => c.Y == _currentCell.Y + 1 && c.X == _currentCell.X);
+            if (_neighbor != null)
+            {
+                t.Add(_neighbor);
+            }
+
+            //Cell right of current cell
+            _neighbor = unvisited.Find(c => c.Y == _currentCell.Y && c.X == _currentCell.X + 1);
+            if (_neighbor != null)
+            {
+                t.Add(_neighbor);
+            }
+
+            if (t.Count != 0)
+            {
+                return t;
+            }
+            return null;
+        }
+
+        private void GetAllNeighbours(Cell v, List<Cell> neighbour, Cell[,] cells)
+        {
+            if (v.X + 1 < mazeDrawer.NumberOfCellsX && !marked[v.X + 1, v.Y])
+                neighbour.Add(cells[v.X + 1, v.Y]);
+            if (v.X - 1 >= 0 && !marked[v.X - 1, v.Y])
+                neighbour.Add(cells[v.X - 1, v.Y]);
+
+            if (v.Y + 1 < mazeDrawer.NumberOfCellsY && !marked[v.X, v.Y + 1])
+                neighbour.Add(cells[v.X, v.Y + 1]);
+            if (v.Y - 1 >= 0 && !marked[v.X, v.Y - 1])
+                neighbour.Add(cells[v.X, v.Y - 1]);
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -128,9 +216,17 @@ namespace DfsVisualization
 
             for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
+                {
+                    ListOfUnvisitedCell.Add(mazeDrawer.Cells[j, i]);
                     marked[j, i] = false;
+                }
 
-            Dfs(mazeDrawer.Cells, mazeDrawer.Cells[0, 0]);
+            stack = new Stack<Cell>();
+            marked[0, 0] = true;
+            currentCell = mazeDrawer.Cells[0, 0];
+            ListOfUnvisitedCell.Remove(currentCell);
+
+            Dfs();
 
             //for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
             //{

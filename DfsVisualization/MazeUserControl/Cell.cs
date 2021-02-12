@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace DfsVisualization
 {
@@ -26,9 +27,94 @@ namespace DfsVisualization
         }
         #endregion
 
+        private bool rightWall = true;
+        private bool leftWall = true;
+        private bool topWall = true;
+        private bool bottomWall = true;
+
+        public bool RightWall
+        {
+            get
+            {
+                return rightWall;
+            }
+            set
+            {
+                rightWall = value;
+                int x = 0;
+                if (value == true)
+                {
+                    x = 1;
+                }
+                Thickness thickness = BorderThickness;
+                thickness.Right = x;
+                BorderThickness = thickness;
+            }
+        }
+
+        public bool LeftWall
+        {
+            get
+            {
+                return leftWall;
+            }
+            set
+            {
+                leftWall = value;
+                int x = 0;
+                if (value == true)
+                {
+                    x = 1;
+                }
+                Thickness thickness = BorderThickness;
+                thickness.Left = x;
+                BorderThickness = thickness;
+            }
+        }
+
+        public bool TopWall
+        {
+            get
+            {
+                return topWall;
+            }
+            set
+            {
+                topWall = value;
+                int x = 0;
+                if (value == true)
+                {
+                    x = 1;
+                }
+                Thickness thickness = BorderThickness;
+                thickness.Top = x;
+                BorderThickness = thickness;
+            }
+        }
+
+        public bool BottomWall
+        {
+            get
+            {
+                return bottomWall;
+            }
+            set
+            {
+                bottomWall = value;
+                int x = 0;
+                if (value == true)
+                {
+                    x = 1;
+                }
+                Thickness thickness = BorderThickness;
+                thickness.Bottom = x;
+                BorderThickness = thickness;
+            }
+        }
+
         public Cell()
         {
-            this.BorderThickness = new System.Windows.Thickness(0);
+            this.BorderThickness = new System.Windows.Thickness(1);
         }
     }
 }

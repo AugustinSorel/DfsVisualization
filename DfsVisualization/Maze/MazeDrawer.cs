@@ -110,7 +110,7 @@ namespace DfsVisualization
                 Height = CELL_HEIGHT,
                 Background = GlobalColors.CellColor,
                 BorderBrush = Brushes.Black,
-                BorderThickness = new Thickness(0, 0, right, bottom),
+                BorderThickness = new Thickness(1),
                 X = j,
                 Y = i,
             };
