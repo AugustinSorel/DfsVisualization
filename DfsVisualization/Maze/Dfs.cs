@@ -83,7 +83,7 @@ namespace DfsVisualization
 
                 Sleep();
                 ReportProgress();
-                SetTargetCellsColor();
+                //SetTargetCellsColor();
             }
             RemoveTheCurrentCell();
         }
