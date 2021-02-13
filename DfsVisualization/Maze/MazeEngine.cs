@@ -16,8 +16,12 @@ namespace DfsVisualization
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         private bool pause;
+        private readonly List<Cell> ListOfUnvisitedCell = new List<Cell>();
+        private List<Cell> unvisitedNeighbors = new List<Cell>();
+        private Cell currentCell;
+        private Cell chosenCell;
+        private Stack<Cell> stack;
 
-        private bool[,] marked;
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)
@@ -66,12 +70,6 @@ namespace DfsVisualization
             progressBar.Value = e.ProgressPercentage;
         }
 
-        private List<Cell> ListOfUnvisitedCell = new List<Cell>();
-        private List<Cell> unvisitedNeighbors = new List<Cell>();
-        private Cell currentCell;
-        private Cell chosenCell;
-        private Stack<Cell> stack;
-
         private void Dfs()
         {
             while (ListOfUnvisitedCell.Count > 0)
@@ -104,7 +102,6 @@ namespace DfsVisualization
 
             currentCell = chosenCell;
             GetCurrentCell();
-            marked[currentCell.X, currentCell.Y] = true;
             ListOfUnvisitedCell.Remove(currentCell);
         }
 
@@ -176,14 +173,12 @@ namespace DfsVisualization
                 t.Add(_neighbor);
             }
 
-            //Cell below current cell
             _neighbor = unvisited.Find(c => c.Y == _currentCell.Y + 1 && c.X == _currentCell.X);
             if (_neighbor != null)
             {
                 t.Add(_neighbor);
             }
 
-            //Cell right of current cell
             _neighbor = unvisited.Find(c => c.Y == _currentCell.Y && c.X == _currentCell.X + 1);
             if (_neighbor != null)
             {
@@ -197,32 +192,13 @@ namespace DfsVisualization
             return null;
         }
 
-        private void GetAllNeighbours(Cell v, List<Cell> neighbour, Cell[,] cells)
-        {
-            if (v.X + 1 < mazeDrawer.NumberOfCellsX && !marked[v.X + 1, v.Y])
-                neighbour.Add(cells[v.X + 1, v.Y]);
-            if (v.X - 1 >= 0 && !marked[v.X - 1, v.Y])
-                neighbour.Add(cells[v.X - 1, v.Y]);
-
-            if (v.Y + 1 < mazeDrawer.NumberOfCellsY && !marked[v.X, v.Y + 1])
-                neighbour.Add(cells[v.X, v.Y + 1]);
-            if (v.Y - 1 >= 0 && !marked[v.X, v.Y - 1])
-                neighbour.Add(cells[v.X, v.Y - 1]);
-        }
-
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            marked = new bool[mazeDrawer.NumberOfCellsX, mazeDrawer.NumberOfCellsY];
-
             for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
-                {
                     ListOfUnvisitedCell.Add(mazeDrawer.Cells[j, i]);
-                    marked[j, i] = false;
-                }
 
             stack = new Stack<Cell>();
-            marked[0, 0] = true;
             currentCell = mazeDrawer.Cells[0, 0];
             ListOfUnvisitedCell.Remove(currentCell);
 
