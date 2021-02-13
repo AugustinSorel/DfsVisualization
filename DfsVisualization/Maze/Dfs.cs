@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
-using System.Windows.Media;
 
 namespace DfsVisualization
 {
@@ -67,7 +66,6 @@ namespace DfsVisualization
         #region Start Dfs
         internal void Start()
         {
-            
             while (ListOfUnvisitedCell.Count > 0)
             {
                 while (pause)

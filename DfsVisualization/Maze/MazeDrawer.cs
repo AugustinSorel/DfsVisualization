@@ -75,19 +75,19 @@ namespace DfsVisualization
                 {
                     if (i == numberOfCellsY - 1 && j == numberOfCellsX - 1)
                     {
-                        AddCellToCanvas(j, i, 0, 0);
+                        AddCellToCanvas(j, i);
                     }
                     else if (i == numberOfCellsY - 1)
                     {
-                        AddCellToCanvas(j, i, 2, 0);
+                        AddCellToCanvas(j, i);
                     }
                     else if (j == numberOfCellsX - 1)
                     {
-                        AddCellToCanvas(j, i, 0, 2);
+                        AddCellToCanvas(j, i);
                     }
                     else
                     {
-                        AddCellToCanvas(j, i, 2, 2);
+                        AddCellToCanvas(j, i);
                     }
                 }
             }   
@@ -100,9 +100,7 @@ namespace DfsVisualization
         /// </summary>
         /// <param name="j"> x location </param>
         /// <param name="i"> y location </param>
-        /// <param name="right"> Right border thickness of the Cell </param>
-        /// <param name="bottom"> Light border thickness of the Cell </param>
-        private void AddCellToCanvas(int j, int i, int right, int bottom)
+        private void AddCellToCanvas(int j, int i)
         {
             Cell cell = new Cell()
             {
