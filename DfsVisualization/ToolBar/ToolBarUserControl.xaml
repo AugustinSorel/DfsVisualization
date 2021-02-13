@@ -25,7 +25,7 @@
         
         <DockPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" >
 
-            <Button x:Name="Settings" ToolTip="Abort Key: A" Margin="5, 0, 5, 0" Click="Abort_Click">
+            <Button x:Name="Settings" ToolTip="Abort Key: A" Margin="5, 0, 5, 0" Click="Settings_Click">
                 <Image Source="/Images/CSTest_16x.png" ToolTip="Abort"/>
             </Button>
             

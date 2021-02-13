@@ -10,8 +10,9 @@ namespace DfsVisualization
     {
         #region Fields
         private ToolBarUserControl toolBar;
-        MazeDrawer mazeDrawer;
-        MazeEngine mazeEngine;
+        private MazeUserControl mazeUserControl;
+        private MazeDrawer mazeDrawer;
+        private MazeEngine mazeEngine;
         #endregion
 
         #region ctor
@@ -62,11 +63,24 @@ namespace DfsVisualization
         #region Add Maze To Container
         private void AddMazeToContainer()
         {
-            MazeUserControl mazeUserControl = new MazeUserControl(mazeDrawer);
+            mazeUserControl = new MazeUserControl(mazeDrawer);
             container.Children.Add(mazeUserControl);
             Grid.SetColumn(mazeUserControl, 1);
             Grid.SetRow(mazeUserControl, 2);
         }
+        #endregion
+
+        #region Add Settings To Container
+
+        public void AddSettingsToContainer()
+        {
+            container.Children.Remove(mazeUserControl);
+            SettingsUserControl settingsUserControl= new SettingsUserControl();
+            container.Children.Add(settingsUserControl);
+            Grid.SetColumn(settingsUserControl, 1);
+            Grid.SetRow(settingsUserControl, 2);
+        }
+
         #endregion
 
         #region Handle Key Down

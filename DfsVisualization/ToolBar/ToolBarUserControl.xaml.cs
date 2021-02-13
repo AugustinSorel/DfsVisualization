@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace DfsVisualization
 {
@@ -9,7 +12,7 @@ namespace DfsVisualization
     {
         #region Private Fields
         private readonly SliderValue sliderValue;
-        private readonly MazeEngine mazeEngine;
+        private MazeEngine mazeEngine;
         #endregion
 
         public ToolBarUserControl(MazeEngine mazeEngine)
@@ -24,6 +27,11 @@ namespace DfsVisualization
         #region StartButton Click Handler
         public void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            UIElement a = (Application.Current.Windows[0] as MainWindow).container.Children.Cast<UIElement>().First(x => Grid.GetRow(x) == 2 && Grid.GetColumn(x) == 1);
+
+            if (a.GetType() != typeof(MazeUserControl))
+                return;
+
             mazeEngine.StartDfs(progressBar, sliderValue);
         }
         #endregion
@@ -39,6 +47,14 @@ namespace DfsVisualization
         public void Abort_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             mazeEngine.AbortDfs();
+        }
+        #endregion
+
+        #region Settings Click Handler
+        private void Settings_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            (Application.Current.Windows[0] as MainWindow).AddSettingsToContainer();
+            Abort_Click(sender, e);
         }
         #endregion
     }
