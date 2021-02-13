@@ -200,17 +200,7 @@ namespace DfsVisualization
 
         private int GetSleep()
         {
-            // max 900
-            // min 1
-
-            //return Math.Abs(sleep.BoundNumber - 10) * 10;
-
-            int power = 10 - sleep.BoundNumber;
-            int integer = 2;
-
-            int delay = (int)Math.Pow(integer, power);
-
-            return delay;
+            return (int)Math.Pow(2, 10 - sleep.BoundNumber);
         }
 
         private int GetPercentageOfCellUsed()
