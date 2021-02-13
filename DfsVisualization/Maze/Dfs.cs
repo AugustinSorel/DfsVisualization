@@ -12,6 +12,7 @@ namespace DfsVisualization
         private List<Cell> unvisitedNeighbors;
         private Cell currentCell;
         private Cell chosenCell;
+        private bool pause;
 
         private readonly List<Cell> ListOfUnvisitedCell;
         private readonly Stack<Cell> stack;
@@ -30,18 +31,24 @@ namespace DfsVisualization
             for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
                     ListOfUnvisitedCell.Add(mazeDrawer.Cells[j, i]);
-
+            
+            pause = false;
             stack = new Stack<Cell>();
             currentCell = mazeDrawer.Cells[0, 0];
             ListOfUnvisitedCell.Remove(currentCell);
+        }
+
+        internal void HandlePause()
+        {
+            pause ^= true;
         }
 
         internal void Start()
         {
             while (ListOfUnvisitedCell.Count > 0)
             {
-               // while (pause)
-                 //   Thread.Sleep(100);
+                while (pause)
+                  Thread.Sleep(100);
 
                 if (backgroundWorker.CancellationPending)
                     return;
@@ -55,6 +62,12 @@ namespace DfsVisualization
                 backgroundWorker.ReportProgress(GetPercentageOfCellUsed());
             }
             RemoveTheCurrentCell();
+        }
+
+        internal void HandleAbort()
+        {
+            if (!pause)
+                backgroundWorker.CancelAsync();
         }
 
         private void GoBack()

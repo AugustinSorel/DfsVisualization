@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace DfsVisualization
 {
@@ -15,7 +11,7 @@ namespace DfsVisualization
         private readonly MazeDrawer mazeDrawer;
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
-        private bool pause;
+        private Dfs dfs;
         
         #endregion
 
@@ -37,29 +33,37 @@ namespace DfsVisualization
             backgroundWorker.RunWorkerCompleted += Worker_RunWorkerCompleted;
         }
 
+        #region Pause And Abort Event
         internal void PauseDfs()
         {
-            pause ^= true;
+            dfs.HandlePause();
         }
 
+        internal void AbortDfs()
+        {
+            dfs.HandleAbort();
+        }
+        #endregion
+
+        #region Start The Dfs Animation
+        /// <summary>
+        /// Start the dfs animation called by the play button in the tool bar user control
+        /// </summary>
+        /// <param name="progressBar"> use to show the progress of the animation</param>
+        /// <param name="sleep"> slider to get the sleeping time</param>
         internal void StartDfs(ProgressBar progressBar, SliderValue sleep)
         {
             if (backgroundWorker.IsBusy != true)
             {
                 mazeDrawer.Redraw();
-                pause = false;
                 this.progressBar = progressBar;
                 this.sleep = sleep;
                 backgroundWorker.RunWorkerAsync();
             }
         }
+        #endregion
 
-        internal void AbortDfs()
-        {
-            if (!pause)
-                backgroundWorker.CancelAsync();
-        }
-
+        #region backgroundWorker Event
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
@@ -67,7 +71,7 @@ namespace DfsVisualization
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Dfs dfs = new Dfs(mazeDrawer, backgroundWorker, sleep);
+            dfs = new Dfs(mazeDrawer, backgroundWorker, sleep);
             dfs.Start();
         }
 
@@ -75,5 +79,6 @@ namespace DfsVisualization
         {
             MessageBox.Show("End");
         }
+        #endregion
     }
 }
