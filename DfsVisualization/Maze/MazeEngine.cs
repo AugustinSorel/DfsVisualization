@@ -41,7 +41,8 @@ namespace DfsVisualization
 
         internal void AbortDfs()
         {
-            dfs.HandleAbort();
+            if (dfs != null)
+                dfs.HandleAbort();
         }
         #endregion
 
