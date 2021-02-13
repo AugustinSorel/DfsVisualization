@@ -111,10 +111,5 @@ namespace DfsVisualization
                 BorderThickness = thickness;
             }
         }
-
-        public Cell()
-        {
-            this.BorderThickness = new System.Windows.Thickness(1);
-        }
     }
 }

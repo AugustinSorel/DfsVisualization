@@ -74,12 +74,23 @@ namespace DfsVisualization
         {
             while (ListOfUnvisitedCell.Count > 0)
             {
-                unvisitedNeighbors = GetNeighbors(currentCell, ListOfUnvisitedCell);
+                while (pause)
+                {
+                    Thread.Sleep(100);
+                }
+
+                if (backgroundWorker.CancellationPending)
+                {
+                    return;
+                }
+
+                unvisitedNeighbors = GetNeighbors(ListOfUnvisitedCell);
                 if (unvisitedNeighbors != null)
                     VisitNeightbors();
                 else if (stack.Count != 0)
                     GoBack();
-                Thread.Sleep(10);
+                Thread.Sleep(GetSleep());
+                backgroundWorker.ReportProgress(GetPercentageOfCellUsed());
             }
             RemoveTheCurrentCell();
         }
@@ -115,81 +126,65 @@ namespace DfsVisualization
             Application.Current.Dispatcher.Invoke(new Action(() => { currentCell.Background = GlobalColors.BackgroundColor; }));
         }
 
-        private void RemoveWalls(Cell a, Cell b)
+        private void RemoveWalls(Cell currentCell, Cell chosenCell)
         {
-            if (a.Y == b.Y)
+            if (currentCell.Y == chosenCell.Y)
             {
-                if (a.X < b.X)
+                if (currentCell.X < chosenCell.X)
                 {
-                    a.RightWall = false;
-                    b.LeftWall = false;
+                    currentCell.RightWall = false;
+                    chosenCell.LeftWall = false;
                 }
                 else
                 {
-                    a.LeftWall = false;
-                    b.RightWall = false;
+                    currentCell.LeftWall = false;
+                    chosenCell.RightWall = false;
                 }
             }
             else
             {
-                if (a.Y < b.Y)
+                if (currentCell.Y < chosenCell.Y)
                 {
-                    a.BottomWall = false;
-                    b.TopWall = false;
+                    currentCell.BottomWall = false;
+                    chosenCell.TopWall = false;
                 }
                 else
                 {
-                    a.TopWall = false;
-                    b.BottomWall = false;
+                    currentCell.TopWall = false;
+                    chosenCell.BottomWall = false;
                 }
             }
         }
 
-        private Cell RandomPick(List<Cell> list)
+        private Cell RandomPick(List<Cell> unvisitedNeighbours)
         {
             Random random = new Random();
             int i;
 
-            if (list.Count == 1)
-                return list[0];
+            if (unvisitedNeighbours.Count == 1)
+                return unvisitedNeighbours[0];
 
-            i = random.Next(list.Count);
-            return list[i];
+            i = random.Next(unvisitedNeighbours.Count);
+            return unvisitedNeighbours[i];
         }
 
-        private List<Cell> GetNeighbors(Cell _currentCell, List<Cell> unvisited)
+        private List<Cell> GetNeighbors(List<Cell> listofUnvisitedCells)
         {
-            List<Cell> t = new List<Cell>();
+            List<Cell> listOfNeighbours = new List<Cell>();
 
-            Cell _neighbor = unvisited.Find(c => c.Y == _currentCell.Y - 1 && c.X == _currentCell.X);
-            if (_neighbor != null)
-            {
-                t.Add(_neighbor);
-            }
+            FindCell(0, -1, listofUnvisitedCells, listOfNeighbours);
+            FindCell(-1, 0, listofUnvisitedCells, listOfNeighbours);
+            FindCell(0, 1, listofUnvisitedCells, listOfNeighbours);
+            FindCell(1, 0, listofUnvisitedCells, listOfNeighbours);
 
-            _neighbor = unvisited.Find(c => c.Y == _currentCell.Y && c.X == _currentCell.X - 1);
-            if (_neighbor != null)
-            {
-                t.Add(_neighbor);
-            }
+            return listOfNeighbours.Count != 0 ? listOfNeighbours : null;
+        }
 
-            _neighbor = unvisited.Find(c => c.Y == _currentCell.Y + 1 && c.X == _currentCell.X);
-            if (_neighbor != null)
-            {
-                t.Add(_neighbor);
-            }
-
-            _neighbor = unvisited.Find(c => c.Y == _currentCell.Y && c.X == _currentCell.X + 1);
-            if (_neighbor != null)
-            {
-                t.Add(_neighbor);
-            }
-
-            if (t.Count != 0)
-            {
-                return t;
-            }
-            return null;
+        private void FindCell(int x, int y, List<Cell> listofUnvisitedCells, List<Cell> listOfNeighbours)
+        {
+            Cell neighbor = listofUnvisitedCells.Find(c => c.Y == currentCell.Y + y && c.X == currentCell.X + x);
+            if (neighbor != null)
+                listOfNeighbours.Add(neighbor);
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -233,12 +228,12 @@ namespace DfsVisualization
             return Math.Abs(sleep.BoundNumber -10) * 10;
         }
 
-        private int GetPercentageOfCellUsed(int j , int i)
+        private int GetPercentageOfCellUsed()
         {
-            int index = j + i * mazeDrawer.NumberOfCellsX;
-            int max = (mazeDrawer.NumberOfCellsY * mazeDrawer.NumberOfCellsX);
+            int maxCell = mazeDrawer.NumberOfCellsX * mazeDrawer.NumberOfCellsY;
+            int numberOfCellVisited = maxCell - ListOfUnvisitedCell.Count;
 
-            decimal percentage = (decimal)index / max;
+            decimal percentage = (decimal)numberOfCellVisited / maxCell;
             return (int)Math.Round(percentage * 100);
         }
 
