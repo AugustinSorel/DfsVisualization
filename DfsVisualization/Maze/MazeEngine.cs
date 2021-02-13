@@ -16,8 +16,8 @@ namespace DfsVisualization
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         private bool pause;
-        private readonly List<Cell> ListOfUnvisitedCell = new List<Cell>();
-        private List<Cell> unvisitedNeighbors = new List<Cell>();
+        private List<Cell> ListOfUnvisitedCell;
+        private List<Cell> unvisitedNeighbors;
         private Cell currentCell;
         private Cell chosenCell;
         private Stack<Cell> stack;
@@ -75,14 +75,10 @@ namespace DfsVisualization
             while (ListOfUnvisitedCell.Count > 0)
             {
                 while (pause)
-                {
                     Thread.Sleep(100);
-                }
 
                 if (backgroundWorker.CancellationPending)
-                {
                     return;
-                }
 
                 unvisitedNeighbors = GetNeighbors(ListOfUnvisitedCell);
                 if (unvisitedNeighbors != null)
@@ -189,6 +185,8 @@ namespace DfsVisualization
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
+            ListOfUnvisitedCell = new List<Cell>();
+            unvisitedNeighbors = new List<Cell>();
             for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
                 for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
                     ListOfUnvisitedCell.Add(mazeDrawer.Cells[j, i]);
@@ -198,29 +196,6 @@ namespace DfsVisualization
             ListOfUnvisitedCell.Remove(currentCell);
 
             Dfs();
-
-            //for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
-            //{
-            //    for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
-            //    {
-
-            //        while (pause)
-            //        {
-            //            Thread.Sleep(100);
-            //        }
-
-            //        if (backgroundWorker.CancellationPending)
-            //        {
-            //            return;
-            //        }
-                    
-            //        Application.Current.Dispatcher.Invoke(() => { 
-            //            mazeDrawer.Cells[j, i].Background = GlobalColors.BackgroundColor;
-            //        });
-            //        Thread.Sleep(GetSleep());
-            //        backgroundWorker.ReportProgress(GetPercentageOfCellUsed(j, i)); 
-            //    } 
-            //}
         }
 
         private int GetSleep()
