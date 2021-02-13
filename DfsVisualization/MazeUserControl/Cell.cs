@@ -11,6 +11,11 @@ namespace DfsVisualization
         #region Private Fields
         private int x;
         private int y;
+
+        private bool rightWall = true;
+        private bool leftWall = true;
+        private bool topWall = true;
+        private bool bottomWall = true;
         #endregion
 
         #region Public properties
@@ -25,13 +30,7 @@ namespace DfsVisualization
             get { return x; }
             set { x = value; }
         }
-        #endregion
-
-        private bool rightWall = true;
-        private bool leftWall = true;
-        private bool topWall = true;
-        private bool bottomWall = true;
-
+        
         public bool RightWall
         {
             get
@@ -111,5 +110,6 @@ namespace DfsVisualization
                 BorderThickness = thickness;
             }
         }
+        #endregion
     }
 }
