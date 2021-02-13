@@ -29,7 +29,7 @@ namespace DfsVisualization
             this.sleep = sleep;
 
             SetVar();
-            SetListOfUnvisitedCell(mazeDrawer);
+            SetListOfUnvisitedCell(mazeDrawer);   
         }
 
         #region variables set
@@ -67,6 +67,7 @@ namespace DfsVisualization
         #region Start Dfs
         internal void Start()
         {
+            
             while (ListOfUnvisitedCell.Count > 0)
             {
                 while (pause)
@@ -84,6 +85,7 @@ namespace DfsVisualization
 
                 Sleep();
                 ReportProgress();
+                SetTargetCellsColor();
             }
             RemoveTheCurrentCell();
         }
@@ -193,9 +195,14 @@ namespace DfsVisualization
         #endregion
 
         #region Change Cell color
+        private void SetTargetCellsColor()
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[0, 0].Background = mazeDrawer.Cells[mazeDrawer.NumberOfCellsX - 1, mazeDrawer.NumberOfCellsY - 1].Background = GlobalColors.TargerCellColor; }));
+        }
+
         private void GetCurrentCell()
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => { currentCell.Background = Brushes.Red; }));
+            Application.Current.Dispatcher.Invoke(new Action(() => { currentCell.Background = GlobalColors.SelectedCellColor; }));
         }
 
         private void RemoveTheCurrentCell()
