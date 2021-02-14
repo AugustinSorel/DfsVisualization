@@ -15,7 +15,7 @@ namespace DfsVisualization
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            (Application.Current.Windows[0] as MainWindow).container.Children.Remove(this);
+            (Application.Current.Windows[0] as MainWindow).RemoveSettingsToContainer();
         }
     }
 }

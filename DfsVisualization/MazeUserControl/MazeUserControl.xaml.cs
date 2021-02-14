@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Media.Effects;
 
 namespace DfsVisualization
 {
@@ -8,6 +9,7 @@ namespace DfsVisualization
     public partial class MazeUserControl : UserControl
     {
         private readonly MazeDrawer mazeDrawer;
+        private BlurEffect blurEffect = null;
 
         public MazeUserControl(MazeDrawer mazeDrawer)
         {
@@ -19,6 +21,22 @@ namespace DfsVisualization
         private void DrawGrid()
         {
             mazeDrawer.DrawGrid(mazeCanvas);
+        }
+
+        internal void GetBlurEffect()
+        {
+            if (blurEffect == null)
+            {
+                blurEffect = new BlurEffect
+                {
+                    Radius = 20,
+                    KernelType = KernelType.Gaussian,
+                };
+            }
+            else
+                blurEffect = null;
+
+            Effect = blurEffect;
         }
     }
 }

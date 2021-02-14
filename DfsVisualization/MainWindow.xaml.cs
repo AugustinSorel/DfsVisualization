@@ -12,6 +12,8 @@ namespace DfsVisualization
         private ToolBarUserControl toolBar;
         private MazeDrawer mazeDrawer;
         private MazeEngine mazeEngine;
+        private MazeUserControl mazeUserControl;
+        private SettingsUserControl settingsUserControl;
         #endregion
 
         #region ctor
@@ -62,7 +64,7 @@ namespace DfsVisualization
         #region Add Maze To Container
         private void AddMazeToContainer()
         {
-            MazeUserControl mazeUserControl = new MazeUserControl(mazeDrawer);
+            mazeUserControl = new MazeUserControl(mazeDrawer);
             container.Children.Add(mazeUserControl);
             Grid.SetColumn(mazeUserControl, 1);
             Grid.SetRow(mazeUserControl, 2);
@@ -70,13 +72,19 @@ namespace DfsVisualization
         #endregion
 
         #region Add Settings To Container
-
         public void AddSettingsToContainer()
         {
-            SettingsUserControl settingsUserControl= new SettingsUserControl();
+            settingsUserControl= new SettingsUserControl();
             container.Children.Add(settingsUserControl);
             Grid.SetColumn(settingsUserControl, 1);
             Grid.SetRow(settingsUserControl, 2);
+            mazeUserControl.GetBlurEffect();
+        }
+
+        public void RemoveSettingsToContainer()
+        {
+            container.Children.Remove(settingsUserControl);
+            mazeUserControl.GetBlurEffect(); 
         }
 
         #endregion
