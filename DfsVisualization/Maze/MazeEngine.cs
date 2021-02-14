@@ -43,7 +43,8 @@ namespace DfsVisualization
         #region Pause And Abort Event
         internal void PauseDfs()
         {
-            dfs.HandlePause();
+            if (dfs != null)
+                dfs.HandlePause();
         }
 
         internal void AbortDfs()

@@ -78,13 +78,13 @@ namespace DfsVisualization
             container.Children.Add(settingsUserControl);
             Grid.SetColumn(settingsUserControl, 1);
             Grid.SetRow(settingsUserControl, 2);
-            mazeUserControl.GetBlurEffect();
+            mazeUserControl.GetBlurEffect(false);
         }
 
         public void RemoveSettingsToContainer()
         {
             container.Children.Remove(settingsUserControl);
-            mazeUserControl.GetBlurEffect(); 
+            mazeUserControl.GetBlurEffect(true); 
         }
 
         #endregion
