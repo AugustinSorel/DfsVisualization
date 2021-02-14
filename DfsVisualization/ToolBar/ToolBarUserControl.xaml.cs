@@ -55,6 +55,11 @@ namespace DfsVisualization
             if (mazeEngine.BackgroundWorker.IsBusy)
                 return;
 
+            UIElement a = (Application.Current.Windows[0] as MainWindow).container.Children.Cast<UIElement>().Last(x => Grid.GetRow(x) == 2 && Grid.GetColumn(x) == 1);
+
+            if (a.GetType() == typeof(SettingsUserControl))
+                return;
+
             (Application.Current.Windows[0] as MainWindow).AddSettingsToContainer();
         }
         #endregion
