@@ -8,7 +8,7 @@ namespace DfsVisualization
     public partial class MazeUserControl : UserControl
     {
         private readonly MazeDrawer mazeDrawer;
-        private BlurAnimation blurAnimation;
+        private readonly BlurAnimation blurAnimation;
 
         public MazeUserControl(MazeDrawer mazeDrawer)
         {

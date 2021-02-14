@@ -34,7 +34,7 @@
             </Button>
 
             <Button x:Name="PauseButton" ToolTip="Start/Pause Key: P" Margin="5, 0, 5, 0" Click="PauseButton_Click">
-                <Image Source="/Images/StartPause_16x.png"/>
+                <Image Source="/Images/Pause_16x.png"/>
             </Button>
 
             <Button x:Name="StartButton" ToolTip="Start Key: S" Click="StartButton_Click" Margin="5, 0, 5, 0">
