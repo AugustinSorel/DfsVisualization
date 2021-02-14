@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace DfsVisualization
 {
@@ -8,14 +10,18 @@ namespace DfsVisualization
     /// </summary>
     public partial class SettingsUserControl : UserControl
     {
+        private OpacityFade opacityFade;
+
         public SettingsUserControl()
         {
             InitializeComponent();
+            opacityFade = new OpacityFade(this);
+            opacityFade.StartAnimation(true);
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            (Application.Current.Windows[0] as MainWindow).RemoveSettingsToContainer();
+            opacityFade.StartAnimation(false);   
         }
     }
 }

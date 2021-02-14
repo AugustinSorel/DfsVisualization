@@ -18,25 +18,26 @@ namespace DfsVisualization
         private const int DURATION = 20;
         #endregion
 
-        public BlurAnimation()
+        public BlurAnimation(MazeUserControl mazeUserControl)
         {
             myStoryboard = new Storyboard();
             myDoubleAnimation = new DoubleAnimation();
             blurEffect = new BlurEffect();
-        }
 
-        public void StartAnimation(bool enabled, Canvas mazeCanvas, MazeUserControl mazeUserControl)
-        {
             mazeUserControl.RegisterName("blurEffect", blurEffect);
             blurEffect.Radius = 0.0;
-            mazeCanvas.Effect = blurEffect;
+            mazeUserControl.mazeCanvas.Effect = blurEffect;
 
-            myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(2));
+            myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
             myDoubleAnimation.AutoReverse = false;
 
             Storyboard.SetTargetName(myDoubleAnimation, "blurEffect");
             Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath(BlurEffect.RadiusProperty));
             myStoryboard.Children.Add(myDoubleAnimation);
+        }
+
+        public void StartAnimation(bool enabled, Canvas canvas)
+        {
             if (!enabled)
             {
                 myDoubleAnimation.From = 0;
@@ -47,7 +48,7 @@ namespace DfsVisualization
                 myDoubleAnimation.From = DURATION;
                 myDoubleAnimation.To = 0;
             }
-            myStoryboard.Begin(mazeUserControl);
+            myStoryboard.Begin(canvas);
         }
     }
 }

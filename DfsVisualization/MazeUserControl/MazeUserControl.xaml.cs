@@ -14,7 +14,7 @@ namespace DfsVisualization
         {
             InitializeComponent();
             this.mazeDrawer = mazeDrawer;
-            blurAnimation = new BlurAnimation();
+            blurAnimation = new BlurAnimation(this);
             DrawGrid();
         }
 
@@ -26,7 +26,7 @@ namespace DfsVisualization
         #region Blur effect
         internal void GetBlurEffect(bool enabled)
         {
-            blurAnimation.StartAnimation(enabled, mazeCanvas, this);
+            blurAnimation.StartAnimation(enabled, mazeCanvas);
         }
         #endregion
     }
