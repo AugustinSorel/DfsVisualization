@@ -7,6 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Canvas x:Name="mazeCanvas">
-        
+        <Canvas.Effect>
+            <BlurEffect Radius="0" KernelType="Gaussian"/>
+        </Canvas.Effect>
     </Canvas>
 </UserControl>

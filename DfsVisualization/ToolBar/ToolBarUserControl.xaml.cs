@@ -26,9 +26,9 @@ namespace DfsVisualization
         #region StartButton Click Handler
         public void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            UIElement a = (Application.Current.Windows[0] as MainWindow).container.Children.Cast<UIElement>().First(x => Grid.GetRow(x) == 2 && Grid.GetColumn(x) == 1);
+            UIElement a = (Application.Current.Windows[0] as MainWindow).container.Children.Cast<UIElement>().Last(x => Grid.GetRow(x) == 2 && Grid.GetColumn(x) == 1);
 
-            if (a.GetType() != typeof(MazeUserControl))
+            if (a.GetType() == typeof(SettingsUserControl))
                 return;
 
             mazeEngine.StartDfs(progressBar, sliderValue);
