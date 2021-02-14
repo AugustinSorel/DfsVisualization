@@ -12,7 +12,14 @@ namespace DfsVisualization
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         private Dfs dfs;
-        
+        #endregion
+
+        #region Properties
+        public BackgroundWorker BackgroundWorker
+        {
+            get { return backgroundWorker; }
+        }
+
         #endregion
 
         public MazeEngine(MazeDrawer mazeDrawer)

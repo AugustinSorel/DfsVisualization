@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -53,8 +52,10 @@ namespace DfsVisualization
         #region Settings Click Handler
         private void Settings_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (mazeEngine.BackgroundWorker.IsBusy)
+                return;
+
             (Application.Current.Windows[0] as MainWindow).AddSettingsToContainer();
-            Abort_Click(sender, e);
         }
         #endregion
     }
