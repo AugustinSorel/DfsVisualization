@@ -10,7 +10,6 @@ namespace DfsVisualization
     {
         #region Fields
         private ToolBarUserControl toolBar;
-        private MazeUserControl mazeUserControl;
         private MazeDrawer mazeDrawer;
         private MazeEngine mazeEngine;
         #endregion
@@ -63,7 +62,7 @@ namespace DfsVisualization
         #region Add Maze To Container
         private void AddMazeToContainer()
         {
-            mazeUserControl = new MazeUserControl(mazeDrawer);
+            MazeUserControl mazeUserControl = new MazeUserControl(mazeDrawer);
             container.Children.Add(mazeUserControl);
             Grid.SetColumn(mazeUserControl, 1);
             Grid.SetRow(mazeUserControl, 2);
@@ -74,7 +73,6 @@ namespace DfsVisualization
 
         public void AddSettingsToContainer()
         {
-            container.Children.Remove(mazeUserControl);
             SettingsUserControl settingsUserControl= new SettingsUserControl();
             container.Children.Add(settingsUserControl);
             Grid.SetColumn(settingsUserControl, 1);

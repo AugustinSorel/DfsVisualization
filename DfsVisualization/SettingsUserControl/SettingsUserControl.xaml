@@ -8,6 +8,8 @@
              Background="Gray"
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-            
+        <Button x:Name="GoBackButton" Width="100" Height="100" Click="GoBackButton_Click">
+            Go Back
+        </Button>
     </Grid>
 </UserControl>
