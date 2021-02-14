@@ -11,7 +11,7 @@ namespace DfsVisualization
     {
         #region Private Fields
         private readonly SliderValue sliderValue;
-        private MazeEngine mazeEngine;
+        private readonly MazeEngine mazeEngine;
         #endregion
 
         public ToolBarUserControl(MazeEngine mazeEngine)

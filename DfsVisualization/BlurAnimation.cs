@@ -28,7 +28,7 @@ namespace DfsVisualization
             blurEffect.Radius = 0.0;
             mazeUserControl.mazeCanvas.Effect = blurEffect;
 
-            myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(2));
             myDoubleAnimation.AutoReverse = false;
 
             Storyboard.SetTargetName(myDoubleAnimation, "blurEffect");

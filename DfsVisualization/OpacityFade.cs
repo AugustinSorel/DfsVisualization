@@ -7,15 +7,15 @@ namespace DfsVisualization
 {
     class OpacityFade
     {
-        private Storyboard storyboard;
-        private DoubleAnimation doubleAnimation;
+        private readonly Storyboard storyboard;
+        private readonly DoubleAnimation doubleAnimation;
 
         public OpacityFade(SettingsUserControl settingsUserControl)
         {
             storyboard = new Storyboard();
             doubleAnimation = new DoubleAnimation
             {
-                Duration = new Duration(TimeSpan.FromSeconds(2))
+                Duration = new Duration(TimeSpan.FromSeconds(1))
             };
 
             storyboard.Children.Add(doubleAnimation);
@@ -39,7 +39,6 @@ namespace DfsVisualization
 
             storyboard.Begin();
         }
-
 
         private void Sb_Completed(object sender, EventArgs e)
         {
