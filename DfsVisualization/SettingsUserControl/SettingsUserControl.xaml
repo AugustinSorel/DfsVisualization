@@ -46,14 +46,16 @@
                 <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="X:"/>
                     <InlineUIContainer BaselineAlignment="Center">
-                        <TextBox Width="20" Margin="20, 0, 0, 0" Background="Transparent" Foreground="White"/>
+                        <TextBox Name="TextBoxStartCellX" Width="20" Margin="20, 0, 0, 0" 
+                                 Background="Transparent" Foreground="White"/>
                     </InlineUIContainer>
                 </TextBlock>
 
                 <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Y:"/>
                     <InlineUIContainer BaselineAlignment="Center">
-                        <TextBox Width="20" Margin="20, 0, 0, 0" Background="Transparent" Foreground="White"/>
+                        <TextBox Name="TextBoxStartCellY" Width="20" Margin="20, 0, 0, 0" 
+                                 Background="Transparent" Foreground="White"/>
                     </InlineUIContainer>
                 </TextBlock>
             </StackPanel>
@@ -67,7 +69,7 @@
 
         <DockPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft">
 
-            <Button Name="SaveButton" Width="20" HorizontalAlignment="Left" ToolTip="Save">
+            <Button Name="SaveButton" Width="20" HorizontalAlignment="Left" ToolTip="Save" Click="SaveButton_Click">
                 <Image Source="/Images/Save_16x.png"/>
             </Button>
 

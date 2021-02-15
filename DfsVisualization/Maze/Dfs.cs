@@ -35,8 +35,8 @@ namespace DfsVisualization
         #region variables set
         private void SetListOfUnvisitedCell(MazeDrawer mazeDrawer)
         {
-            for (int i = 0; i < mazeDrawer.NumberOfCellsY; i++)
-                for (int j = 0; j < mazeDrawer.NumberOfCellsX; j++)
+            for (int i = 0; i < mazeSettings.NumberOfCellsY; i++)
+                for (int j = 0; j < mazeSettings.NumberOfCellsX; j++)
                     ListOfUnvisitedCell.Add(mazeDrawer.Cells[j, i]);
             ListOfUnvisitedCell.Remove(currentCell);
         }
@@ -196,7 +196,7 @@ namespace DfsVisualization
         #region Change Cell color
         private void SetTargetCellsColor()
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[0, 0].Background = mazeDrawer.Cells[mazeDrawer.NumberOfCellsX - 1, mazeDrawer.NumberOfCellsY - 1].Background = GlobalColors.TargerCellColor; }));
+            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[0, 0].Background = mazeDrawer.Cells[mazeSettings.NumberOfCellsX - 1, mazeSettings.NumberOfCellsY - 1].Background = GlobalColors.TargerCellColor; }));
         }
 
         private void GetCurrentCell()
@@ -261,7 +261,7 @@ namespace DfsVisualization
 
         private int GetPercentageOfCellUsed()
         {
-            int maxCell = mazeDrawer.NumberOfCellsX * mazeDrawer.NumberOfCellsY;
+            int maxCell = mazeSettings.NumberOfCellsX * mazeSettings.NumberOfCellsY;
             int numberOfCellVisited = maxCell - ListOfUnvisitedCell.Count;
 
             decimal percentage = (decimal)numberOfCellVisited / maxCell;

@@ -11,28 +11,13 @@ namespace DfsVisualization
     public class MazeDrawer
     {
         #region Private Fields
-        private int numberOfCellsY;
-        private int numberOfCellsX;
-        
-        private const int CELL_WIDTH = 20;
-        private const int CELL_HEIGHT = 20;
-
+        private readonly MazeSettings mazeSettings;
         private Cell[,] cells;
         private Canvas mazeCanvas;
         #endregion
 
         #region Public Properties
-        public int NumberOfCellsX
-        {
-            get { return numberOfCellsX; }
-            set { numberOfCellsX = value; }
-        }
-
-        public int NumberOfCellsY
-        {
-            get { return numberOfCellsY; }
-            set { numberOfCellsY = value; }
-        }
+        
 
         public Cell[,] Cells
         {
@@ -41,12 +26,11 @@ namespace DfsVisualization
         }
         #endregion
 
-        public MazeDrawer()
+        public MazeDrawer(MazeSettings mazeSettings)
         {
-            numberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / CELL_WIDTH;
-            numberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / CELL_HEIGHT;
+            this.mazeSettings = mazeSettings;
             
-            cells = new Cell[numberOfCellsX, numberOfCellsY];
+            cells = new Cell[mazeSettings.NumberOfCellsX, mazeSettings.NumberOfCellsY];
         }
 
         #region Re Draw
@@ -69,19 +53,19 @@ namespace DfsVisualization
             mazeCanvas.Children.Clear();
             this.mazeCanvas = mazeCanvas;
 
-            for (int i = 0; i < numberOfCellsY; i++)
+            for (int i = 0; i < mazeSettings.NumberOfCellsY; i++)
             {
-                for (int j = 0; j < numberOfCellsX; j++)
+                for (int j = 0; j < mazeSettings.NumberOfCellsX; j++)
                 {
-                    if (i == numberOfCellsY - 1 && j == numberOfCellsX - 1)
+                    if (i == mazeSettings.NumberOfCellsY - 1 && j == mazeSettings.NumberOfCellsX - 1)
                     {
                         AddCellToCanvas(j, i);
                     }
-                    else if (i == numberOfCellsY - 1)
+                    else if (i == mazeSettings.NumberOfCellsY - 1)
                     {
                         AddCellToCanvas(j, i);
                     }
-                    else if (j == numberOfCellsX - 1)
+                    else if (j == mazeSettings.NumberOfCellsX - 1)
                     {
                         AddCellToCanvas(j, i);
                     }
@@ -104,8 +88,8 @@ namespace DfsVisualization
         {
             Cell cell = new Cell()
             {
-                Width = CELL_WIDTH,
-                Height = CELL_HEIGHT,
+                Width = mazeSettings.CellWidth,
+                Height = mazeSettings.CellHeight,
                 Background = GlobalColors.CellColor,
                 BorderBrush = Brushes.Black,
                 BorderThickness = new Thickness(1),
@@ -113,8 +97,8 @@ namespace DfsVisualization
                 Y = i,
             };
 
-            Canvas.SetLeft(cell, j * CELL_WIDTH);
-            Canvas.SetTop(cell, i * CELL_HEIGHT);
+            Canvas.SetLeft(cell, j * mazeSettings.CellWidth);
+            Canvas.SetTop(cell, i * mazeSettings.CellHeight);
             mazeCanvas.Children.Add(cell);
             cells[j, i] = cell;
         }

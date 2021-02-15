@@ -35,8 +35,8 @@ namespace DfsVisualization
         #region Create The Instance Of MazeDrawer And MazeEngine
         private void CreateMazeDrawerAndEngine()
         {
-            mazeDrawer = new MazeDrawer();
             mazeSettings = new MazeSettings();
+            mazeDrawer = new MazeDrawer(mazeSettings);
             mazeEngine = new MazeEngine(mazeDrawer, mazeSettings);
         }
         #endregion
@@ -76,7 +76,7 @@ namespace DfsVisualization
         #region Add Settings To Container
         public void AddSettingsToContainer()
         {
-            settingsUserControl= new SettingsUserControl();
+            settingsUserControl= new SettingsUserControl(mazeSettings);
             container.Children.Add(settingsUserControl);
             Grid.SetColumn(settingsUserControl, 1);
             Grid.SetRow(settingsUserControl, 2);
