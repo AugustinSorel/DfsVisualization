@@ -146,5 +146,14 @@
   <ItemGroup>
     <Resource Include="Images\Pause_16x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cancel_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Save_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Backwards_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
