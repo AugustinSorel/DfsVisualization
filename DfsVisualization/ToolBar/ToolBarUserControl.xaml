@@ -25,12 +25,12 @@
         
         <DockPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" >
 
-            <Button x:Name="Settings" ToolTip="Abort Key: A" Margin="5, 0, 5, 0" Click="Settings_Click">
+            <Button x:Name="Settings" ToolTip="Settings Key: P" Margin="5, 0, 5, 0" Click="Settings_Click">
                 <Image Source="/Images/CSTest_16x.png" ToolTip="Abort"/>
             </Button>
             
             <Button x:Name="Abort" ToolTip="Abort Key: A" Margin="5, 0, 5, 0" Click="Abort_Click">
-                <Image Source="/Images/Stop_16x.png" ToolTip="Abort"/>
+                <Image Source="/Images/Stop_16x.png" ToolTip="Abort key: A"/>
             </Button>
 
             <Button x:Name="PauseButton" ToolTip="Start/Pause Key: P" Margin="5, 0, 5, 0" Click="PauseButton_Click">
