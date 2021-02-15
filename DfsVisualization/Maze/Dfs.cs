@@ -19,14 +19,15 @@ namespace DfsVisualization
         private readonly MazeDrawer mazeDrawer;
         private readonly BackgroundWorker backgroundWorker;
         private readonly SliderValue sleep;
+        private readonly MazeSettings mazeSettings;
         #endregion
 
-        public Dfs(MazeDrawer mazeDrawer, BackgroundWorker backgroundWorker, SliderValue sleep)
+        public Dfs(MazeDrawer mazeDrawer, BackgroundWorker backgroundWorker, SliderValue sleep, MazeSettings mazeSettings)
         {
             this.mazeDrawer = mazeDrawer;
             this.backgroundWorker = backgroundWorker;
             this.sleep = sleep;
-
+            this.mazeSettings = mazeSettings;
             SetVar();
             SetListOfUnvisitedCell(mazeDrawer);   
         }
@@ -46,7 +47,7 @@ namespace DfsVisualization
             unvisitedNeighbors = new List<Cell>();
             pause = false;
             stack = new Stack<Cell>();
-            currentCell = mazeDrawer.Cells[0, 0];
+            currentCell = mazeDrawer.Cells[mazeSettings.StartCellx, mazeSettings.StartCellY];
         }
         #endregion
 

@@ -13,6 +13,7 @@ namespace DfsVisualization
         private MazeDrawer mazeDrawer;
         private MazeEngine mazeEngine;
         private MazeUserControl mazeUserControl;
+        private MazeSettings mazeSettings;
         private SettingsUserControl settingsUserControl;
         #endregion
 
@@ -35,7 +36,8 @@ namespace DfsVisualization
         private void CreateMazeDrawerAndEngine()
         {
             mazeDrawer = new MazeDrawer();
-            mazeEngine = new MazeEngine(mazeDrawer);
+            mazeSettings = new MazeSettings();
+            mazeEngine = new MazeEngine(mazeDrawer, mazeSettings);
         }
         #endregion
 

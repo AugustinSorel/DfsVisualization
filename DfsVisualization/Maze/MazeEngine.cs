@@ -9,6 +9,7 @@ namespace DfsVisualization
         #region Private Fields
         private ProgressBar progressBar;
         private readonly MazeDrawer mazeDrawer;
+        private readonly MazeSettings mazeSettings;
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         private Dfs dfs;
@@ -22,9 +23,10 @@ namespace DfsVisualization
 
         #endregion
 
-        public MazeEngine(MazeDrawer mazeDrawer)
+        public MazeEngine(MazeDrawer mazeDrawer, MazeSettings mazeSettings)
         {
             this.mazeDrawer = mazeDrawer;
+            this.mazeSettings = mazeSettings;
             CreateBackgroundWorker();
         }
 
@@ -80,7 +82,7 @@ namespace DfsVisualization
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            dfs = new Dfs(mazeDrawer, backgroundWorker, sleep);
+            dfs = new Dfs(mazeDrawer, backgroundWorker, sleep, mazeSettings);
             dfs.Start();
         }
 

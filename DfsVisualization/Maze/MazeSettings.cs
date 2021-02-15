@@ -1,6 +1,6 @@
 ﻿namespace DfsVisualization
 {
-    class MazeSettings
+    public class MazeSettings
     {
         #region Fields
         private int startCellY;
@@ -23,8 +23,8 @@
 
         public MazeSettings()
         {
-            startCellX = 0;
-            startCellY = 0;
+            startCellX = 10;
+            startCellY = 10;
         }
     }
 }
