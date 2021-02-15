@@ -55,11 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BlurAnimation.cs" />
+    <Compile Include="Animations\BlurAnimation.cs" />
     <Compile Include="Maze\Dfs.cs" />
     <Compile Include="Maze\MazeEngine.cs" />
     <Compile Include="MazeUserControl\Cell.cs" />
-    <Compile Include="OpacityFade.cs" />
+    <Compile Include="Animations\OpacityFade.cs" />
     <Compile Include="SettingsUserControl\SettingsUserControl.xaml.cs">
       <DependentUpon>SettingsUserControl.xaml</DependentUpon>
     </Compile>
