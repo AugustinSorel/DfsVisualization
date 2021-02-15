@@ -19,7 +19,13 @@ namespace DfsVisualization
         public int StartCellY
         {
             get { return startCellY; }
-            set { startCellY = value; }
+            set 
+            {
+                if (value > 0 && value < numberOfCellsY)
+                {
+                    startCellY = value; 
+                }
+            }
         }
 
         public int StartCellx
@@ -27,7 +33,7 @@ namespace DfsVisualization
             get { return startCellX; }
             set 
             {
-                if (value > 0)
+                if (value > 0 && value < numberOfCellsX)
                 {
                     startCellX = value; 
                 }
@@ -64,8 +70,8 @@ namespace DfsVisualization
             startCellX = 0;
             startCellY = 0;
 
-            cellWidth = 20;
-            cellHeight = 20;
+            cellWidth = 10;
+            cellHeight = 10;
 
             numberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / cellWidth;
             numberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / cellHeight;

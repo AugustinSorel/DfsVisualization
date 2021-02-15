@@ -25,6 +25,9 @@ namespace DfsVisualization
         {
             TextBoxStartCellX.Text = mazeSettings.StartCellx.ToString();
             TextBoxStartCellY.Text = mazeSettings.StartCellY.ToString();
+
+            textboxCellWidth.Text = mazeSettings.CellWidth.ToString();
+            textboxCellHeight.Text = mazeSettings.CellHeight.ToString();
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
@@ -36,6 +39,12 @@ namespace DfsVisualization
         {
             mazeSettings.StartCellx = int.Parse(TextBoxStartCellX.Text);
             mazeSettings.StartCellY = int.Parse(TextBoxStartCellY.Text);
+
+            mazeSettings.CellWidth = int.Parse(textboxCellWidth.Text);
+            mazeSettings.CellHeight = int.Parse(textboxCellHeight.Text);
+
+            mazeSettings.NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / mazeSettings.CellWidth;
+            mazeSettings.NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / mazeSettings.CellHeight;
         }
     }
 }
