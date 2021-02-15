@@ -29,7 +29,7 @@ namespace DfsVisualization
         {
             this.mazeSettings = mazeSettings;
             
-            cells = new Cell[mazeSettings.NumberOfCellsX, mazeSettings.NumberOfCellsY];
+           
         }
 
         #region Re Draw
@@ -49,6 +49,7 @@ namespace DfsVisualization
         /// <param name="mazeCanvas"></param>
         public void DrawGrid(Canvas mazeCanvas)
         {
+            cells = new Cell[mazeSettings.NumberOfCellsX, mazeSettings.NumberOfCellsY];
             mazeCanvas.Children.Clear();
             this.mazeCanvas = mazeCanvas;
 

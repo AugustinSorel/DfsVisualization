@@ -36,7 +36,8 @@ namespace DfsVisualization
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
+        {// tryparse
+         // reset to 0 if cell size changed   
             mazeSettings.StartCellx = int.Parse(TextBoxStartCellX.Text);
             mazeSettings.StartCellY = int.Parse(TextBoxStartCellY.Text);
 
