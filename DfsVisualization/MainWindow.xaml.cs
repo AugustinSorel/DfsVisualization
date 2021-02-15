@@ -94,6 +94,10 @@ namespace DfsVisualization
         {
             switch (e.Key)
             {
+                case System.Windows.Input.Key.U:
+                    toolBar.Settings_Click(this, null);
+                    break;
+
                 case System.Windows.Input.Key.Right:
                     toolBar.SpeedSlider.Value += 1;
                     break;

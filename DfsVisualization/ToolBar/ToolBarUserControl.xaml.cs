@@ -50,7 +50,7 @@ namespace DfsVisualization
         #endregion
 
         #region Settings Click Handler
-        private void Settings_Click(object sender, System.Windows.RoutedEventArgs e)
+        public void Settings_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (mazeEngine.BackgroundWorker.IsBusy)
                 return;
