@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DfsVisualization"
              mc:Ignorable="d" 
+             Name="SettingsWindow"
              d:DesignHeight="500" d:DesignWidth="500">
 
     <UserControl.Resources>
@@ -14,7 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -96,12 +97,14 @@
             <Button Name="CancelButton" Width="20" HorizontalAlignment="Left" ToolTip="Cancel">
                 <Image Source="/Images/Cancel_16x.png"/>
             </Button>
-            
+
             <Button Name="GoBackButton" Click="GoBackButton_Click" Width="20" HorizontalAlignment="Left" ToolTip="Go Back">
                 <Image Source="/Images/Backwards_16x.png"/>
             </Button>
-            
+
+            <TextBlock x:Name="textBlockErrorMessage" Text="{Binding ErrorMessage}" HorizontalAlignment="Right"/>
+
         </DockPanel>
-        
+
     </Grid>
 </UserControl>

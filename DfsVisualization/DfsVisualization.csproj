@@ -61,6 +61,7 @@
     <Compile Include="Maze\MazeEngine.cs" />
     <Compile Include="MazeUserControl\Cell.cs" />
     <Compile Include="Animations\OpacityFade.cs" />
+    <Compile Include="SettingsUserControl\SettingsOutputMessage.cs" />
     <Compile Include="SettingsUserControl\SettingsUserControl.xaml.cs">
       <DependentUpon>SettingsUserControl.xaml</DependentUpon>
     </Compile>
