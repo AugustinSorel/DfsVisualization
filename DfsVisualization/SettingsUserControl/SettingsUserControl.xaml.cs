@@ -10,13 +10,7 @@ namespace DfsVisualization
     {
         private readonly OpacityFade opacityFade;
         private readonly MazeSettings mazeSettings;
-
-        private string errorMessage;
-        public string ErrorMessage
-        {
-            get { return errorMessage; }
-            set { errorMessage = value; }
-        }
+        private SettingsOutputMessage settingsOutputMessage;
 
         public SettingsUserControl(MazeSettings mazeSettings)
         {
@@ -25,7 +19,8 @@ namespace DfsVisualization
             opacityFade = new OpacityFade(this);
             opacityFade.StartAnimation(true);
             SetControlsValue();
-            DataContext = this;
+            settingsOutputMessage = new SettingsOutputMessage();
+            DataContext = settingsOutputMessage;
         }
 
         private void SetControlsValue()
@@ -44,31 +39,12 @@ namespace DfsVisualization
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            mazeSettings.NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / mazeSettings.CellWidth;
-            mazeSettings.NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / mazeSettings.CellHeight;
-
-            string errorMessage = string.Empty;
-
-            if (!int.TryParse(TextBoxStartCellX.Text, out int startCellX))
-            {
-                mazeSettings.StartCellx = 0;
-                errorMessage += "StartCellX ";
-            }
-            else
-                mazeSettings.StartCellx = startCellX;
-
-            if (!int.TryParse(TextBoxStartCellY.Text, out int startCellY))
-            {
-                mazeSettings.StartCellY = 0;
-                errorMessage += "StartCellY ";
-            }
-            else
-                mazeSettings.StartCellY = startCellY;
+            string outputMessage = string.Empty;
 
             if (!int.TryParse(textboxCellWidth.Text, out int cellWidth))
             {
                 mazeSettings.CellWidth = 20;
-                errorMessage += "CellWidth ";
+                outputMessage += "CellWidth ";
             }
             else
                 mazeSettings.CellWidth = cellWidth;
@@ -76,16 +52,42 @@ namespace DfsVisualization
             if (!int.TryParse(textboxCellHeight.Text, out int cellHeight))
             {
                 mazeSettings.CellHeight = 20;
-                errorMessage += "CellHeight ";
+                outputMessage += "CellHeight ";
             }
             else
                 mazeSettings.CellHeight = cellHeight;
 
-            if (errorMessage != string.Empty)
-                errorMessage = "Cannot convert " + errorMessage;
+            mazeSettings.NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / mazeSettings.CellWidth;
+            mazeSettings.NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / mazeSettings.CellHeight;
 
-            ErrorMessage = errorMessage;
+            if (!int.TryParse(TextBoxStartCellX.Text, out int startCellX))
+            {
+                mazeSettings.StartCellx = 0;
+                outputMessage += "StartCellX ";
+            }
+            else
+                mazeSettings.StartCellx = startCellX;
+
+            if (!int.TryParse(TextBoxStartCellY.Text, out int startCellY))
+            {
+                mazeSettings.StartCellY = 0;
+                outputMessage += "StartCellY ";
+            }
+            else
+                mazeSettings.StartCellY = startCellY;
+
+            if (outputMessage != string.Empty)
+                outputMessage = "Cannot convert " + outputMessage;
+            else
+                outputMessage = "Changes saved";
+
+            settingsOutputMessage.OutputMessage = outputMessage;
             SetControlsValue();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            settingsOutputMessage.OutputMessage = "Changes canceled";
         }
     }
 }
