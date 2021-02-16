@@ -18,10 +18,10 @@ namespace DfsVisualization
             this.mazeSettings = mazeSettings;
             opacityFade = new OpacityFade(this);
             opacityFade.StartAnimation(true);
-            SetVariables();
+            SetControlsValue();
         }
 
-        private void SetVariables()
+        private void SetControlsValue()
         {
             TextBoxStartCellX.Text = mazeSettings.StartCellx.ToString();
             TextBoxStartCellY.Text = mazeSettings.StartCellY.ToString();
@@ -36,16 +36,17 @@ namespace DfsVisualization
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {// tryparse
-         // reset to 0 if cell size changed   
-            mazeSettings.StartCellx = int.Parse(TextBoxStartCellX.Text);
-            mazeSettings.StartCellY = int.Parse(TextBoxStartCellY.Text);
+        {
+            mazeSettings.StartCellx = int.TryParse(TextBoxStartCellX.Text, out int startCellX) ? startCellX : 0;
+            mazeSettings.StartCellY = int.TryParse(TextBoxStartCellY.Text, out int startCellY) ? startCellY : 0;
 
-            mazeSettings.CellWidth = int.Parse(textboxCellWidth.Text);
-            mazeSettings.CellHeight = int.Parse(textboxCellHeight.Text);
+            mazeSettings.CellWidth = int.TryParse(textboxCellWidth.Text, out int cellWidth) ? cellWidth : 20;
+            mazeSettings.CellHeight = int.TryParse(textboxCellHeight.Text, out int cellHeight) ? cellHeight : 20;
 
             mazeSettings.NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / mazeSettings.CellWidth;
             mazeSettings.NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / mazeSettings.CellHeight;
+
+            SetControlsValue();
         }
     }
 }
