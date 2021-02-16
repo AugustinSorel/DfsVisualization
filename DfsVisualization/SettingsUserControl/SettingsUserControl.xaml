@@ -47,7 +47,7 @@
                 <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="X:"/>
                     <InlineUIContainer BaselineAlignment="Center">
-                        <TextBox Name="TextBoxStartCellX" Width="20" Margin="20, 0, 0, 0" 
+                        <TextBox Name="TextBoxStartCellX" Text="{Binding Path=StartCellx}" Width="20" Margin="20, 0, 0, 0" 
                                  Background="Transparent" Foreground="White"/>
                     </InlineUIContainer>
                 </TextBlock>
@@ -55,7 +55,7 @@
                 <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Y:"/>
                     <InlineUIContainer BaselineAlignment="Center">
-                        <TextBox Name="TextBoxStartCellY" Width="20" Margin="20, 0, 0, 0" 
+                        <TextBox Name="TextBoxStartCellY" Text="{Binding Path=StartCellY}" Width="20" Margin="20, 0, 0, 0" 
                                  Background="Transparent" Foreground="White"/>
                     </InlineUIContainer>
                 </TextBlock>
@@ -87,7 +87,7 @@
                 <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Width:"/>
                     <InlineUIContainer BaselineAlignment="Center">
-                        <TextBox Name="textboxCellWidth" Width="20" Margin="24, 0, 0, 0" 
+                        <TextBox Name="textboxCellWidth" Text="{Binding Path=CellWidth}" Width="20" Margin="24, 0, 0, 0" 
                                  Background="Transparent" Foreground="White"/>
                     </InlineUIContainer>
                 </TextBlock>
@@ -95,7 +95,7 @@
                 <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Height:"/>
                     <InlineUIContainer BaselineAlignment="Center">
-                        <TextBox Name="textboxCellHeight" Width="20" Margin="20, 0, 0, 0" 
+                        <TextBox Name="textboxCellHeight" Text="{Binding Path=CellHeight}" Width="20" Margin="20, 0, 0, 0" 
                                  Background="Transparent" Foreground="White"/>
                     </InlineUIContainer>
                 </TextBlock>
@@ -103,10 +103,6 @@
         </Grid>
 
         <DockPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft">
-
-            <Button Name="SaveButton" ToolTip="Save" Click="SaveButton_Click">
-                <Image Source="/Images/Save_16x.png"/>
-            </Button>
 
             <Button Name="CancelButton" ToolTip="Cancel" Click="CancelButton_Click">
                 <Image Source="/Images/Cancel_16x.png"/>
@@ -116,7 +112,7 @@
                 <Image Source="/Images/Backwards_16x.png"/>
             </Button>
 
-            <TextBlock x:Name="textBlockErrorMessage" Text="{Binding Path=OutputMessage}" HorizontalAlignment="Right"/>
+            <TextBlock x:Name="textBlockErrorMessage" Text="" HorizontalAlignment="Right"/>
 
         </DockPanel>
 

@@ -21,6 +21,7 @@ namespace DfsVisualization
             get { return startCellY; }
             set 
             {
+                CalculateNumberOfCells();
                 if (value >= 0 && value < numberOfCellsY)
                 {
                     startCellY = value; 
@@ -33,6 +34,7 @@ namespace DfsVisualization
             get { return startCellX; }
             set 
             {
+                CalculateNumberOfCells();
                 if (value >= 0 && value < numberOfCellsX)
                 {
                     startCellX = value; 
@@ -43,39 +45,39 @@ namespace DfsVisualization
         public int NumberOfCellsX
         {
             get { return numberOfCellsX; }
-            set 
-            {
-                if (value > 5 && value < 80)
-                {
-                    numberOfCellsX = value;
-                    StartCellx = StartCellx;
-                }
-            }
+            set { numberOfCellsX = value; }
         }
 
         public int NumberOfCellsY
         {
             get { return numberOfCellsY; }
-            set 
-            { 
-                if (value > 0 && value < 80)
-                {
-                    numberOfCellsY = value;
-                    StartCellY = StartCellY;
-                }
-            }
+            set { numberOfCellsY = value; }
         }
 
         public int CellWidth
         {
             get { return cellWidth; }
-            set { cellWidth = value; }
+            set 
+            {
+                if (value > 0)
+                {
+                    cellWidth = value; 
+                    CalculateNumberOfCells();
+                }
+            }
         }
 
         public int CellHeight
         {
             get { return cellHeight; }
-            set { cellHeight = value; }
+            set 
+            {
+                if (value > 0)
+                {
+                    cellHeight = value; 
+                    CalculateNumberOfCells();
+                }
+            }
         }
         #endregion
 
@@ -87,8 +89,13 @@ namespace DfsVisualization
             cellWidth = 20;
             cellHeight = 20;
 
-            numberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / cellWidth;
-            numberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / cellHeight;
+            CalculateNumberOfCells();
+        }
+
+        private void CalculateNumberOfCells()
+        {
+            NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / cellWidth;
+            NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / cellHeight;
         }
     }
 }
