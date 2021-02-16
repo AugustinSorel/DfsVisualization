@@ -104,10 +104,6 @@
 
         <DockPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft">
 
-            <Button Name="CancelButton" ToolTip="Cancel" Click="CancelButton_Click">
-                <Image Source="/Images/Cancel_16x.png"/>
-            </Button>
-
             <Button Name="GoBackButton" ToolTip="Go Back" Click="GoBackButton_Click">
                 <Image Source="/Images/Backwards_16x.png"/>
             </Button>
