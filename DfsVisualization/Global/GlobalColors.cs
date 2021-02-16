@@ -5,7 +5,7 @@ namespace DfsVisualization
     static class GlobalColors
     {
         private const string BACKGROUND_COLOR = "#34495e";
-        private const string CELL_COLOR = "#2c3e50";
+        private static string CELL_COLOR = "#2c3e50";
         private const string SELECTED_CELL_COLOR = "#c0392b";
         private const string TARGET_CELL_COLOR = "#27ae60";
 
@@ -32,6 +32,7 @@ namespace DfsVisualization
         public static string CellColorString
         {
             get { return CELL_COLOR; }
+            set { CELL_COLOR = value; }
         }
     }
 }
