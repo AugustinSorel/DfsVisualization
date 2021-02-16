@@ -47,7 +47,8 @@ namespace DfsVisualization
             {
                 if (value > 5 && value < 80)
                 {
-                    numberOfCellsX = value; 
+                    numberOfCellsX = value;
+                    StartCellx = StartCellx;
                 }
             }
         }
@@ -60,6 +61,7 @@ namespace DfsVisualization
                 if (value > 0 && value < 80)
                 {
                     numberOfCellsY = value;
+                    StartCellY = StartCellY;
                 }
             }
         }

@@ -37,14 +37,14 @@ namespace DfsVisualization
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            mazeSettings.NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / mazeSettings.CellWidth;
+            mazeSettings.NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / mazeSettings.CellHeight;
+            
             mazeSettings.StartCellx = int.TryParse(TextBoxStartCellX.Text, out int startCellX) ? startCellX : 0;
             mazeSettings.StartCellY = int.TryParse(TextBoxStartCellY.Text, out int startCellY) ? startCellY : 0;
 
             mazeSettings.CellWidth = int.TryParse(textboxCellWidth.Text, out int cellWidth) ? cellWidth : 20;
             mazeSettings.CellHeight = int.TryParse(textboxCellHeight.Text, out int cellHeight) ? cellHeight : 20;
-
-            mazeSettings.NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / mazeSettings.CellWidth;
-            mazeSettings.NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / mazeSettings.CellHeight;
 
             SetControlsValue();
         }
