@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace DfsVisualization
 {
-    public class MazeSettings
+    public class MazeSettings : INotifyPropertyChanged
     {
         #region Fields
         private int startCellY;
@@ -13,19 +15,33 @@ namespace DfsVisualization
 
         private int cellWidth;
         private int cellHeight;
+        
+        private string outputMessage;
         #endregion
 
         #region Properties
+        public string OutputMessage
+        {
+            get { return outputMessage; }
+            set 
+            { 
+                outputMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int StartCellY
         {
             get { return startCellY; }
             set 
             {
-                CalculateNumberOfCells();
                 if (value >= 0 && value < numberOfCellsY)
                 {
-                    startCellY = value; 
+                    startCellY = value;
+                    OnPropertyChanged();
                 }
+                else
+                    OutputMessage += " StartCellY";
             }
         }
 
@@ -34,10 +50,10 @@ namespace DfsVisualization
             get { return startCellX; }
             set 
             {
-                CalculateNumberOfCells();
                 if (value >= 0 && value < numberOfCellsX)
                 {
-                    startCellX = value; 
+                    startCellX = value;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -45,13 +61,21 @@ namespace DfsVisualization
         public int NumberOfCellsX
         {
             get { return numberOfCellsX; }
-            set { numberOfCellsX = value; }
+            set 
+            {
+                numberOfCellsX = value;
+                OnPropertyChanged();
+            }
         }
 
         public int NumberOfCellsY
         {
             get { return numberOfCellsY; }
-            set { numberOfCellsY = value; }
+            set 
+            { 
+                numberOfCellsY = value;
+                OnPropertyChanged();
+            }
         }
 
         public int CellWidth
@@ -62,7 +86,7 @@ namespace DfsVisualization
                 if (value > 0)
                 {
                     cellWidth = value; 
-                    CalculateNumberOfCells();
+                    OnPropertyChanged();
                 }
             }
         }
@@ -75,7 +99,7 @@ namespace DfsVisualization
                 if (value > 0)
                 {
                     cellHeight = value; 
-                    CalculateNumberOfCells();
+                    OnPropertyChanged();
                 }
             }
         }
@@ -96,6 +120,12 @@ namespace DfsVisualization
         {
             NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / cellWidth;
             NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / cellHeight;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
