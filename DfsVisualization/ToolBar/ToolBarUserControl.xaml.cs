@@ -59,7 +59,7 @@ namespace DfsVisualization
 
             if (a.GetType() == typeof(SettingsUserControl))
             {
-                (Application.Current.Windows[0] as MainWindow).Test();
+                (Application.Current.Windows[0] as MainWindow).SettingsUserControlStartOpacityFade();
                 return;
             }
 

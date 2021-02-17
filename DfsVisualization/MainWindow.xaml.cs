@@ -83,9 +83,9 @@ namespace DfsVisualization
             mazeUserControl.GetBlurEffect(false);
         }
 
-        public void Test()
+        public void SettingsUserControlStartOpacityFade()
         {
-            settingsUserControl.GoBackButton_Click(this, null);
+            settingsUserControl.StartOpacityFade();
         }
 
         public void RemoveSettingsToContainer()

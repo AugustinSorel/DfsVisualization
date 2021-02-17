@@ -22,7 +22,7 @@ namespace DfsVisualization
         }
 
 
-        public void GoBackButton_Click(object sender, RoutedEventArgs e)
+        public void StartOpacityFade()
         {
             opacityFade.StartAnimation(false);
         }
