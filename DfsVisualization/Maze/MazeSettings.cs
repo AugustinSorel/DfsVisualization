@@ -16,32 +16,20 @@ namespace DfsVisualization
         private int cellWidth;
         private int cellHeight;
         
-        private string outputMessage;
         #endregion
 
         #region Properties
-        public string OutputMessage
-        {
-            get { return outputMessage; }
-            set 
-            { 
-                outputMessage = value;
-                OnPropertyChanged();
-            }
-        }
-
         public int StartCellY
         {
             get { return startCellY; }
             set 
             {
                 if (value >= 0 && value < numberOfCellsY)
-                {
                     startCellY = value;
-                    OnPropertyChanged();
-                }
                 else
-                    OutputMessage += " StartCellY";
+                    startCellY = 0;
+
+                OnPropertyChanged();
             }
         }
 
@@ -51,10 +39,11 @@ namespace DfsVisualization
             set 
             {
                 if (value >= 0 && value < numberOfCellsX)
-                {
                     startCellX = value;
-                    OnPropertyChanged();
-                }
+                else
+                    startCellX = 0;
+
+                OnPropertyChanged();
             }
         }
 
@@ -83,9 +72,11 @@ namespace DfsVisualization
             get { return cellWidth; }
             set 
             {
-                if (value > 0)
+                if (value > 0 && value < 200)
                 {
-                    cellWidth = value; 
+                    cellWidth = value;
+                    CalculateNumberOfCells();
+                    StartCellx = startCellX;
                     OnPropertyChanged();
                 }
             }
@@ -96,9 +87,11 @@ namespace DfsVisualization
             get { return cellHeight; }
             set 
             {
-                if (value > 0)
+                if (value > 0 && value < 200)
                 {
-                    cellHeight = value; 
+                    cellHeight = value;
+                    CalculateNumberOfCells();
+                    StartCellY = startCellY;
                     OnPropertyChanged();
                 }
             }

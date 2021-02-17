@@ -107,12 +107,5 @@
                 </TextBlock>
             </StackPanel>
         </Grid>
-
-        <DockPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft">
-
-            <TextBlock x:Name="textBlockErrorMessage" Text="{Binding Path=OutputMessage}" HorizontalAlignment="Right"/>
-
-        </DockPanel>
-
     </Grid>
 </UserControl>
