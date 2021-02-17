@@ -22,14 +22,9 @@ namespace DfsVisualization
         }
 
 
-        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        public void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             opacityFade.StartAnimation(false);
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

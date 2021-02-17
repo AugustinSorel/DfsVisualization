@@ -83,6 +83,11 @@ namespace DfsVisualization
             mazeUserControl.GetBlurEffect(false);
         }
 
+        public void Test()
+        {
+            settingsUserControl.GoBackButton_Click(this, null);
+        }
+
         public void RemoveSettingsToContainer()
         {
             container.Children.Remove(settingsUserControl);
