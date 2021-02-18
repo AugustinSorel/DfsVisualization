@@ -20,16 +20,17 @@ namespace DfsVisualization
 
         private int aStarStartX;
         private int aStarStartY;
+        private int aStarEndX;
+        private int aStartEndY;
         #endregion
 
-        private int aStarEndX;
-
+        #region Properties
         public int AStartEndX
         {
             get { return aStarEndX; }
-            set 
+            set
             {
-                if (value >= 0 && value < numberOfCellsX)
+                if (value >= 0 && value < numberOfCellsX && value > aStarStartX)
                     aStarEndX = value;
                 else
                     aStarEndX = 0;
@@ -38,14 +39,12 @@ namespace DfsVisualization
             }
         }
 
-        private int aStartEndY;
-
         public int AStartEndY
         {
             get { return aStartEndY; }
-            set 
+            set
             {
-                if (value >= 0 && value < numberOfCellsY)
+                if (value >= 0 && value < numberOfCellsY && value > aStarStartY)
                     aStartEndY = value;
                 else
                     aStartEndY = value;
@@ -54,14 +53,12 @@ namespace DfsVisualization
             }
         }
 
-
-        #region Properties
         public int AStarStartX
         {
             get { return aStarStartX; }
             set
             {
-                if (value >= 0 && value < numberOfCellsX)
+                if (value >= 0 && value < numberOfCellsX && value < aStarEndX)
                     aStarStartX = value;
                 else
                     aStarStartX = 0;
@@ -75,7 +72,7 @@ namespace DfsVisualization
             get { return aStarStartY; }
             set
             {
-                if (value >= 0 && value < numberOfCellsY)
+                if (value >= 0 && value < numberOfCellsY && value < aStartEndY)
                     aStarStartY = value;
                 else
                     aStarStartY = 0;
