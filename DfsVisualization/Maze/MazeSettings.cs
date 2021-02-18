@@ -184,6 +184,9 @@ namespace DfsVisualization
             aStarStartY = 0;
 
             CalculateNumberOfCells();
+
+            aStarEndX = numberOfCellsX;
+            aStartEndY = numberOfCellsY;
         }
 
         private void CalculateNumberOfCells()
