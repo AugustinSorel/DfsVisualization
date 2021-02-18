@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Animations\BlurAnimation.cs" />
+    <Compile Include="Maze\Astar.cs" />
     <Compile Include="Maze\MazeSettings.cs" />
     <Compile Include="Maze\Dfs.cs" />
     <Compile Include="Maze\MazeEngine.cs" />

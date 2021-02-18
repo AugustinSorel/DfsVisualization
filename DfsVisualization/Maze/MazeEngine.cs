@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -84,6 +85,12 @@ namespace DfsVisualization
         {
             dfs = new Dfs(mazeDrawer, backgroundWorker, sleep, mazeSettings);
             dfs.Start();
+
+            if (mazeSettings.AStar)
+            {
+                Astar astar = new Astar();
+                astar.Start();
+            }
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
