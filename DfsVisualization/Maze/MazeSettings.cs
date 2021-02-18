@@ -17,14 +17,49 @@ namespace DfsVisualization
         private int cellHeight;
 
         private bool aStart;
-        #endregion
 
         private int aStarStartX;
+        private int aStarStartY;
+        #endregion
 
+        private int aStarEndX;
+
+        public int AStartEndX
+        {
+            get { return aStarEndX; }
+            set 
+            {
+                if (value >= 0 && value < numberOfCellsX)
+                    aStarEndX = value;
+                else
+                    aStarEndX = 0;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private int aStartEndY;
+
+        public int AStartEndY
+        {
+            get { return aStartEndY; }
+            set 
+            {
+                if (value >= 0 && value < numberOfCellsY)
+                    aStartEndY = value;
+                else
+                    aStartEndY = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+
+        #region Properties
         public int AStarStartX
         {
             get { return aStarStartX; }
-            set 
+            set
             {
                 if (value >= 0 && value < numberOfCellsX)
                     aStarStartX = value;
@@ -35,12 +70,10 @@ namespace DfsVisualization
             }
         }
 
-        private int aStarStartY;
-
         public int AStarStartY
         {
             get { return aStarStartY; }
-            set 
+            set
             {
                 if (value >= 0 && value < numberOfCellsY)
                     aStarStartY = value;
@@ -50,10 +83,6 @@ namespace DfsVisualization
                 OnPropertyChanged();
             }
         }
-
-
-        #region Properties
-
 
         public bool AStar
         {
