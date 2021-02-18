@@ -25,9 +25,9 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1" Grid.Column="1">
@@ -102,6 +102,53 @@
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="textboxCellHeight" Text="{Binding Path=CellHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="20, 0, 0, 0" 
+                                 Style="{StaticResource SettingUserControlTextBox}"/>
+                    </InlineUIContainer>
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock HorizontalAlignment="Center" Text="A* Path Finding" Margin="10"/>
+
+                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+                    <Run Text="Find the Shortest path ?"/>
+                    <InlineUIContainer BaselineAlignment="Center">
+                        <CheckBox Margin="20, 0, 0, 0" Background="Transparent"/>
+                    </InlineUIContainer>
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+                    <Run Text="StartX:"/>
+                    <InlineUIContainer BaselineAlignment="Center">
+                        <TextBox Name="textdboxCellWidth" Text="{Binding Path=CellWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Width="40" Margin="24, 0, 0, 0" 
+                                 Style="{StaticResource SettingUserControlTextBox}"/>
+                    </InlineUIContainer>
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+                    <Run Text="StartY:"/>
+                    <InlineUIContainer BaselineAlignment="Center">
+                        <TextBox Name="textbdoxCellHeight" Text="{Binding Path=CellHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Width="40" Margin="23, 0, 0, 0" 
+                                 Style="{StaticResource SettingUserControlTextBox}"/>
+                    </InlineUIContainer>
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+                    <Run Text="EndX:"/>
+                    <InlineUIContainer BaselineAlignment="Center">
+                        <TextBox Name="ee" Text="{Binding Path=CellWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Width="40" Margin="28, 0, 0, 0" 
+                                 Style="{StaticResource SettingUserControlTextBox}"/>
+                    </InlineUIContainer>
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+                    <Run Text="EndY:"/>
+                    <InlineUIContainer BaselineAlignment="Center">
+                        <TextBox Name="eee" Text="{Binding Path=CellHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Width="40" Margin="30, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
                 </TextBlock>
