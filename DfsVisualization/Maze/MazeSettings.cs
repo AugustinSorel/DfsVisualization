@@ -15,10 +15,21 @@ namespace DfsVisualization
 
         private int cellWidth;
         private int cellHeight;
-        
+
+        private bool aStart;
         #endregion
 
         #region Properties
+        public bool AStar
+        {
+            get { return aStart; }
+            set
+            {
+                aStart = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int StartCellY
         {
             get { return startCellY; }
@@ -105,6 +116,8 @@ namespace DfsVisualization
 
             cellWidth = 20;
             cellHeight = 20;
+
+            aStart = false;
 
             CalculateNumberOfCells();
         }
