@@ -73,6 +73,10 @@
     <Compile Include="TopBarUserControl\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
     </Compile>
+    <Page Include="RessourceDictionaries\CheckBoxDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RessourceDictionaries\ToolBarDictionarie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
