@@ -120,7 +120,7 @@
                 <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="StartX:"/>
                     <InlineUIContainer BaselineAlignment="Center">
-                        <TextBox Name="textdboxCellWidth" Text="{Binding Path=CellWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Name="textdboxCellWidth" Text="{Binding Path=AStarStartX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="24, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
@@ -129,7 +129,7 @@
                 <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="StartY:"/>
                     <InlineUIContainer BaselineAlignment="Center">
-                        <TextBox Name="textbdoxCellHeight" Text="{Binding Path=CellHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Name="textbdoxCellHeight" Text="{Binding Path=AStarStartY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="23, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>

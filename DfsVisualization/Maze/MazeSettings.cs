@@ -19,7 +19,42 @@ namespace DfsVisualization
         private bool aStart;
         #endregion
 
+        private int aStarStartX;
+
+        public int AStarStartX
+        {
+            get { return aStarStartX; }
+            set 
+            {
+                if (value >= 0 && value < numberOfCellsX)
+                    aStarStartX = value;
+                else
+                    aStarStartX = 0;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private int aStarStartY;
+
+        public int AStarStartY
+        {
+            get { return aStarStartY; }
+            set 
+            {
+                if (value >= 0 && value < numberOfCellsY)
+                    aStarStartY = value;
+                else
+                    aStarStartY = 0;
+
+                OnPropertyChanged();
+            }
+        }
+
+
         #region Properties
+
+
         public bool AStar
         {
             get { return aStart; }
@@ -118,6 +153,9 @@ namespace DfsVisualization
             cellHeight = 20;
 
             aStart = false;
+
+            aStarStartX = 0;
+            aStarStartY = 0;
 
             CalculateNumberOfCells();
         }
