@@ -86,7 +86,7 @@ namespace DfsVisualization
             dfs = new Dfs(mazeDrawer, backgroundWorker, sleep, mazeSettings);
             dfs.Start();
 
-            if (mazeSettings.AStar)
+            if (mazeSettings.AStar && dfs.Finished)
             {
                 Astar astar = new Astar(mazeDrawer, mazeSettings);
                 astar.Start();

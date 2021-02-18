@@ -20,7 +20,17 @@ namespace DfsVisualization
         private readonly BackgroundWorker backgroundWorker;
         private readonly SliderValue sleep;
         private readonly MazeSettings mazeSettings;
+
+        private bool finished;
         #endregion
+
+
+        public bool Finished
+        {
+            get { return finished; }
+            set { finished = value; }
+        }
+
 
         public Dfs(MazeDrawer mazeDrawer, BackgroundWorker backgroundWorker, SliderValue sleep, MazeSettings mazeSettings)
         {
@@ -46,6 +56,7 @@ namespace DfsVisualization
             ListOfUnvisitedCell = new List<Cell>();
             unvisitedNeighbors = new List<Cell>();
             pause = false;
+            finished = false;
             stack = new Stack<Cell>();
             currentCell = mazeDrawer.Cells[mazeSettings.StartCellx, mazeSettings.StartCellY];
         }
@@ -84,8 +95,8 @@ namespace DfsVisualization
 
                 Sleep();
                 ReportProgress();
-                //SetTargetCellsColor();
             }
+            finished = true;
             RemoveTheCurrentCell();
         }
         #endregion
@@ -194,11 +205,6 @@ namespace DfsVisualization
         #endregion
 
         #region Change Cell color
-        private void SetTargetCellsColor()
-        {
-            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[0, 0].Background = mazeDrawer.Cells[mazeSettings.NumberOfCellsX - 1, mazeSettings.NumberOfCellsY - 1].Background = GlobalColors.TargerCellColor; }));
-        }
-
         private void GetCurrentCell()
         {
             Application.Current.Dispatcher.Invoke(new Action(() => { currentCell.Background = GlobalColors.SelectedCellColor; }));
