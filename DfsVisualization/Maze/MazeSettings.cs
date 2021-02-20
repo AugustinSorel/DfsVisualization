@@ -175,18 +175,18 @@ namespace DfsVisualization
             startCellX = 0;
             startCellY = 0;
 
-            cellWidth = 20;
-            cellHeight = 20;
+            cellWidth = 30;
+            cellHeight = 30;
 
-            aStart = false;
+            aStart = true;
 
             aStarStartX = 0;
             aStarStartY = 0;
 
             CalculateNumberOfCells();
 
-            aStarEndX = numberOfCellsX;
-            aStartEndY = numberOfCellsY;
+            aStarEndX = numberOfCellsX - 1;
+            aStartEndY = numberOfCellsY - 1;
         }
 
         private void CalculateNumberOfCells()
