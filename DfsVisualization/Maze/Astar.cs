@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 
 namespace DfsVisualization
 {
@@ -35,42 +37,96 @@ namespace DfsVisualization
             Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[mazeSettings.AStartEndX, mazeSettings.AStartEndY].Background = GlobalColors.TargerCellColor; }));
         }
 
-        // 15 * 
-        // 14 *
 
-        // Ending X and Y values of maze
+        int startX = 0;
+        int startY = 0;
+
+        int endX = 4;
+        int endY = 4;
+
+        int x = 0;
+        int y = 0;
+
+        int i = 0;
+
+        List<Cell> cells;
 
         internal void Start()
         {
             CreateMaze();
-            return;
-            for (int i = 0; i < maze.GetLength(1); i++)
+
+            //for (int i = 0; i < maze.GetLength(1); i++)
+            //{
+            //    for (int j = 0; j < maze.GetLength(0); j++)
+            //    {
+            //        MessageBox.Show(maze[j, i].ToString());
+            //    }
+            //    MessageBox.Show("** End j **");
+            //}
+
+            i = 0;
+
+            Application.Current.Dispatcher.Invoke(new Action(() => {
+
+                mazeDrawer.Cells[0, 0].Tag = 0;
+            }));
+            do
             {
-                for (int j = 0; j < maze.GetLength(0); j++)
+
+                cells = new List<Cell>();
+
+                GetN();
+
+                MessageBox.Show(cells.Count.ToString()) ;
+
+                foreach (var item in cells)
                 {
-                    MessageBox.Show(maze[j, i].ToString());
+                    Application.Current.Dispatcher.Invoke(new Action(() => {
+                        item.Tag = i++;
+                    }));
                 }
-                MessageBox.Show("** End j **");
+
+                y++;
+                x++;
+                i++;
+
+            } while ((startX == endX && startY == endY) || cells.Count > 0);
+
+            foreach (var item in mazeDrawer.Cells)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() => {
+                    MessageBox.Show(item.Tag.ToString());
+                }));
             }
 
-            //bool[,] maze = new bool[mazeSettings.NumberOfCellsX, mazeSettings.NumberOfCellsY]; // The maze
-            //bool[,] wasHere = new bool[mazeSettings.NumberOfCellsX, mazeSettings.NumberOfCellsY];
-            //bool[,] correctPath = new bool[mazeSettings.NumberOfCellsX, mazeSettings.NumberOfCellsY]; // The solution to the maze
-            //int startX, startY; // Starting X and Y values of maze
-            //int endX, endY;
-
-            //maze = generateMaze(); // Create Maze (false = path, true = wall)
-            //for (int row = 0; row < maze.length; row++)
-            //    // Sets boolean Arrays to default values
-            //    for (int col = 0; col < maze[row].length; col++)
-            //    {
-            //        wasHere[row][col] = false;
-            //        correctPath[row][col] = false;
-            //    }
-            //bool b = recursiveSolve(startX, startY);
         }
 
-        // size: 9 * 9
+        private void GetN()
+        {
+            if (x+1 < 5 && mazeDrawer.Cells[x, y].RightWall == false)
+            {
+                cells.Add(mazeDrawer.Cells[x + 1, y]);
+            }
+
+            if (y + 1 < 5 && mazeDrawer.Cells[x , y].BottomWall== false)
+            {
+                cells.Add(mazeDrawer.Cells[x, y + 1]);
+            }
+        }
+
+        private bool Test(int xx, int yy)
+        {
+            if (mazeDrawer.Cells[xx, yy].BottomWall == false)
+                return true;
+
+
+            if (mazeDrawer.Cells[xx, yy].RightWall == false)
+                return true;
+
+
+            return false;
+        }
+
         private void CreateMaze()
         {
             maze = new bool[mazeSettings.NumberOfCellsX * 2 - 1, mazeSettings.NumberOfCellsY * 2 - 1];
