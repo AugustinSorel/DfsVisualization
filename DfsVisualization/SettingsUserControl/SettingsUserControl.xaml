@@ -20,140 +20,134 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock HorizontalAlignment="Center" Text="Start up coordinates" Margin="10"/>
 
-
-            <StackPanel Grid.Row="0" Grid.Column="0">
-                <TextBlock HorizontalAlignment="Center" Text="Start up coordinates" Margin="10"/>
-
-                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="X:"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="TextBoxStartCellX" Text="{Binding Path=StartCellx, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="20, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
-                </TextBlock>
+            </TextBlock>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Y:"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="TextBoxStartCellY" Text="{Binding Path=StartCellY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="20, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
-                </TextBlock>
-            </StackPanel>
+            </TextBlock>
+        </StackPanel>
 
-            <StackPanel Grid.Row="0" Grid.Column="1">
-                <TextBlock HorizontalAlignment="Center" Text="Colors" Margin="10"/>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" Text="Colors" Margin="10"/>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Background Color"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="f" Width="70" Margin="24, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}" 
                                  Text="{Binding Path=(local:GlobalColors.BackgroundColorString), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </InlineUIContainer>
-                </TextBlock>
+            </TextBlock>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Cell Color" />
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="d" Width="70" Margin="76, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}" Text="{Binding Path=(local:GlobalColors.CellColorString), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </InlineUIContainer>
-                </TextBlock>
-            </StackPanel>
+            </TextBlock>
+        </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="0">
-                <TextBlock HorizontalAlignment="Center" Text="Cell Size" Margin="10"/>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock HorizontalAlignment="Center" Text="Cell Size" Margin="10"/>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Width:"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="textboxCellWidth" Text="{Binding Path=CellWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="24, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
-                </TextBlock>
+            </TextBlock>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Height:"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="textboxCellHeight" Text="{Binding Path=CellHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="20, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
-                </TextBlock>
-            </StackPanel>
+            </TextBlock>
+        </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1">
-                <TextBlock HorizontalAlignment="Center" Text="A* Path Finding" Margin="10"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" Text="A* Path Finding" Margin="10"/>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 8, 0, 8">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="Find the Shortest path ?"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <CheckBox Margin="20, 0, 0, 0" Background="Transparent" IsChecked="{Binding Path=AStar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </InlineUIContainer>
-                </TextBlock>
+            </TextBlock>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 5, 0, 5">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
+                    <Run Text="Save Maze To .TXT ?"/>
+                    <InlineUIContainer BaselineAlignment="Center">
+                        <CheckBox Margin="20, 0, 0, 0" Background="Transparent" IsChecked="{Binding Path=SaveToTextFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </InlineUIContainer>
+            </TextBlock>
+
+
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="StartX:"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="textdboxCellWidth" Text="{Binding Path=AStarStartX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="24, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
-                </TextBlock>
+            </TextBlock>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 5, 0, 5">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="StartY:"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="textbdoxCellHeight" Text="{Binding Path=AStarStartY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="23, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
-                </TextBlock>
+            </TextBlock>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 5, 0, 5">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="EndX:"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="ee" Text="{Binding Path=AStartEndX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="28, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
-                </TextBlock>
+            </TextBlock>
 
-                <TextBlock TextWrapping="Wrap" Margin="0, 5, 0, 5">
+            <TextBlock TextWrapping="Wrap" Margin="0, 10, 0, 10">
                     <Run Text="EndY:"/>
                     <InlineUIContainer BaselineAlignment="Center">
                         <TextBox Name="eee" Text="{Binding Path=AStartEndY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="40" Margin="30, 0, 0, 0" 
                                  Style="{StaticResource SettingUserControlTextBox}"/>
                     </InlineUIContainer>
-                </TextBlock>
-            </StackPanel>
-        </Grid>
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

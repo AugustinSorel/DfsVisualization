@@ -17,6 +17,7 @@ namespace DfsVisualization
         private int cellHeight;
 
         private bool aStart;
+        private bool saveToTextFile;
 
         private int aStarStartX;
         private int aStarStartY;
@@ -24,7 +25,18 @@ namespace DfsVisualization
         private int aStartEndY;
         #endregion
 
+
         #region Properties
+        public bool SaveToTextFile
+        {
+            get { return saveToTextFile; }
+            set
+            {
+                saveToTextFile = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int AStartEndX
         {
             get { return aStarEndX; }
@@ -179,6 +191,7 @@ namespace DfsVisualization
             cellHeight = 80;
 
             aStart = true;
+            saveToTextFile = false;
 
             aStarStartX = 0;
             aStarStartY = 0;
@@ -189,16 +202,20 @@ namespace DfsVisualization
             aStartEndY = numberOfCellsY - 1;
         }
 
+        #region Calculate Number Of Cells
         private void CalculateNumberOfCells()
         {
             NumberOfCellsX = (int)(Application.Current.Windows[0] as MainWindow).container.ColumnDefinitions[1].ActualWidth / cellWidth;
             NumberOfCellsY = (int)(Application.Current.Windows[0] as MainWindow).container.RowDefinitions[2].ActualHeight / cellHeight;
         }
+        #endregion
 
+        #region On Property Changed Event
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
 }
