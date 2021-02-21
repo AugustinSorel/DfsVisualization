@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 
 namespace DfsVisualization
@@ -38,7 +39,27 @@ namespace DfsVisualization
         internal void Start()
         {
             CreateMaze();
-            return;
+
+            using (var sw = new StreamWriter("outputText.txt"))
+            {
+                for (int i = 0; i < maze.GetLength(1); i++)
+                {
+                    for (int j = 0; j < maze.GetLength(0); j++)
+                    {
+                        string temp = "";
+                        if (maze[j, i])
+                            temp = "O";
+                        else
+                            temp = "X";
+                        sw.Write(temp + " ");
+                    }
+                    sw.Write("\n");
+                }
+
+                sw.Flush();
+                sw.Close();
+            }
+
             for (int i = 0; i < maze.GetLength(1); i++)
             {
                 for (int j = 0; j < maze.GetLength(0); j++)
@@ -65,18 +86,35 @@ namespace DfsVisualization
             //bool b = recursiveSolve(startX, startY);
         }
 
+        // size: 9 * 9
         private void CreateMaze()
         {
             maze = new bool[mazeSettings.NumberOfCellsX * 2 - 1, mazeSettings.NumberOfCellsY * 2 - 1];
-
-            MessageBox.Show("y"+maze.GetLength(1).ToString());
-            MessageBox.Show(maze.GetLength(0).ToString());
 
             for (int i = 0; i < maze.GetLength(1) ; i++)
             {
                 for (int j = 0; j < maze.GetLength(0); j++)
                 {
-                    
+                    if (i % 2 == 1) // hit a bottom corner
+                    {
+                        if (j % 2 == 0) // cell 
+                        {
+                            if (mazeDrawer.Cells[j / 2, i / 2].BottomWall == false)
+                                maze[j, i] = true;
+                        }
+
+                        continue;
+                    }
+
+                    if (j % 2 == 1) // hit left a corner
+                    {
+                        if (mazeDrawer.Cells[j/2, i/2].RightWall == false)
+                            maze[j, i] = true;
+                        
+                        continue;
+                    }
+
+                    maze[j, i] = true;
                 }
             }
         }
