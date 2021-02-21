@@ -14,6 +14,7 @@ namespace DfsVisualization
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         private Dfs dfs;
+        private Astar astar;
         #endregion
 
         #region Properties
@@ -88,8 +89,14 @@ namespace DfsVisualization
 
             if (mazeSettings.AStar && dfs.Finished)
             {
-                Astar astar = new Astar(mazeDrawer, mazeSettings);
+                astar = new Astar(mazeDrawer, mazeSettings);
                 astar.Start();
+            }
+
+            if (mazeSettings.SaveToTextFile)
+            {
+                SaveToFile saveToFile = new SaveToFile(astar);
+                saveToFile.SaveToTextFile();
             }
         }
 
