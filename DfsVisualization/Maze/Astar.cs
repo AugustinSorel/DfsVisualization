@@ -46,11 +46,7 @@ namespace DfsVisualization
                 {
                     for (int j = 0; j < maze.GetLength(0); j++)
                     {
-                        string temp = "";
-                        if (maze[j, i])
-                            temp = "O";
-                        else
-                            temp = "X";
+                        string temp = maze[j, i] ? "O" : "X";
                         sw.Write(temp + " ");
                     }
                     sw.Write("\n");
