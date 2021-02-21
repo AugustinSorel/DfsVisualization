@@ -38,10 +38,10 @@ namespace DfsVisualization
         internal void Start()
         {
             CreateMaze();
-
-            for (int i = 0; i < 20; i++)
+            return;
+            for (int i = 0; i < maze.GetLength(1); i++)
             {
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j < maze.GetLength(0); j++)
                 {
                     MessageBox.Show(maze[j, i].ToString());
                 }
@@ -69,40 +69,14 @@ namespace DfsVisualization
         {
             maze = new bool[mazeSettings.NumberOfCellsX * 2 - 1, mazeSettings.NumberOfCellsY * 2 - 1];
 
-            for (int i = 0; i < 20; i++)
+            MessageBox.Show("y"+maze.GetLength(1).ToString());
+            MessageBox.Show(maze.GetLength(0).ToString());
+
+            for (int i = 0; i < maze.GetLength(1) ; i++)
             {
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j < maze.GetLength(0); j++)
                 {
-                    if (j + 1 > 20)
-                        continue;
-
-                    if (i + 1 > 20)
-                        continue;
-
-                    if (j % 2 == 1)
-                    {
-                        continue;
-                    }
-
                     
-
-                    int x;
-                    int y;
-
-                    x = j > 0 ? j / 2 : j;
-                    y = i > 0 ? i / 2 + 1 : i;
-
-                    maze[j, i] = true;
-
-                    if (mazeDrawer.Cells[x, y].RightWall == false)
-                        maze[j + 1, i] = true;
-                    else
-                        maze[j + 1, i] = false;
-
-                    if (mazeDrawer.Cells[x, y].BottomWall == false)
-                        maze[j, i + 1] = true;
-                    else
-                        maze[j, i + 1] = false;
                 }
             }
         }

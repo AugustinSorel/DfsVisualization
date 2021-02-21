@@ -175,8 +175,8 @@ namespace DfsVisualization
             startCellX = 0;
             startCellY = 0;
 
-            cellWidth = 30;
-            cellHeight = 30;
+            cellWidth = 80;
+            cellHeight = 80;
 
             aStart = true;
 
