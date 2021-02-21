@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 
 namespace DfsVisualization
@@ -9,6 +7,14 @@ namespace DfsVisualization
     {
         private readonly MazeDrawer mazeDrawer;
         private readonly MazeSettings mazeSettings;
+
+        private bool[,] maze;
+        public bool[,] Maze
+        {
+            get { return maze; }
+            set { maze = value; }
+        }
+
 
         public Astar(MazeDrawer mazeDrawer, MazeSettings mazeSettings)
         {
@@ -34,28 +40,10 @@ namespace DfsVisualization
 
         // Ending X and Y values of maze
 
-        private bool[,] maze;
-
         internal void Start()
         {
             CreateMaze();
-
-            using (var sw = new StreamWriter("outputText.txt"))
-            {
-                for (int i = 0; i < maze.GetLength(1); i++)
-                {
-                    for (int j = 0; j < maze.GetLength(0); j++)
-                    {
-                        string temp = maze[j, i] ? "O" : "X";
-                        sw.Write(temp + " ");
-                    }
-                    sw.Write("\n");
-                }
-
-                sw.Flush();
-                sw.Close();
-            }
-
+            return;
             for (int i = 0; i < maze.GetLength(1); i++)
             {
                 for (int j = 0; j < maze.GetLength(0); j++)
