@@ -1,23 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-using System.Windows.Media;
 
 namespace DfsVisualization
 {
     internal class Astar
     {
+        #region Fields
         private readonly MazeDrawer mazeDrawer;
         private readonly MazeSettings mazeSettings;
 
+        private bool[,] correctPath;
         private bool[,] maze;
+
+        private bool[,] wasHere;
+
+        private int startX, startY;
+        private int endX, endY;
+        #endregion
+
+        #region Properties
         public bool[,] Maze
         {
             get { return maze; }
             set { maze = value; }
         }
 
+        public bool[,] CorrectPath
+        {
+            get { return correctPath; }
+            set { correctPath = value; }
+        }
+        #endregion
 
         public Astar(MazeDrawer mazeDrawer, MazeSettings mazeSettings)
         {
@@ -38,11 +52,6 @@ namespace DfsVisualization
             Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[mazeSettings.AStartEndX, mazeSettings.AStartEndY].Background = GlobalColors.TargerCellColor; }));
         }
 
-        bool[,] wasHere;
-        bool[,] correctPath; // The solution to the maze
-        int startX, startY; // Starting X and Y values of maze
-        int endX, endY; 
-
         internal void Start()
         {
             CreateMaze();
@@ -50,22 +59,22 @@ namespace DfsVisualization
             wasHere = new bool[maze.GetLength(1),maze.GetLength(1)];
             correctPath = new bool[maze.GetLength(1),maze.GetLength(1)];
 
-            startX = 0;
-            endX = 4;
+            startX = mazeSettings.AStarStartX * 2;
+            endX = mazeSettings.AStartEndX * 2;
 
-            startY = 0;
-            endY = 4;
+            startY = mazeSettings.AStarStartY * 2;
+            endY = mazeSettings.AStartEndY * 2;
 
             for (int row = 0; row < maze.GetLength(1); row++)
-                // Sets boolean Arrays to default values
                 for (int col = 0; col < maze.GetLength(0); col++)
                 {
                     wasHere[row, col] = false;
                     correctPath[row, col] = false;
                 }
-            bool b = recursiveSolve(startX, startY);
+            bool b = RecursiveSolve(startX, startY);
 
-
+            if (!b)
+                MessageBox.Show("Not Solvable");
 
             using (var sw = new StreamWriter("Solution.txt"))
             {
@@ -85,32 +94,32 @@ namespace DfsVisualization
 
         }
 
-        private bool recursiveSolve(int x, int y)
+        private bool RecursiveSolve(int x, int y)
         {
             if (x == endX && y == endY) return true; // If you reached the end
             if (maze[x, y] || wasHere[x, y]) return false;
             // If you are on a wall or already were here
             wasHere[x, y] = true;
             if (x != 0) // Checks if not on left edge
-                if (recursiveSolve(x - 1, y))
+                if (RecursiveSolve(x - 1, y))
                 { // Recalls method one to the left
                     correctPath[x, y] = true; // Sets that path value to true;
                     return true;
                 }
             if (x != maze.GetLength(0) - 1) // Checks if not on right edge
-                if (recursiveSolve(x + 1, y))
+                if (RecursiveSolve(x + 1, y))
                 { // Recalls method one to the right
                     correctPath[x, y] = true;
                     return true;
                 }
             if (y != 0)  // Checks if not on top edge
-                if (recursiveSolve(x, y - 1))
+                if (RecursiveSolve(x, y - 1))
                 { // Recalls method one up
                     correctPath[x, y] = true;
                     return true;
                 }
             if (y != maze.GetLength(1) - 1) // Checks if not on bottom edge
-                if (recursiveSolve(x, y + 1))
+                if (RecursiveSolve(x, y + 1))
                 { // Recalls method one down
                     correctPath[x, y] = true;
                     return true;
