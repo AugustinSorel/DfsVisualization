@@ -19,7 +19,7 @@ namespace DfsVisualization
                 {
                     for (int j = 0; j < astar.Maze.GetLength(0); j++)
                     {
-                        string temp = astar.Maze[j, i] ? "X" : "O";
+                        string temp = astar.Maze[j, i] ? "O" : "X";
                         sw.Write(temp + " ");
                     }
                     sw.Write("\n");

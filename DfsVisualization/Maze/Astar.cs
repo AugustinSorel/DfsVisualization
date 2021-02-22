@@ -56,8 +56,8 @@ namespace DfsVisualization
         {
             CreateMaze();
 
-            wasHere = new bool[maze.GetLength(1),maze.GetLength(1)];
-            correctPath = new bool[maze.GetLength(1),maze.GetLength(1)];
+            wasHere = new bool[maze.GetLength(0), maze.GetLength(1)];
+            correctPath = new bool[maze.GetLength(0), maze.GetLength(1)];
 
             startX = mazeSettings.AStarStartX * 2;
             endX = mazeSettings.AStartEndX * 2;
