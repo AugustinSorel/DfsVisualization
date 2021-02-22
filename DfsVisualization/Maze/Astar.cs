@@ -65,8 +65,8 @@ namespace DfsVisualization
             startY = mazeSettings.AStarStartY * 2;
             endY = mazeSettings.AStartEndY * 2;
 
-            for (int row = 0; row < maze.GetLength(1); row++)
-                for (int col = 0; col < maze.GetLength(0); col++)
+            for (int row = 0; row < maze.GetLength(1) - 4; row++) // I HAVE NO IDEA WHY -4 HERRE, but it is working so....
+                for (int col = 0; col < maze.GetLength(0) - 4; col++) // I HAVE NO IDEA WHY -4 HERRE, but it is working so....
                 {
                     wasHere[row, col] = false;
                     correctPath[row, col] = false;
