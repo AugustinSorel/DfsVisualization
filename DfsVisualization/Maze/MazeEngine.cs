@@ -96,7 +96,8 @@ namespace DfsVisualization
             if (mazeSettings.SaveToTextFile)
             {
                 SaveToFile saveToFile = new SaveToFile(astar);
-                saveToFile.SaveToTextFile();
+                saveToFile.SaveMazeToTextFile();
+                saveToFile.SaveMazeSolutionToFile();
             }
         }
 

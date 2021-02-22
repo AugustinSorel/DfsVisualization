@@ -191,10 +191,10 @@ namespace DfsVisualization
             cellHeight = 80;
 
             aStart = true;
-            saveToTextFile = false;
+            saveToTextFile = true;
 
-            aStarStartX = 1;
-            aStarStartY = 1;
+            aStarStartX = 0;
+            aStarStartY = 0;
 
             CalculateNumberOfCells();
 

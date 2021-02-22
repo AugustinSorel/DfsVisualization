@@ -75,23 +75,6 @@ namespace DfsVisualization
 
             if (!b)
                 MessageBox.Show("Not Solvable");
-
-            using (var sw = new StreamWriter("Solution.txt"))
-            {
-                for (int i = 0; i < Maze.GetLength(1); i++)
-                {
-                    for (int j = 0; j < Maze.GetLength(0); j++)
-                    {
-                        string temp = correctPath[j, i] ? "X" : "O";
-                        sw.Write(temp + " ");
-                    }
-                    sw.Write("\n");
-                }
-
-                sw.Flush();
-                sw.Close();
-            }
-
         }
 
         private bool RecursiveSolve(int x, int y)
