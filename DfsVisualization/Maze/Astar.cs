@@ -73,12 +73,13 @@ namespace DfsVisualization
             endX = mazeSettings.AStartEndX * 2;
             endY = mazeSettings.AStartEndY * 2;
 
-            for (int row = 0; row < maze.GetLength(1) - 4; row++) // I HAVE NO IDEA WHY -4 HERRE, but it is working so....
-                for (int col = 0; col < maze.GetLength(0) - 4; col++) // I HAVE NO IDEA WHY -4 HERRE, but it is working so....
+            for (int row = 0; row < maze.GetLength(1) - 10; row++) // I HAVE NO IDEA WHY -10 HERRE, but it is working so....
+                for (int col = 0; col < maze.GetLength(0) - 10; col++) // I HAVE NO IDEA WHY -10 HERRE, but it is working so....
                 {
                     wasHere[row, col] = false;
                     correctPath[row, col] = false;
                 }
+
             bool b = RecursiveSolve(startX, startY);
 
             if (!b)
@@ -129,6 +130,13 @@ namespace DfsVisualization
 
         private void DrawCellCorrectPath(int x, int y)
         {
+
+
+            if (x == startX && y == startY || x == startX && y == startY + 1 || x == startX + 1 && y == startY ||
+                x == endX && y == endY || x == endX + 1&& y == endY || x == endX && y == endY + 1) 
+            {
+                return;
+            }
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 mazeDrawer.Cells[x / 2, y / 2].Background = Brushes.Orange;
