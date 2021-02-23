@@ -16,13 +16,13 @@ namespace DfsVisualization
         private int cellWidth;
         private int cellHeight;
 
-        private bool aStart;
+        private bool dfsSolve;
         private bool saveToTextFile;
 
-        private int aStarStartX;
-        private int aStarStartY;
-        private int aStarEndX;
-        private int aStartEndY;
+        private int dfsSolveStartX;
+        private int dfsSolveStartY;
+        private int dfsSolveEndX;
+        private int dfsSolveEndY;
         #endregion
 
 
@@ -37,68 +37,68 @@ namespace DfsVisualization
             }
         }
 
-        public int AStartEndX
+        public int DfsSolveEndX
         {
-            get { return aStarEndX; }
+            get { return dfsSolveEndX; }
             set
             {
-                if (value >= 0 && value < numberOfCellsX && value > aStarStartX)
-                    aStarEndX = value;
+                if (value >= 0 && value < numberOfCellsX && value > dfsSolveStartX)
+                    dfsSolveEndX = value;
                 else
-                    aStarEndX = 0;
+                    dfsSolveEndX = 0;
 
                 OnPropertyChanged();
             }
         }
 
-        public int AStartEndY
+        public int DfsSolveEndY
         {
-            get { return aStartEndY; }
+            get { return dfsSolveEndY; }
             set
             {
-                if (value >= 0 && value < numberOfCellsY && value > aStarStartY)
-                    aStartEndY = value;
+                if (value >= 0 && value < numberOfCellsY && value > dfsSolveStartY)
+                    dfsSolveEndY = value;
                 else
-                    aStartEndY = value;
+                    dfsSolveEndY = value;
 
                 OnPropertyChanged();
             }
         }
 
-        public int AStarStartX
+        public int DfsSolveStartX
         {
-            get { return aStarStartX; }
+            get { return dfsSolveStartX; }
             set
             {
-                if (value >= 0 && value < numberOfCellsX && value < aStarEndX)
-                    aStarStartX = value;
+                if (value >= 0 && value < numberOfCellsX && value < dfsSolveEndX)
+                    dfsSolveStartX = value;
                 else
-                    aStarStartX = 0;
+                    dfsSolveStartX = 0;
 
                 OnPropertyChanged();
             }
         }
 
-        public int AStarStartY
+        public int DfsSolveStartY
         {
-            get { return aStarStartY; }
+            get { return dfsSolveStartY; }
             set
             {
-                if (value >= 0 && value < numberOfCellsY && value < aStartEndY)
-                    aStarStartY = value;
+                if (value >= 0 && value < numberOfCellsY && value < dfsSolveEndY)
+                    dfsSolveStartY = value;
                 else
-                    aStarStartY = 0;
+                    dfsSolveStartY = 0;
 
                 OnPropertyChanged();
             }
         }
 
-        public bool AStar
+        public bool DfsSolve
         {
-            get { return aStart; }
+            get { return dfsSolve; }
             set
             {
-                aStart = value;
+                dfsSolve = value;
                 OnPropertyChanged();
             }
         }
@@ -190,16 +190,16 @@ namespace DfsVisualization
             cellWidth = 20;
             cellHeight = 20;
 
-            aStart = true;
+            dfsSolve = true;
             saveToTextFile = true;
 
-            aStarStartX = 0;
-            aStarStartY = 0;
+            dfsSolveStartX = 0;
+            dfsSolveStartY = 0;
 
             CalculateNumberOfCells();
 
-            aStarEndX = numberOfCellsX - 1;
-            aStartEndY = numberOfCellsY - 1;
+            dfsSolveEndX = numberOfCellsX - 1;
+            dfsSolveEndY = numberOfCellsY - 1;
         }
 
         #region Calculate Number Of Cells

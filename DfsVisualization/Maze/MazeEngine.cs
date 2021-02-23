@@ -14,7 +14,7 @@ namespace DfsVisualization
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         private Dfs dfs;
-        private Astar astar;
+        private DfsSolver astar;
         #endregion
 
         #region Properties
@@ -87,9 +87,9 @@ namespace DfsVisualization
             dfs = new Dfs(mazeDrawer, backgroundWorker, sleep, mazeSettings);
             dfs.Start();
 
-            if (mazeSettings.AStar && dfs.Finished)
+            if (mazeSettings.DfsSolve && dfs.Finished)
             {
-                astar = new Astar(mazeDrawer, mazeSettings, sleep);
+                astar = new DfsSolver(mazeDrawer, mazeSettings, sleep);
                 astar.Start();
             }
 

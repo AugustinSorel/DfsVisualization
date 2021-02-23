@@ -1,13 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
 namespace DfsVisualization
 {
-    internal class Astar
+    internal class DfsSolver
     {
         #region Fields
         private readonly MazeDrawer mazeDrawer;
@@ -36,7 +34,7 @@ namespace DfsVisualization
         }
         #endregion
 
-        public Astar(MazeDrawer mazeDrawer, MazeSettings mazeSettings, SliderValue sleep)
+        public DfsSolver(MazeDrawer mazeDrawer, MazeSettings mazeSettings, SliderValue sleep)
         {
             this.mazeDrawer = mazeDrawer;
             this.mazeSettings = mazeSettings;
@@ -48,12 +46,12 @@ namespace DfsVisualization
 
         private void DrawStartCell()
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[mazeSettings.AStarStartX, mazeSettings.AStarStartY].Background = GlobalColors.TargerCellColor; }));
+            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[mazeSettings.DfsSolveStartX, mazeSettings.DfsSolveStartY].Background = GlobalColors.TargerCellColor; }));
         }
 
         private void DrawEndCell()
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[mazeSettings.AStartEndX, mazeSettings.AStartEndY].Background = GlobalColors.TargerCellColor; }));
+            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[mazeSettings.DfsSolveEndX, mazeSettings.DfsSolveEndY].Background = GlobalColors.TargerCellColor; }));
         }
 
         internal void Start()
@@ -67,11 +65,11 @@ namespace DfsVisualization
             wasHere = new bool[maze.GetLength(0), maze.GetLength(1)];
             correctPath = new bool[maze.GetLength(0), maze.GetLength(1)];
 
-            startX = mazeSettings.AStarStartX * 2;
-            startY = mazeSettings.AStarStartY * 2;
+            startX = mazeSettings.DfsSolveStartX * 2;
+            startY = mazeSettings.DfsSolveStartY * 2;
 
-            endX = mazeSettings.AStartEndX * 2;
-            endY = mazeSettings.AStartEndY * 2;
+            endX = mazeSettings.DfsSolveEndX * 2;
+            endY = mazeSettings.DfsSolveEndY * 2;
 
             for (int row = 0; row < maze.GetLength(1) - 10; row++) // I HAVE NO IDEA WHY -10 HERRE, but it is working so....
                 for (int col = 0; col < maze.GetLength(0) - 10; col++) // I HAVE NO IDEA WHY -10 HERRE, but it is working so....

@@ -4,9 +4,9 @@ namespace DfsVisualization
 {
     internal class SaveToFile
     {
-        private readonly Astar astar;
+        private readonly DfsSolver astar;
 
-        public SaveToFile(Astar astar)
+        public SaveToFile(DfsSolver astar)
         {
             this.astar = astar;
         }
