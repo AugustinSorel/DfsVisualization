@@ -89,7 +89,7 @@ namespace DfsVisualization
 
             if (mazeSettings.AStar && dfs.Finished)
             {
-                astar = new Astar(mazeDrawer, mazeSettings);
+                astar = new Astar(mazeDrawer, mazeSettings, sleep);
                 astar.Start();
             }
 

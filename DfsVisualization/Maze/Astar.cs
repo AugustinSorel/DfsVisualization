@@ -12,7 +12,7 @@ namespace DfsVisualization
         #region Fields
         private readonly MazeDrawer mazeDrawer;
         private readonly MazeSettings mazeSettings;
-
+        private readonly SliderValue sleep;
         private bool[,] correctPath;
         private bool[,] maze;
 
@@ -36,10 +36,11 @@ namespace DfsVisualization
         }
         #endregion
 
-        public Astar(MazeDrawer mazeDrawer, MazeSettings mazeSettings)
+        public Astar(MazeDrawer mazeDrawer, MazeSettings mazeSettings, SliderValue sleep)
         {
             this.mazeDrawer = mazeDrawer;
             this.mazeSettings = mazeSettings;
+            this.sleep = sleep;
 
             DrawStartCell();
             DrawEndCell();
@@ -158,7 +159,17 @@ namespace DfsVisualization
                 mazeDrawer.Cells[x / 2, y / 2].Background = Brushes.Orange;
             }));
 
-            Thread.Sleep();
+            Sleep();
+        }
+
+        private int GetSleep()
+        {
+            return (int)Math.Pow(2, 10 - sleep.BoundNumber) + 4;
+        }
+
+        private void Sleep()
+        {
+            Thread.Sleep(GetSleep());
         }
 
         private void CreateMaze()
