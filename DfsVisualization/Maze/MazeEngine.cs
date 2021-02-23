@@ -14,7 +14,7 @@ namespace DfsVisualization
         private BackgroundWorker backgroundWorker;
         private SliderValue sleep;
         private Dfs dfs;
-        private DfsSolver astar;
+        private DfsSolver dfsSolver;
         #endregion
 
         #region Properties
@@ -89,13 +89,13 @@ namespace DfsVisualization
 
             if (mazeSettings.DfsSolve && dfs.Finished)
             {
-                astar = new DfsSolver(mazeDrawer, mazeSettings, sleep);
-                astar.Start();
+                dfsSolver = new DfsSolver(mazeDrawer, mazeSettings, sleep);
+                dfsSolver.Start();
             }
 
             if (mazeSettings.SaveToTextFile)
             {
-                SaveToFile saveToFile = new SaveToFile(astar);
+                SaveToFile saveToFile = new SaveToFile(dfsSolver);
                 saveToFile.SaveMazeToTextFile();
                 saveToFile.SaveMazeSolutionToFile();
             }
