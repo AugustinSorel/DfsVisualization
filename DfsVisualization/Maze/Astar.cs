@@ -59,32 +59,7 @@ namespace DfsVisualization
         internal void Start()
         {
             CreateMaze();
-
             FindTheSolution();
-
-            //ShowTheSolution();
-        }
-
-        private void ShowTheSolution()
-        {
-            for (int i = 0; i < maze.GetLength(1); i++)
-                for (int j = 0; j < maze.GetLength(0); j++)
-                {
-                    if (j % 2 == 1)
-                        continue;
-
-                    if (i % 2 == 1)
-                        continue;
-
-                    if (correctPath[j, i] == true)
-                    {
-                        Application.Current.Dispatcher.Invoke(new Action(() => {
-                            mazeDrawer.Cells[j / 2, i / 2].Background = Brushes.Orange;
-                        }));
-                    }
-
-                    Thread.Sleep(10);
-                }
         }
 
         private void FindTheSolution()
@@ -93,9 +68,9 @@ namespace DfsVisualization
             correctPath = new bool[maze.GetLength(0), maze.GetLength(1)];
 
             startX = mazeSettings.AStarStartX * 2;
-            endX = mazeSettings.AStartEndX * 2;
-
             startY = mazeSettings.AStarStartY * 2;
+
+            endX = mazeSettings.AStartEndX * 2;
             endY = mazeSettings.AStartEndY * 2;
 
             for (int row = 0; row < maze.GetLength(1) - 4; row++) // I HAVE NO IDEA WHY -4 HERRE, but it is working so....
