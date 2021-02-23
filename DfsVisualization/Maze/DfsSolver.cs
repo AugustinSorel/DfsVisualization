@@ -44,6 +44,7 @@ namespace DfsVisualization
             DrawEndCell();
         }
 
+        #region Draw Cell
         private void DrawStartCell()
         {
             Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[mazeSettings.DfsSolveStartX, mazeSettings.DfsSolveStartY].Background = GlobalColors.TargerCellColor; }));
@@ -54,12 +55,30 @@ namespace DfsVisualization
             Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[mazeSettings.DfsSolveEndX, mazeSettings.DfsSolveEndY].Background = GlobalColors.TargerCellColor; }));
         }
 
+        private void DrawPathCell(int x, int y)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() => { mazeDrawer.Cells[x / 2, y / 2].Background = Brushes.Orange; }));
+        }
+
+        private void DrawCellCorrectPath(int x, int y)
+        {
+            if (x == startX && y == startY || x == startX && y == startY + 1 || x == startX + 1 && y == startY ||
+                x == endX && y == endY || x == endX + 1 && y == endY || x == endX && y == endY + 1)
+            {
+                return;
+            }
+            DrawPathCell(x, y);
+            Sleep();
+        }
+        #endregion
+
         internal void Start()
         {
             CreateMaze();
             FindTheSolution();
         }
 
+        #region Find a solution to the bool maze
         private void FindTheSolution()
         {
             wasHere = new bool[maze.GetLength(0), maze.GetLength(1)];
@@ -83,7 +102,9 @@ namespace DfsVisualization
             if (!b)
                 MessageBox.Show("Not Solvable");
         }
+        #endregion
 
+        #region Solve Maze
         private bool RecursiveSolve(int x, int y)
         {
             if (x == endX && y == endY) return true; // If you reached the end
@@ -125,24 +146,9 @@ namespace DfsVisualization
                 }
             return false;
         }
+        #endregion
 
-        private void DrawCellCorrectPath(int x, int y)
-        {
-
-
-            if (x == startX && y == startY || x == startX && y == startY + 1 || x == startX + 1 && y == startY ||
-                x == endX && y == endY || x == endX + 1&& y == endY || x == endX && y == endY + 1) 
-            {
-                return;
-            }
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                mazeDrawer.Cells[x / 2, y / 2].Background = Brushes.Orange;
-            }));
-
-            Sleep();
-        }
-
+        #region Sleep
         private int GetSleep()
         {
             return (int)Math.Pow(2, 10 - sleep.BoundNumber) + 4;
@@ -152,7 +158,9 @@ namespace DfsVisualization
         {
             Thread.Sleep(GetSleep());
         }
+        #endregion
 
+        #region Convert current maze to a bool maze
         private void CreateMaze()
         {
             maze = new bool[mazeSettings.NumberOfCellsX * 2 - 1, mazeSettings.NumberOfCellsY * 2 - 1];
@@ -188,5 +196,6 @@ namespace DfsVisualization
                 }
             }
         }
+        #endregion
     }
 }
