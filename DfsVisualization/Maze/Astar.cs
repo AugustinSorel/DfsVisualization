@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace DfsVisualization
 {
@@ -56,6 +59,35 @@ namespace DfsVisualization
         {
             CreateMaze();
 
+            FindTheSolution();
+
+            //ShowTheSolution();
+        }
+
+        private void ShowTheSolution()
+        {
+            for (int i = 0; i < maze.GetLength(1); i++)
+                for (int j = 0; j < maze.GetLength(0); j++)
+                {
+                    if (j % 2 == 1)
+                        continue;
+
+                    if (i % 2 == 1)
+                        continue;
+
+                    if (correctPath[j, i] == true)
+                    {
+                        Application.Current.Dispatcher.Invoke(new Action(() => {
+                            mazeDrawer.Cells[j / 2, i / 2].Background = Brushes.Orange;
+                        }));
+                    }
+
+                    Thread.Sleep(10);
+                }
+        }
+
+        private void FindTheSolution()
+        {
             wasHere = new bool[maze.GetLength(0), maze.GetLength(1)];
             correctPath = new bool[maze.GetLength(0), maze.GetLength(1)];
 
@@ -82,32 +114,51 @@ namespace DfsVisualization
             if (x == endX && y == endY) return true; // If you reached the end
             if (maze[x, y] || wasHere[x, y]) return false;
             // If you are on a wall or already were here
+
             wasHere[x, y] = true;
             if (x != 0) // Checks if not on left edge
                 if (RecursiveSolve(x - 1, y))
                 { // Recalls method one to the left
                     correctPath[x, y] = true; // Sets that path value to true;
+
+                    DrawCellCorrectPath(x, y);
                     return true;
                 }
             if (x != maze.GetLength(0) - 1) // Checks if not on right edge
                 if (RecursiveSolve(x + 1, y))
                 { // Recalls method one to the right
                     correctPath[x, y] = true;
+
+                    DrawCellCorrectPath(x, y);
                     return true;
                 }
             if (y != 0)  // Checks if not on top edge
                 if (RecursiveSolve(x, y - 1))
                 { // Recalls method one up
                     correctPath[x, y] = true;
+
+                    DrawCellCorrectPath(x, y);
                     return true;
                 }
             if (y != maze.GetLength(1) - 1) // Checks if not on bottom edge
                 if (RecursiveSolve(x, y + 1))
                 { // Recalls method one down
                     correctPath[x, y] = true;
+
+                    DrawCellCorrectPath(x, y);
                     return true;
                 }
             return false;
+        }
+
+        private void DrawCellCorrectPath(int x, int y)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                mazeDrawer.Cells[x / 2, y / 2].Background = Brushes.Orange;
+            }));
+
+            Thread.Sleep();
         }
 
         private void CreateMaze()

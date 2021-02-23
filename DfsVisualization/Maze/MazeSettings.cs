@@ -187,8 +187,8 @@ namespace DfsVisualization
             startCellX = 0;
             startCellY = 0;
 
-            cellWidth = 80;
-            cellHeight = 80;
+            cellWidth = 60;
+            cellHeight = 60;
 
             aStart = true;
             saveToTextFile = true;
