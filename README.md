@@ -22,10 +22,6 @@ Dfs algorithm used for both making and solving the maze
 
 ## Videos
 
-![](https://github.com/AugustinSorel/NeutronGameWpf/blob/master/Ai.gif)
+![](https://github.com/AugustinSorel/DfsVisualization/blob/master/Gif/2021-02-24%2021-36-26.gif)
 
-## Error Detection
-![](https://github.com/AugustinSorel/NeutronGameWpf/blob/master/ErrorDetection.gif)
-
-## End Game
-![](https://github.com/AugustinSorel/NeutronGameWpf/blob/master/win.gif)
+![](https://github.com/AugustinSorel/DfsVisualization/blob/master/Gif/2021-02-24%2021-58-14.gif)
