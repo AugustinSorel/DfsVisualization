@@ -24,4 +24,22 @@ Dfs algorithm used for both making and solving the maze
 
 ![](https://github.com/AugustinSorel/DfsVisualization/blob/master/Gif/2021-02-24%2021-36-26.gif)
 
+### Maze.txt
+
+![Alt text](https://github.com/AugustinSorel/DfsVisualization/blob/master/Images/Maze.PNG)
+
+### MazeSolution.txt
+
+![alt text](https://github.com/AugustinSorel/DfsVisualization/blob/master/Images/MazeSolution.PNG)
+
+### Smaller Maze
+
 ![](https://github.com/AugustinSorel/DfsVisualization/blob/master/Gif/2021-02-24%2021-58-14.gif)
+
+### Maze.txt
+
+![alt text](https://github.com/AugustinSorel/DfsVisualization/blob/master/Images/Maze2.PNG)
+
+### MazeSolution.txt
+
+![alt text](https://github.com/AugustinSorel/DfsVisualization/blob/master/Images/MazeSolution2.PNG)
