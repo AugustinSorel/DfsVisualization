@@ -43,11 +43,11 @@ namespace DfsVisualization
             set
             {
                 if (value >= 0 && value < numberOfCellsX && value > dfsSolveStartX)
+                {
                     dfsSolveEndX = value;
-                else
-                    dfsSolveEndX = 0;
+                    OnPropertyChanged();
+                }
 
-                OnPropertyChanged();
             }
         }
 
@@ -57,11 +57,11 @@ namespace DfsVisualization
             set
             {
                 if (value >= 0 && value < numberOfCellsY && value > dfsSolveStartY)
+                {
                     dfsSolveEndY = value;
-                else
-                    dfsSolveEndY = value;
+                    OnPropertyChanged();
+                }
 
-                OnPropertyChanged();
             }
         }
 
@@ -71,11 +71,11 @@ namespace DfsVisualization
             set
             {
                 if (value >= 0 && value < numberOfCellsX && value < dfsSolveEndX)
+                {
                     dfsSolveStartX = value;
-                else
-                    dfsSolveStartX = 0;
+                    OnPropertyChanged();
+                }
 
-                OnPropertyChanged();
             }
         }
 
@@ -85,11 +85,11 @@ namespace DfsVisualization
             set
             {
                 if (value >= 0 && value < numberOfCellsY && value < dfsSolveEndY)
+                {
                     dfsSolveStartY = value;
-                else
-                    dfsSolveStartY = 0;
+                    OnPropertyChanged();
+                }
 
-                OnPropertyChanged();
             }
         }
 
