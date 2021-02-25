@@ -17,8 +17,9 @@ Dfs algorithm used for both making and solving the maze
 * Save maze solution
 
 ## Links
-* [wikipedia](https://en.wikipedia.org/wiki/Depth-first_search) - Dfs Pseudocode.
-* [wikipedia](https://en.wikipedia.org/wiki/Maze_solving_algorithm) - Dfs Solver Pseudocode.
+* [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search) - Dfs Pseudocode.
+* [Wikipedia](https://en.wikipedia.org/wiki/Maze_solving_algorithm) - Dfs Solver Pseudocode.
+* [Youtube](https://www.youtube.com/watch?v=yaT4j0oeoiw&t) - Testing video.
 
 ## Videos
 
